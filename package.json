@@ -1,0 +1,25 @@
+{
+  "name": "remembrance-page",
+  "version": "1.0.0",
+  "description": "remembrance-page for Jerry Krikava",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run start --workspace=client",
+    "server": "npm run start --workspace=server",
+    "start": "concurrently --kill-others-on-fail \"npm run server\"  \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tim-Quattrochi/Remembrance-Page.git"
+  },
+  "keywords": [
+    "guestbook",
+    "tribute"
+  ],
+  "author": "Tim Quattrochi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tim-Quattrochi/Remembrance-Page/issues"
+  },
+  "homepage": "https://github.com/Tim-Quattrochi/Remembrance-Page#readme"
+}

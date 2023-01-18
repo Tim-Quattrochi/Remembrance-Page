@@ -1,0 +1,6 @@
+npm_modules
+node_modules
+.env
+.DS_STORE
+.vscode/*
+.cache/
