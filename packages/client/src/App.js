@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/post" element={<CreatePost />} />
       </Routes>
     </ErrorBoundary>
   );

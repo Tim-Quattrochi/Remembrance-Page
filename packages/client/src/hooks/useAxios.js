@@ -3,13 +3,13 @@ import { toast } from "react-toastify";
 
 const getUserToken = () => {
   const savedUser = JSON.parse(
-    localStorage.getItem("Remembrance-user")
+    localStorage.getItem("Remembrance-User")
   );
   return savedUser ? savedUser.token : "";
 };
 
 const instance = axios.create({
-  baseURL: `http://localhost:3000/api/`,
+  baseURL: "http://localhost:3001/api/",
 });
 
 instance.defaults.headers.post["Content-Type"] = "application/json";
@@ -33,9 +33,6 @@ export const setAuthToken = (token) => {
     instance.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${token}`;
-  } else {
-    //deleting the token from header
-    delete instance.defaults.headers.common["Authorization"];
   }
 };
 
@@ -48,12 +45,10 @@ instance.interceptors.response.use(
       toast.error(error.response.data.error);
     } else if (error.response.status === 401) {
       toast.error("Unauthorized");
-      console.log(error.response.data.error);
     }
     if (error.response.status === 500) {
       toast.error("500 Server Error");
     }
-
     return Promise.reject(error);
   }
 );

@@ -4,7 +4,12 @@ const Post = require("../models/postModel");
 const User = require("../models/userModel");
 
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).populate(
+    "user",
+    "-password -_id -email -roles"
+  );
+
+  console.log(posts);
 
   res.json(posts.map((post) => post.toJSON()));
 });
