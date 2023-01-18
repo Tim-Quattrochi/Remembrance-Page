@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../hooks/useAxios";
+import { useProvideAuth } from "../hooks/useAuth";
 import Spinner from "react-bootstrap/Spinner";
-import { setAuthToken } from "../hooks/useAuth";
+import { setAuthToken } from "../hooks/useAxios";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -13,9 +14,10 @@ const initialState = {
   error: null,
 };
 
-const SignUpPage = () => {
+const Login = () => {
   const [data, setData] = useState(initialState);
   const navigate = useNavigate();
+  const auth = useProvideAuth();
 
   const handleChange = (e) => {
     setData({
@@ -39,19 +41,15 @@ const SignUpPage = () => {
       error: null,
     });
     try {
-      const res = await axios.post("/users/login", {
-        email: data.email,
-        password: data.password,
-      });
+      const res = await auth.login(data.email, data.password);
       setAuthToken(res.token);
       navigate("/");
     } catch (error) {
+      console.log(error);
       setData({
         ...data,
         isSubmitting: false,
-        error: error
-          ? error.response.data.message || error.statusText
-          : null,
+        error: error ? error.message || error.statusText : null,
       });
     }
   };
@@ -60,8 +58,6 @@ const SignUpPage = () => {
     <Container className="d-flex justify-content-center align-items-center flex-column">
       <h1>Log in</h1>
       <Form
-        noValidate
-        validated
         className="row"
         style={{ width: "50%", maxWidth: "400px" }}
         onSubmit={handleSubmit}
@@ -99,4 +95,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default Login;

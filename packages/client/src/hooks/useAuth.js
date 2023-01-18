@@ -1,61 +1,124 @@
-import axios from "axios";
-import { toast } from "react-toastify";
+import {
+  useReducer,
+  useEffect,
+  useContext,
+  createContext,
+} from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../hooks/useAxios";
 
-const getUserToken = () => {
-  const savedUser = JSON.parse(
-    localStorage.getItem("Remembrance-user")
+const initialState = {
+  isAuthenticated: null,
+  user: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case "LOGOUT":
+      localStorage.clear();
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      };
+    default:
+      return state;
+  }
+};
+
+const authContext = createContext();
+
+export function ProvideAuth({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <authContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      {children}
+    </authContext.Provider>
   );
-  return savedUser ? savedUser.token : "";
+}
+
+export const useAuth = () => {
+  return useContext(authContext);
 };
 
-const instance = axios.create({
-  baseURL: `http://localhost:3000/api/`,
-});
+export function useProvideAuth() {
+  const { state, dispatch } = useAuth();
+  let navigate = useNavigate();
 
-instance.defaults.headers.post["Content-Type"] = "application/json";
-instance.defaults.headers.common["Authorization"] = getUserToken();
+  const login = async (email, password) => {
+    try {
+      const res = await axios.post("/users/login", {
+        email: email,
+        password: password,
+      });
 
-instance.interceptors.request.use(
-  function (config) {
-    const token = getUserToken();
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token;
+      localStorage.setItem(
+        "Remembrance-User",
+        JSON.stringify(res.data)
+      );
+      dispatch({
+        type: "LOGIN",
+        payload: res.data,
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        throw new Error(error.response.data.message);
+      } else {
+        throw error;
+      }
     }
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
-export const setAuthToken = (token) => {
-  if (token) {
-    //applying token
-    instance.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${token}`;
-  } else {
-    //deleting the token from header
-    delete instance.defaults.headers.common["Authorization"];
-  }
-};
+  };
 
-instance.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  function (error) {
-    if (error.response.status === 401 && error.response.data.error) {
-      toast.error(error.response.data.error);
-    } else if (error.response.status === 401) {
-      toast.error("Unauthorized");
-      console.log(error.response.data.error);
+  const signup = async (name, email, password, confirmPassword) => {
+    try {
+      await axios.post("/users", {
+        name: name,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      });
+      return await login(email, password);
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        throw new Error(error.response.data.message);
+      } else {
+        throw error;
+      }
     }
-    if (error.response.status === 500) {
-      toast.error("500 Server Error");
+  };
+
+  const signout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
+  const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem("Remembrance-User"));
+  };
+
+  useEffect(() => {
+    const savedUser =
+      JSON.parse(localStorage.getItem("Remembrance-User")) || false;
+
+    if (savedUser) {
+      dispatch({ type: "LOGIN", payload: savedUser });
+    } else {
+      dispatch({ type: "LOGOUT" });
     }
+  }, [dispatch]);
 
-    return Promise.reject(error);
-  }
-);
-
-export default instance;
+  return { state, getCurrentUser, signout, login, signup };
+}

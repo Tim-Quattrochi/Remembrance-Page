@@ -5,7 +5,8 @@ const User = require("../models/userModel");
 const { JWT_SECRET } = require("../config/constants");
 
 const signUp = asyncHandler(async (req, res) => {
-  const { name, email, password, confirmPassword } = req.body;
+  const { confirmPassword, email, name, password } = req.body;
+  console.log(email, name, password, confirmPassword);
 
   if (!name || !email || !password) {
     res.status(400);

@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "../hooks/useAxios";
+import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../hooks/useAxios";
 
 const initialState = {
   name: "",
@@ -17,6 +19,8 @@ const initialState = {
 const SignUpPage = () => {
   const [data, setData] = useState(initialState);
   const navigate = useNavigate();
+
+  const auth = useProvideAuth();
 
   const handleChange = (e) => {
     setData({
@@ -32,12 +36,16 @@ const SignUpPage = () => {
 
     if (data.password !== data.confirmPassword) {
       data.error = "passwords must match";
+      toast.error("Passwords must match.");
+      return;
     }
     if (
       data.confirmPassword.length < 8 ||
       data.password.length > 20
     ) {
+      toast.error("password must be between 8 and 20 characters.");
       data.error = "password must be between 8 and 20 characters.";
+      return;
     }
 
     if (form.checkValidity() === false) {
@@ -50,26 +58,25 @@ const SignUpPage = () => {
     });
 
     try {
-      const res = await axios.post("/users", {
-        name: data.name,
-        password: data.password,
-        confirmPassword: data.confirmPassword,
-        email: data.email,
-      });
+      const res = await auth.signup(
+        data.name,
+        data.email,
+        data.password,
+        data.confirmPassword
+      );
       setData({
         ...data,
-        errorMessage: null,
+        error: null,
         isSubmitting: false,
       });
+      setAuthToken(res.token);
 
       navigate("/");
     } catch (error) {
       setData({
         ...data,
         isSubmitting: false,
-        errorMessage: error
-          ? error.message || error.statusText
-          : null,
+        error: error ? error.message || error.statusText : null,
       });
       console.log(error);
     }
@@ -99,7 +106,7 @@ const SignUpPage = () => {
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
-            type="text"
+            type="email"
             name="email"
             value={data.email}
             onChange={handleChange}
