@@ -16,7 +16,9 @@ function NavBar() {
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1">Guest-Book</Nav.Link>
+        <Nav.Link eventKey="link-1" as={Link} to="/post">
+          Guest-Book
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="link-2">About</Nav.Link>

@@ -8,12 +8,14 @@ import {
   ListGroupItem,
   OverlayTrigger,
   Tooltip,
+  Container,
 } from "react-bootstrap";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { HiOutlinePuzzlePiece } from "react-icons/hi";
 import { useProvideAuth } from "../hooks/useAuth";
 import { formatDate } from "../utils.js/date";
+import { toast } from "react-toastify";
 
 function CreatePost() {
   const {
@@ -46,6 +48,10 @@ function CreatePost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(content);
+    if (!content || content === "  ") {
+      return toast.error("Please enter a message");
+    }
     try {
       const res = await instance.post("posts", { content });
       console.log(res.data);
@@ -56,9 +62,20 @@ function CreatePost() {
       console.log(error);
     }
   };
-
   const handleLike = async (postId) => {
+    if (!userNow) {
+      return toast.info("You must be logged in to like a post.");
+    }
+
     try {
+      if (
+        posts
+          .find((post) => post._id === postId)
+          .likes.map((like) => like._id)
+          .includes(userNow._id)
+      ) {
+        return toast.info("You have already liked this post");
+      }
       const { data } = await instance.post(`posts/like/${postId}`);
       setLikes({
         ...likes,
@@ -79,17 +96,17 @@ function CreatePost() {
   };
 
   return (
-    <div
-      style={{ maxWidth: "800px", margin: "0 auto" }}
-      className="text-center"
-    >
+    <Container style={{ maxWidth: "800px" }}>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="content">
           <Form.Control
             as="textarea"
             rows="3"
+            maxLength={900}
             placeholder="Make a post for the guest-book..."
             value={content}
+            size="lg"
+            required
             onChange={(e) => setContent(e.target.value)}
           />
         </Form.Group>
@@ -99,62 +116,49 @@ function CreatePost() {
       </Form>
       {posts &&
         posts.map((post) => (
-          <Card key={post._id}>
+          <Card bg="light" key={post._id} className="mb-3">
             <Card.Body>
               <Card.Title>{post.content}</Card.Title>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>
-                  Author: {post.user.name}{" "}
-                  {formatDate(post.createdAt)}
-                </ListGroupItem>
-                {post.likes && post.likes.length > 0 && (
-                  <OverlayTrigger
-                    key={post._id}
-                    placement="auto"
-                    overlay={
-                      <Tooltip id={`tooltip-${post._id}`}>
-                        {post.likes.map((like, i) => (
-                          <span key={i}>
-                            {like.name}
-                            {i !== post.likes.length - 1 ? ", " : ""}
-                          </span>
-                        ))}
-                      </Tooltip>
-                    }
-                  >
-                    <ListGroupItem
-                      className="d-flex align-items-center"
-                      onClick={() => handleLike(post._id)}
-                    >
-                      {likes[post._id] ? (
-                        <FaHeart className="mr-2 text-danger" />
-                      ) : (
-                        <FcLikePlaceholder className="mr-2" />
-                      )}
-                      {post.likes.length}
-                    </ListGroupItem>
-                  </OverlayTrigger>
-                )}
-              </ListGroup>
-              {post.likes &&
-              post.likes.find((like) => like._id === userNow._id) ? (
-                <FaHeart
-                  className={likes ? "text-danger" : ""}
-                  onClick={() => {
-                    handleLike(post._id);
-                  }}
-                />
-              ) : (
-                <FcLikePlaceholder
-                  onClick={() => {
-                    handleLike(post._id);
-                  }}
-                />
-              )}
             </Card.Body>
+            <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
+              <div>Author: {post.user.name}</div>
+              <div>{formatDate(post.createdAt)}</div>
+
+              {post.likes && post.likes.length > 0 && (
+                <OverlayTrigger
+                  key={post._id}
+                  placement="bottom"
+                  overlay={
+                    <Tooltip id={`tooltip-${post._id}`}>
+                      {post.likes.map((like, i) => (
+                        <span key={i}>
+                          {like.name}
+                          {i !== post.likes.length - 1 ? ", " : ""}
+                        </span>
+                      ))}
+                    </Tooltip>
+                  }
+                >
+                  <div>
+                    {likes[post._id] ? (
+                      <FaHeart
+                        className="mr-2 text-danger"
+                        onClick={() => handleLike(post._id)}
+                      />
+                    ) : (
+                      <FcLikePlaceholder
+                        className="mr-2"
+                        onClick={() => handleLike(post._id)}
+                      />
+                    )}
+                    {post.likes.length}
+                  </div>
+                </OverlayTrigger>
+              )}
+            </Card.Footer>
           </Card>
         ))}
-    </div>
+    </Container>
   );
 }
 
