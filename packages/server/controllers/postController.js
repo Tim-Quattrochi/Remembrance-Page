@@ -4,10 +4,10 @@ const Post = require("../models/postModel");
 const User = require("../models/userModel");
 
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({}).populate(
-    "user",
-    "-password -_id -email -roles"
-  );
+  const posts = await Post.find({})
+    .sort({ created: -1 })
+    .populate("user", "-password -_id -email -roles")
+    .populate("likes", "name");
 
   console.log(posts);
 
@@ -17,16 +17,21 @@ const getPosts = asyncHandler(async (req, res) => {
 const createPost = asyncHandler(async (req, res) => {
   const { content } = req.body;
   const { user } = req;
-  console.log(user);
 
   const newPost = new Post({
     content: content,
     user: user._id,
+    likes: [],
   });
-  newPost
-    .save()
-    .then((post) => res.json(post))
-    .catch((err) => res.status(400).json({ error: err.message }));
+
+  await newPost.save();
+
+  const post = await Post.findById(newPost._id).populate(
+    "user",
+    "name -_id"
+  );
+
+  res.status(201).json(post);
 });
 
 const likePost = asyncHandler(async (req, res) => {
@@ -54,16 +59,17 @@ const likePost = asyncHandler(async (req, res) => {
   }
 
   // find the post by post id and add user id to likes array
-  Post.findByIdAndUpdate(
+  await Post.findByIdAndUpdate(
     postId,
-    { $push: { likes: user._id } },
+    { $addToSet: { likes: user._id } },
     { new: true }
   )
-    .populate("likes", "name")
+    .populate("likes", "-_id name")
     .then((updatedPost) => {
       if (!updatedPost) {
         return res.status(404).json({ error: "Post not found" });
       }
+      console.log(updatedPost);
       return res.json(updatedPost);
     })
     .catch((err) => res.status(500).json({ error: err.message }));

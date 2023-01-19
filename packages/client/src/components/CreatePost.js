@@ -6,6 +6,8 @@ import {
   Card,
   ListGroup,
   ListGroupItem,
+  OverlayTrigger,
+  Tooltip,
 } from "react-bootstrap";
 
 function CreatePost() {
@@ -26,26 +28,44 @@ function CreatePost() {
     getAllPosts();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // make a post request with content to create a new post
-    // handle response
-    fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({ content }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts([data, ...posts]);
-        setContent("");
+    try {
+      const res = await instance.post("posts", { content });
+      console.log(res.data);
+
+      setPosts([res.data, ...posts]);
+      setContent("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLike = async (postId) => {
+    try {
+      const { data } = await instance.post(`posts/like/${postId}`);
+      // update the posts state by using the updated post object from the API
+      const { user, ...updatedPost } = data;
+      const updatedPosts = posts.map((post) => {
+        if (post._id === postId) {
+          return { ...post, ...updatedPost, user: post.user };
+        }
+        return post;
       });
+
+      console.log(updatedPost);
+      setPosts(updatedPosts);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   console.log(posts);
-
   return (
-    <div>
+    <div
+      style={{ maxWidth: "800px", margin: "0 auto" }}
+      className="text-center"
+    >
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="content">
           <Form.Control
@@ -69,7 +89,36 @@ function CreatePost() {
                 <ListGroupItem>
                   Author: {post.user.name}
                 </ListGroupItem>
+                {post.likes && post.likes.length > 0 && (
+                  <OverlayTrigger
+                    key={post._id}
+                    placement="auto"
+                    overlay={
+                      <Tooltip id={`tooltip-${post._id}`}>
+                        {post.likes.map((like, i) => {
+                          return (
+                            <span key={i}>
+                              {like.name}
+                              {i < post.likes.length - 1 ? ", " : ""}
+                            </span>
+                          );
+                        })}{" "}
+                        loves this
+                      </Tooltip>
+                    }
+                  >
+                    <ListGroupItem>
+                      Likes: {post.likes.length}
+                    </ListGroupItem>
+                  </OverlayTrigger>
+                )}
               </ListGroup>
+              <Button
+                variant="primary"
+                onClick={() => handleLike(post._id)}
+              >
+                Like
+              </Button>
             </Card.Body>
           </Card>
         ))}
