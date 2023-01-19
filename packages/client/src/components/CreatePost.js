@@ -9,11 +9,25 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { FcLikePlaceholder } from "react-icons/fc";
+import { useProvideAuth } from "../hooks/useAuth";
 
 function CreatePost() {
+  const {
+    state: { user },
+  } = useProvideAuth();
+
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
+  const [likes, setLikes] = useState({});
+  const [likedState, setLikedState] = useState();
+  const [userNow, setUserNow] = useState("");
 
+  useEffect(() => {
+    setUserNow(user);
+  }, [user]);
+  console.log(userNow);
   // Fetch all posts from the server
   useEffect(() => {
     const getAllPosts = async () => {
@@ -44,6 +58,10 @@ function CreatePost() {
   const handleLike = async (postId) => {
     try {
       const { data } = await instance.post(`posts/like/${postId}`);
+      setLikes({
+        ...likes,
+        [postId]: !likes[postId],
+      });
       // update the posts state by using the updated post object from the API
       const { user, ...updatedPost } = data;
       const updatedPosts = posts.map((post) => {
@@ -59,8 +77,8 @@ function CreatePost() {
       console.log(error);
     }
   };
-
   console.log(posts);
+
   return (
     <div
       style={{ maxWidth: "800px", margin: "0 auto" }}
@@ -103,7 +121,7 @@ function CreatePost() {
                             </span>
                           );
                         })}{" "}
-                        loves this
+                        love this
                       </Tooltip>
                     }
                   >
@@ -113,12 +131,21 @@ function CreatePost() {
                   </OverlayTrigger>
                 )}
               </ListGroup>
-              <Button
-                variant="primary"
-                onClick={() => handleLike(post._id)}
-              >
-                Like
-              </Button>
+              {post.likes &&
+              post.likes.find((like) => like._id === userNow._id) ? (
+                <FaHeart
+                  className={likes ? "text-danger" : ""}
+                  onClick={() => {
+                    handleLike(post._id);
+                  }}
+                />
+              ) : (
+                <FcLikePlaceholder
+                  onClick={() => {
+                    handleLike(post._id);
+                  }}
+                />
+              )}
             </Card.Body>
           </Card>
         ))}
