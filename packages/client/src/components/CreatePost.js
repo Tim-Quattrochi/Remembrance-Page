@@ -11,7 +11,9 @@ import {
 } from "react-bootstrap";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { HiOutlinePuzzlePiece } from "react-icons/hi";
 import { useProvideAuth } from "../hooks/useAuth";
+import { formatDate } from "../utils.js/date";
 
 function CreatePost() {
   const {
@@ -27,7 +29,7 @@ function CreatePost() {
   useEffect(() => {
     setUserNow(user);
   }, [user]);
-  console.log(userNow);
+
   // Fetch all posts from the server
   useEffect(() => {
     const getAllPosts = async () => {
@@ -60,7 +62,7 @@ function CreatePost() {
       const { data } = await instance.post(`posts/like/${postId}`);
       setLikes({
         ...likes,
-        [postId]: !likes[postId],
+        [postId]: true,
       });
       // update the posts state by using the updated post object from the API
       const { user, ...updatedPost } = data;
@@ -70,14 +72,11 @@ function CreatePost() {
         }
         return post;
       });
-
-      console.log(updatedPost);
       setPosts(updatedPosts);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(posts);
 
   return (
     <div
@@ -89,7 +88,7 @@ function CreatePost() {
           <Form.Control
             as="textarea"
             rows="3"
-            placeholder="What's on your mind?"
+            placeholder="Make a post for the guest-book..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
@@ -105,7 +104,8 @@ function CreatePost() {
               <Card.Title>{post.content}</Card.Title>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
-                  Author: {post.user.name}
+                  Author: {post.user.name}{" "}
+                  {formatDate(post.createdAt)}
                 </ListGroupItem>
                 {post.likes && post.likes.length > 0 && (
                   <OverlayTrigger
@@ -113,20 +113,25 @@ function CreatePost() {
                     placement="auto"
                     overlay={
                       <Tooltip id={`tooltip-${post._id}`}>
-                        {post.likes.map((like, i) => {
-                          return (
-                            <span key={i}>
-                              {like.name}
-                              {i < post.likes.length - 1 ? ", " : ""}
-                            </span>
-                          );
-                        })}{" "}
-                        love this
+                        {post.likes.map((like, i) => (
+                          <span key={i}>
+                            {like.name}
+                            {i !== post.likes.length - 1 ? ", " : ""}
+                          </span>
+                        ))}
                       </Tooltip>
                     }
                   >
-                    <ListGroupItem>
-                      Likes: {post.likes.length}
+                    <ListGroupItem
+                      className="d-flex align-items-center"
+                      onClick={() => handleLike(post._id)}
+                    >
+                      {likes[post._id] ? (
+                        <FaHeart className="mr-2 text-danger" />
+                      ) : (
+                        <FcLikePlaceholder className="mr-2" />
+                      )}
+                      {post.likes.length}
                     </ListGroupItem>
                   </OverlayTrigger>
                 )}
