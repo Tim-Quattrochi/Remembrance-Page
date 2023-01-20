@@ -1,0 +1,9 @@
+<svg id="sign_guest_book_BUTTON" data-name="sign guest book BUTTON" xmlns="http://www.w3.org/2000/svg" width="224" height="48" viewBox="0 0 224 48">
+  <rect id="States_Light_Primary_Container_100_Overlay" data-name="States/Light 🌕/Primary Container 100%/Overlay" width="224" height="48" rx="4" fill="#fdd037"/>
+  <g id="Group_11" data-name="Group 11" transform="translate(30 13)">
+    <g id="Group_20" data-name="Group 20" transform="translate(0)">
+      <text id="_Label" data-name="↳ ✏️ Label" transform="translate(24 16)" fill="#525252" font-size="14" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">SIGN GUEST BOOK</tspan></text>
+      <path id="_Color" data-name=" ↳Color" d="M3.75,18h0L0,18V14.25L11.059,3.192l3.75,3.75ZM15.878,5.871h0L12.129,2.122,13.959.292a1,1,0,0,1,1.41,0l2.34,2.34a1,1,0,0,1,0,1.41l-1.83,1.829Z" transform="translate(-5 0)" fill="#525252"/>
+    </g>
+  </g>
+</svg>

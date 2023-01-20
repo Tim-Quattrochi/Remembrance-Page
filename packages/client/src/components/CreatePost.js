@@ -4,6 +4,8 @@ import { Form, Button, Container } from "react-bootstrap";
 import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { PostFeed } from "../pages/PostFeed";
+import signBtn from "../assets/signBtn.svg";
+import pressedBtn from "../assets/pressedBtn.svg";
 
 function CreatePost() {
   const {
@@ -14,6 +16,7 @@ function CreatePost() {
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState({});
   const [userNow, setUserNow] = useState("");
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     setUserNow(user);
@@ -104,8 +107,17 @@ function CreatePost() {
             onChange={(e) => setContent(e.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Create Post
+        <Button
+          variant="none"
+          type="submit"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <img
+            src={isHovered ? pressedBtn : signBtn}
+            alt="SVG Button"
+            style={{ height: "50px", width: "224px" }}
+          />
         </Button>
       </Form>
       <PostFeed

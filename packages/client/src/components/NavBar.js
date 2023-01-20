@@ -1,30 +1,61 @@
 import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/logo.svg";
 
 function NavBar() {
   const location = useLocation();
 
   return (
     <Nav
-      className="justify-content-center"
+      className="navbar justify-content-center"
       variant="tabs"
       activeKey={location.pathname}
     >
+      <Container>
+        <Navbar.Brand href="#home" className="logo-container">
+          <img
+            src={logo}
+            width="204"
+            height="100"
+            className="logo"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
+      </Container>
       <Nav.Item>
-        <Nav.Link eventKey="/" as={Link} to="/">
+        <Nav.Link
+          eventKey="/"
+          as={Link}
+          to="/"
+          className="navbar-text"
+        >
           Home
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1" as={Link} to="/post">
+        <Nav.Link
+          eventKey="link-1"
+          as={Link}
+          to="/post"
+          className="navbar-text"
+        >
           Guest-Book
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2">About</Nav.Link>
+        <Nav.Link eventKey="link-2" className="navbar-text">
+          About
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-3" as={Link} to="/register">
+        <Nav.Link
+          eventKey="link-3"
+          as={Link}
+          to="/register"
+          className="navbar-text"
+        >
           Register
         </Nav.Link>
       </Nav.Item>

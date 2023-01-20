@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="248" height="72" viewBox="0 0 248 72">
+  <defs>
+    <filter id="States_Light_Primary_Container_100_Overlay" x="0" y="0" width="248" height="72" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="go_to_guest_book_BUTTON" data-name="go to guest book BUTTON" transform="translate(12 8)">
+    <rect id="Boundary" width="24" height="24" transform="translate(27 12)" fill="none"/>
+    <g id="Group_12" data-name="Group 12" transform="translate(1212 -1089)">
+      <g transform="matrix(1, 0, 0, 1, -1224, 1081)" filter="url(#States_Light_Primary_Container_100_Overlay)">
+        <rect id="States_Light_Primary_Container_100_Overlay-2" data-name="States/Light 🌕/Primary Container 100%/Overlay" width="224" height="48" rx="4" transform="translate(12 8)" fill="#98dad9"/>
+      </g>
+      <g id="Group_11" data-name="Group 11" transform="translate(-9.5)">
+        <g id="Group_20" data-name="Group 20" transform="translate(-21.5)">
+          <text id="_Label" data-name="↳ ✏️ Label" transform="translate(-1134 1118)" fill="#525252" font-size="14" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.05em"><tspan x="0" y="0">GO TO GUEST BOOK</tspan></text>
+          <path id="_Color" data-name=" ↳Color" d="M3.75,18h0L0,18v-3.75L11.06,3.192l3.75,3.75ZM15.88,5.872h0L12.13,2.122,13.96.292a1,1,0,0,1,1.41,0l2.34,2.34a1,1,0,0,1,0,1.41L15.88,5.872Z" transform="translate(-1162 1102)" fill="#525252"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
