@@ -85,7 +85,13 @@ function CreatePost() {
 
   return (
     <Container style={{ maxWidth: "800px" }}>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          marginBottom: "30px",
+          marginTop: "30px",
+        }}
+      >
         <Form.Group controlId="content">
           <Form.Control
             as="textarea"
