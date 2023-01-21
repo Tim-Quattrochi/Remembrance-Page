@@ -9,6 +9,7 @@ import { formatDate } from "../utils.js/date";
 import { FaHeart } from "react-icons/fa";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { toast } from "react-toastify";
+import ScrollToTop from "../components/ScrollToTop";
 
 export const PostFeed = ({ posts, likes, handleLike, user }) => {
   const [displayedPosts, setDisplayedPosts] = useState(2);
@@ -124,6 +125,7 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
           See More
         </p>
       </div>
+      <ScrollToTop />
     </Container>
   );
 };
