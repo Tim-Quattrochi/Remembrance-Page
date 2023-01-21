@@ -33,11 +33,26 @@ body::before {
 }
 
 body {
+  font-family: "Montserrat";
   background-image: url("../src/assets/BACKGROUND.svg");
-  background-size: 100% 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: cover;
   background-color: #e8dcdcb9;
+  background-repeat: no-repeat;
+}
+
+/* For devices 400px and larger: */
+@media only screen and (min-device-width: 500px) {
+  body {
+    background-image: url("../src/assets/BACKGROUND.svg");
+    background-attachment: local;
+    background-size: contain;
+    background-position: center;
+
+    background-color: #e8dcdcb9;
+    background-repeat: no-repeat;
+  }
 }
 
 .logo-container {
@@ -95,5 +110,11 @@ body {
   width: 224px;
   height: 48px;
 
+  opacity: 1;
+}
+
+.bottom-rect {
+  text-align: center;
+  background: url("../src/assets/bottomRect.svg");
   opacity: 1;
 }

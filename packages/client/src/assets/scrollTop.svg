@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="68" height="68" viewBox="0 0 68 68">
+  <defs>
+    <filter id="Shadow_3" x="0" y="0" width="68" height="68" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="fab" transform="translate(6 4)">
+    <g id="Circle_Elevation_Dark_04dp" data-name="Circle Elevation/Dark 🌑/04dp" transform="translate(-109)">
+      <g transform="matrix(1, 0, 0, 1, 103, -4)" filter="url(#Shadow_3)">
+        <rect id="Shadow_3-2" data-name="Shadow 3" width="56" height="56" rx="28" transform="translate(6 4)" fill="#fdd037"/>
+      </g>
+    </g>
+    <path id="_Color" data-name=" ↳Color" d="M13.383,2.55,10.837,0,0,10.851,10.837,21.7l2.547-2.55-8.272-8.3Z" transform="translate(38.851 21.308) rotate(90)" fill="#525252"/>
+  </g>
+</svg>

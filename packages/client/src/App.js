@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import CreatePost from "./components/CreatePost";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/post" element={<CreatePost />} />
       </Routes>
+      <Footer />
     </ErrorBoundary>
   );
 }
