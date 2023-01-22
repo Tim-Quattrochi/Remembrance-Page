@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../hooks/useAxios";
 import { useProvideAuth } from "../hooks/useAuth";
 import Spinner from "react-bootstrap/Spinner";
 import { setAuthToken } from "../hooks/useAxios";
-import { toast } from "react-toastify";
 
 const initialState = {
   email: "",
@@ -68,6 +66,7 @@ const Login = () => {
             type="text"
             name="email"
             value={data.email}
+            autoComplete="email"
             onChange={handleChange}
           />
         </Form.Group>
@@ -77,6 +76,7 @@ const Login = () => {
             type="password"
             name="password"
             value={data.password}
+            autoComplete="password"
             onChange={handleChange}
           />
         </Form.Group>

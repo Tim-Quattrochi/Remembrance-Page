@@ -2,11 +2,17 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "../fonts/ITCKRIST.TTF";
+import { useProvideAuth } from "../hooks/useAuth";
 import { Link, useLocation } from "react-router-dom";
 import logoAlt from "../assets/logoAlt.svg";
 
 function NavBar() {
   const location = useLocation();
+
+  const {
+    state: { user },
+    signout,
+  } = useProvideAuth();
 
   return (
     <Nav
@@ -41,29 +47,48 @@ function NavBar() {
       </Nav.Item>
       <Nav.Item>
         <Nav.Link
-          eventKey="link-1"
+          eventKey="/guest-book"
           as={Link}
-          to="/post"
+          to="/guest-book"
           className="navbar-text"
         >
-          Guest-Book
+          Guest Book
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-2" className="navbar-text">
-          About
-        </Nav.Link>
-      </Nav.Item>
+
       <Nav.Item>
         <Nav.Link
-          eventKey="link-3"
+          eventKey="/pictures"
           as={Link}
-          to="/register"
+          to="/pictures"
           className="navbar-text"
         >
-          Register
+          Gallery
         </Nav.Link>
       </Nav.Item>
+      {user ? (
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-4"
+            as={Link}
+            onClick={(e) => signout(e)}
+            className="navbar-text"
+          >
+            Logout
+          </Nav.Link>
+        </Nav.Item>
+      ) : (
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-3"
+            as={Link}
+            to="/register"
+            className="navbar-text"
+          >
+            Register
+          </Nav.Link>
+        </Nav.Item>
+      )}
     </Nav>
   );
 }

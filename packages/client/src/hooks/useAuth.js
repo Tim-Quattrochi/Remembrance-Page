@@ -101,7 +101,8 @@ export function useProvideAuth() {
     }
   };
 
-  const signout = () => {
+  const signout = (e) => {
+    e.preventDefault();
     dispatch({ type: "LOGOUT" });
     navigate("/");
   };

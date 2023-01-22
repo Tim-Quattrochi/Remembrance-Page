@@ -111,7 +111,7 @@ function CreatePost() {
                 as="textarea"
                 rows="3"
                 maxLength={900}
-                placeholder="Make a post for the guest-book..."
+                placeholder={`Hi ${user.name}. Feel free to make a post`}
                 value={content}
                 size="lg"
                 required
