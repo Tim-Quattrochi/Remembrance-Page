@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&display=swap");
+@font-face {
+  font-family: "Kristen ITC";
+  src: url("https://github.com/Tim-Quattrochi/Remembrance-Page/blob/main/packages/client/src/fonts/ITCKRIST.TTF")
+    format("truetype");
+}
+
 :root {
   /* Colors: */
   --unnamed-color-cacaca: #cacaca;
@@ -26,10 +33,13 @@
 .content-container {
   background-image: url("../src/assets/BACKGROUND.svg"),
     url("../src/assets/backBottom.svg");
-  min-height: 100vh;
+  height: auto;
   font-family: "Montserrat";
   background-size: cover;
   background-color: #fff7eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Large devices (laptops/desktops, 1024px and up) */
@@ -48,6 +58,7 @@
   grid-template-rows: 1fr;
   align-items: center;
   justify-items: center;
+  font-family: "Kristen ITC";
 }
 
 .logo {
@@ -77,27 +88,46 @@
   left: 120px;
   width: 474px;
   height: 202px;
-  background: transparent url("../src//assets/landingText.svg") 0% 0%
-    no-repeat padding-box;
+  font-size: 61px;
+  font-family: "Montserrat";
+  font-weight: bold;
   opacity: 1;
+}
+
+.landing-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .landing-desc {
-  top: 602px;
-  left: 120px;
-  width: 447px;
+  width: 100%;
+  max-width: 447px;
   height: 149px;
   margin-top: 2rem;
   opacity: 1;
+  text-align: center;
 }
 
-.landingBtn {
-  top: 778px;
-  left: 120px;
-  width: 224px;
-  height: 48px;
+@media only screen and (max-width: 600px) {
+  .landing-text-container {
+    width: 100%;
+  }
+  .personalPara {
+    width: 100%;
+  }
+}
+.landing-container {
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
+}
 
-  opacity: 1;
+.personalPara {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .bottom-rect {
@@ -133,8 +163,6 @@
   bottom: 0;
 }
 
-.date {
-  position: absolute;
-  bottom: 10px; /* or any other value to adjust the distance from the bottom */
-  left: 10px; /* or any other value to adjust the distance from the left */
+#Jerry {
+  font-family: "Kristen ITC";
 }

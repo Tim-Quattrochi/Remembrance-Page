@@ -1,22 +1,27 @@
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import "../fonts/ITCKRIST.TTF";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo.svg";
+import logoAlt from "../assets/logoAlt.svg";
 
 function NavBar() {
   const location = useLocation();
 
   return (
     <Nav
-      className="navbar justify-content-center"
+      className="navbar justify-content-center border-bottom-0"
       variant="tabs"
       activeKey={location.pathname}
     >
       <Container>
-        <Navbar.Brand href="#home" className="logo-container">
+        <Navbar.Brand
+          href="#home"
+          className="logo-container"
+          style={{ fontFamily: "Kristen ITC" }}
+        >
           <img
-            src={logo}
+            src={logoAlt}
             width="204"
             height="100"
             className="logo"
