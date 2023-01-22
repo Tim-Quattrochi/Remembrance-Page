@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import instance from "../hooks/useAxios";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { PostFeed } from "../pages/PostFeed";
@@ -35,6 +35,12 @@ function CreatePost() {
     };
     getAllPosts();
   }, []);
+
+  const handleChange = (e) => {
+    const input = e.target.value;
+    const paragraphs = input.split("\n");
+    setContent(paragraphs.join("\n"));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,47 +91,56 @@ function CreatePost() {
       console.log(error);
     }
   };
-
+  console.log(content);
   return (
-    <Container style={{ maxWidth: "800px" }}>
-      <Form
-        onSubmit={handleSubmit}
-        style={{
-          marginBottom: "30px",
-          marginTop: "30px",
-        }}
-      >
-        <Form.Group controlId="content">
-          <Form.Control
-            as="textarea"
-            rows="3"
-            maxLength={900}
-            placeholder="Make a post for the guest-book..."
-            value={content}
-            size="lg"
-            required
-            onChange={(e) => setContent(e.target.value)}
+    <Container
+      style={{ maxWidth: "800px" }}
+      className="create-post-container"
+    >
+      <Row>
+        <Col xs={12} md={12} className="mb-5">
+          <Form
+            onSubmit={handleSubmit}
+            style={{
+              marginBottom: "30px",
+              marginTop: "30px",
+            }}
+          >
+            <Form.Group controlId="content">
+              <Form.Control
+                as="textarea"
+                rows="3"
+                maxLength={900}
+                placeholder="Make a post for the guest-book..."
+                value={content}
+                size="lg"
+                required
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Button
+              variant="none"
+              type="submit"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <img
+                src={isHovered ? pressedBtn : signBtn}
+                alt="SVG Button"
+                style={{ height: "50px", width: "224px" }}
+              />
+            </Button>
+          </Form>
+        </Col>
+        <Col xs={12} md={12} style={{ marginTop: "60" }}>
+          <PostFeed
+            posts={posts}
+            likes={likes}
+            handleLike={handleLike}
+            user={user}
           />
-        </Form.Group>
-        <Button
-          variant="none"
-          type="submit"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={isHovered ? pressedBtn : signBtn}
-            alt="SVG Button"
-            style={{ height: "50px", width: "224px" }}
-          />
-        </Button>
-      </Form>
-      <PostFeed
-        posts={posts}
-        likes={likes}
-        handleLike={handleLike}
-        user={user}
-      />
+        </Col>
+      </Row>
     </Container>
   );
 }

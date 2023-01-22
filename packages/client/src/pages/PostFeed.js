@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import ScrollToTop from "../components/ScrollToTop";
 
 export const PostFeed = ({ posts, likes, handleLike, user }) => {
-  const [displayedPosts, setDisplayedPosts] = useState(2);
+  const [displayedPosts, setDisplayedPosts] = useState(6);
 
   const handleMoreClick = () => {
     if (displayedPosts >= posts.length) {
@@ -23,50 +23,55 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
   };
 
   return (
-    <Container style={{ maxWidth: "800px" }}>
+    <Container style={{ outLine: "none", maxWidth: "800px" }}>
       <div className="row">
         {posts &&
-          posts.slice(0, displayedPosts).map((post, index) => (
-            <div className="col-sm-3" key={post._id}>
-              <Card
-                bg="none"
-                key={post._id}
-                className="mb-3"
-                style={{
-                  backgroundColor:
-                    index % 2 === 0 ? "#CCF1E1" : "white",
-                }}
-              >
-                <Card.Body
+          posts.slice(0, displayedPosts).map((post, index) => {
+            return (
+              <div className="col-md-6 col-lg-4" key={post._id}>
+                <div
                   style={{
                     fontFamily: "Montserrat",
                     fontWeight: "Regular",
-                    color: "rgba(0,0,0,0.7)",
+                    color: "rgba(0,0,0,0.4)",
+                    fontSize: "16px",
                   }}
                 >
-                  {post.content}
-                </Card.Body>
-                <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
-                  <div
+                  {post.user.name}
+                </div>
+                <Card
+                  bg="none"
+                  key={post._id}
+                  className="mb-2"
+                  border="6px 6px 6px 6px"
+                  style={{
+                    border: "none",
+                    width: "100%",
+                    backgroundColor:
+                      index % 2 === 0 ? "#CCF1E1" : "white",
+                  }}
+                >
+                  <Card.Body
                     style={{
                       fontFamily: "Montserrat",
                       fontWeight: "Regular",
-                      color: "rgba(0,0,0,0.4)",
-                      fontSize: "16px",
+                      color: "rgba(0,0,0,0.7)",
+                      maxWidth: "100%",
+                      outline: "none",
+
+                      padding: "20px",
                     }}
                   >
-                    {post.user.name}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "10px",
-                      color: "#A8A8A8",
-                      fontFamily: "Montserrat",
-                      fontWeight: "Regular",
-                    }}
-                  >
-                    {formatDate(post.createdAt)}
-                  </div>
+                    <Card.Text
+                      style={{
+                        wordWrap: "break-word",
+                        whiteSpace: "pre-line",
+                      }}
+                    >
+                      {post.content}
+                    </Card.Text>
+                  </Card.Body>
+
                   {post.likes && post.likes.length >= 0 && (
                     <OverlayTrigger
                       key={`overlay-${post._id}`}
@@ -105,10 +110,22 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
                       </div>
                     </OverlayTrigger>
                   )}
-                </Card.Footer>
-              </Card>
-            </div>
-          ))}
+                </Card>
+                <div
+                  style={{
+                    fontSize: "10px",
+                    color: "#A8A8A8",
+                    fontFamily: "Montserrat",
+                    fontWeight: "Regular",
+                    margin: 0,
+                    marginTop: "10px",
+                  }}
+                >
+                  {formatDate(post.createdAt)}
+                </div>
+              </div>
+            );
+          })}
       </div>
       <div style={{ textAlign: "center" }}>
         <p
@@ -125,7 +142,6 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
           See More
         </p>
       </div>
-      <ScrollToTop />
     </Container>
   );
 };

@@ -23,34 +23,21 @@
   --yellow: #fdd037;
 }
 
-body::before {
-  background-image: url("../src/assets/BACKGROUND.svg");
-  background-size: 100% 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: #f0d6d6b9;
-  opacity: 0.25;
-}
-
-body {
+.content-container {
+  background-image: url("../src/assets/BACKGROUND.svg"),
+    url("../src/assets/backBottom.svg");
+  min-height: 100vh;
   font-family: "Montserrat";
-  background-image: url("../src/assets/BACKGROUND.svg");
-  background-position: center;
-  background-attachment: scroll;
   background-size: cover;
-  background-color: #e8dcdcb9;
-  background-repeat: no-repeat;
+  background-color: #fff7eb;
 }
 
-/* For devices 400px and larger: */
-@media only screen and (min-device-width: 500px) {
-  body {
-    background-image: url("../src/assets/BACKGROUND.svg");
-    background-attachment: local;
-    background-size: contain;
-    background-position: center;
+/* Large devices (laptops/desktops, 1024px and up) */
+@media only screen and (min-width: 1024px) {
+  .content-container {
+    min-height: 100vh;
+    background-size: cover;
 
-    background-color: #e8dcdcb9;
     background-repeat: no-repeat;
   }
 }
@@ -114,7 +101,40 @@ body {
 }
 
 .bottom-rect {
-  text-align: center;
   background: url("../src/assets/bottomRect.svg");
-  opacity: 1;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .bottom-rect {
+    position: absolute;
+    margin-top: auto;
+  }
+}
+
+.create-post-container {
+  margin-bottom: 70px;
+  padding: 29px;
+}
+
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.footer--pin {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+.date {
+  position: absolute;
+  bottom: 10px; /* or any other value to adjust the distance from the bottom */
+  left: 10px; /* or any other value to adjust the distance from the left */
 }

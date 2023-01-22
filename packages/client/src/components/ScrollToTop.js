@@ -24,6 +24,8 @@ const ScrollToTop = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        position: "fixed",
+        bottom: "20px",
       }}
     >
       {showButton ? (

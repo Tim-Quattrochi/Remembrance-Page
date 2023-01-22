@@ -7,22 +7,28 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import CreatePost from "./components/CreatePost";
+import StickyFooter from "react-sticky-footer";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import bottomRect from "../src/assets/bottomRect.svg";
 
 function App() {
   return (
-    <ErrorBoundary>
-      <ToastContainer />
-      <NavBar />
+    <div className="content-container">
+      <ErrorBoundary>
+        <ToastContainer />
+        <NavBar />
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/post" element={<CreatePost />} />
-      </Routes>
-      <Footer />
-    </ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/post" element={<CreatePost />} />
+        </Routes>
+        <ScrollToTop />
+        <Footer />
+      </ErrorBoundary>
+    </div>
   );
 }
 
