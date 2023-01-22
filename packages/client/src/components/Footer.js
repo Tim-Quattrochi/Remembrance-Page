@@ -22,7 +22,7 @@ const Footer = () => {
           <FaGithub fill="#fdd037" size={35} />
         </a>
         <a
-          href="https://github.com/Tim-Quattrochi"
+          href="https://www.linkedin.com/in/timquattrochi/"
           target="_blank"
           rel="noopener noreferrer"
           className="ml-auto"

@@ -1,74 +1,65 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
-
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gbBtn from "../assets/gbBtn.svg";
 import hoverGbBtn from "../assets/hoverGbBtn.svg";
-import personalPara from "../assets/personalPara.svg";
+import LandingCard from "../components/LadingCard";
 
 const LandingPage = () => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="landing-container">
-      <div className="landing-text-container">
+      <div
+        className="responsive-mobile"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          alignItems: "flex-end",
+          alignContent: "flex-start",
+          marginTop: "30px",
+        }}
+      >
         <div className="landing-text">Jerry's remembrance page.</div>
-        <p className="landing-desc">
-          Remember and honor Jerry's memory on this special landing
-          page. Share your thoughts and memories in the guest book.
-          Keep his legacy alive. We miss him.
-        </p>
+        <Link to="/post">
+          <Button
+            variant="none"
+            type="submit"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <img
+              src={isHovered ? hoverGbBtn : gbBtn}
+              alt="SVG Button"
+            />
+          </Button>
+        </Link>
       </div>
-      <Link to="/post">
-        <Button
-          variant="none"
-          type="submit"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={isHovered ? hoverGbBtn : gbBtn}
-            alt="SVG Button"
-          />
-        </Button>
-      </Link>
 
-      <Card bg="none" border="0" style={{ background: "#FAFAFA" }}>
-        <Card.Body>
-          <Card.Title
-            style={{
-              fontFamily: "Montserrat",
-              fontWeight: "bold",
-              fontSize: "38px",
-              color: "gray",
-              textAlign: "center",
-            }}
-          >
-            Title
-          </Card.Title>
-          <Card.Text
-            style={{
-              fontFamily: "Montserrat",
-              fontWeight: "regular",
-              fontSize: "20px",
-              textAlign: "center",
-            }}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Quis blandit turpis cursus in hac habitasse platea
-            dictumst quisque. Fringilla urna porttitor rhoncus dolor.
-            Sed velit dignissim sodales ut eu. Vitae congue mauris
-            rhoncus aenean vel elit scelerisque mauris pellentesque.
-            At volutpat diam ut venenatis tellus in metus vulputate
-            eu. Vestibulum lorem sed risus ultricies tristique.
-            Faucibus et molestie ac feugiat sed lectus vestibulum
-            mattis. Rhoncus mattis rhoncus urna neque viverra. Dui
-            vivamus arcu felis bibendum. Tempor id eu nisl nunc mi.
-            Velit egestas dui id ornare.
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <LandingCard>
+        <div className="card-header">Tribute to Jerry Krikava</div>
+        <div className="card-body">
+          I am honored to present my tribute page for my beloved
+          brother, Jerry Krikava.
+        </div>
+        <div className="card-section-header">Jerry's Life</div>
+        <div className="card-section-body">
+          {" "}
+          Jerry was born on March 9th, 1990 and unfortunately passed
+          away in March 2021. He had non-verbal autism and was a huge
+          fan of 80's music, particularly Madonna and Journey. Purpose
+          of this website In honor of Jerry's memory, I have created
+          this website as a way for friends and family to come
+          together and share their memories of Jerry. Visitors can
+          post on Jerry's guest book and view photos of him. Keeping
+          Jerry's Memory Alive This website is a way for us to keep
+          Jerry's memory alive and to remember the joy and love he
+          brought into our lives. I hope that this website will be a
+          source of comfort and support for those who knew and loved
+          Jerry.
+        </div>
+      </LandingCard>
     </div>
   );
 };

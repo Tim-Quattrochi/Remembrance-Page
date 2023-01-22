@@ -85,9 +85,9 @@
 
 .landing-text {
   top: 373px;
-  left: 120px;
+  left: 250px;
   width: 474px;
-  height: 202px;
+  height: auto;
   font-size: 61px;
   font-family: "Montserrat";
   font-weight: bold;
@@ -98,15 +98,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.landing-desc {
-  width: 100%;
-  max-width: 447px;
-  height: 149px;
-  margin-top: 2rem;
-  opacity: 1;
-  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
@@ -161,8 +152,56 @@
   position: relative;
   left: 0;
   bottom: 0;
+  margin-top: 20px;
 }
 
 #Jerry {
   font-family: "Kristen ITC";
+}
+
+@media (max-width: 600px) {
+  .landing-container .landing-text {
+    font-size: 35px;
+  }
+  .landing-container button {
+    width: 100vw;
+    max-width: 300px;
+    height: auto;
+  }
+}
+
+@media (max-width: 330px) {
+  .landing-container .landing-text .responsive-mobile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: flex-end;
+    font-size: 35px;
+  }
+  .landing-container button {
+    width: 100vw;
+    max-width: 300px;
+    height: auto;
+  }
+}
+
+.card-section-header,
+.card-header {
+  color: var(--gray);
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  font-family: Montserrat;
+}
+
+.card-section-body,
+.my-card {
+  box-shadow: 0px 16px 16px #0000000d;
+  background: #fafafa 0% 0% no-repeat padding-box;
+  opacity: 1;
+  font-family: Montserrat;
+  font-size: 20px;
+  color: var(--gray-70-);
+  text-align: center;
 }
