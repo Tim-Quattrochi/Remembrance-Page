@@ -80,7 +80,6 @@ const SignUpPage = () => {
       });
       console.log(error);
     }
-    console.log(data.email);
   };
 
   return (
