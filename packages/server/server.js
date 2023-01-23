@@ -1,5 +1,6 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const { PORT, API } = require("./config/constants");
 const { errorHandler } = require("./middleware/errorMiddle");
@@ -16,11 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(`${API}/users`, require("./routes/userRoutes"));
 app.use(`${API}/posts`, require("./routes/postRoutes"));
 
-//404
-app.use((req, res, next) => {
-  res.status(404).send("Sorry, that page can't be found.");
-});
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
   app.all("*", (req, res, next) => {
@@ -29,6 +25,11 @@ if (process.env.NODE_ENV === "production") {
     );
   });
 }
+
+//404
+app.use((req, res, next) => {
+  res.status(404).send("Sorry, that page can't be found.");
+});
 
 app.use(errorHandler);
 
