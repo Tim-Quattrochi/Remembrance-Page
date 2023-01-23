@@ -27,7 +27,7 @@ function CreatePost() {
     const getAllPosts = async () => {
       try {
         const allPosts = await instance.get("posts");
-        console.log(allPosts);
+
         setPosts(allPosts.data);
       } catch (error) {
         console.log(error);
@@ -91,7 +91,7 @@ function CreatePost() {
       console.log(error);
     }
   };
-  console.log(content);
+
   return (
     <Container
       style={{ maxWidth: "800px" }}
