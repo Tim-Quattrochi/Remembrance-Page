@@ -60,6 +60,7 @@ const logIn = asyncHandler(async (req, res) => {
   }
 });
 
+console.log(JWT_SECRET);
 //generate the JWT token.
 const createToken = (id) => {
   return jwt.sign({ id }, JWT_SECRET, {

@@ -22,7 +22,8 @@ function NavBar() {
     >
       <Container>
         <Navbar.Brand
-          href="#home"
+          as={Link}
+          to="/"
           className="logo-container"
           style={{ fontFamily: "Kristen ITC" }}
         >
