@@ -21,8 +21,7 @@ function NavBar() {
       activeKey={location.pathname}
     >
       <Container>
-        <Navbar.Brand
-          as={Link}
+        <Link
           to="/"
           className="logo-container"
           style={{ fontFamily: "Kristen ITC" }}
@@ -34,7 +33,7 @@ function NavBar() {
             className="logo"
             alt="React Bootstrap logo"
           />
-        </Navbar.Brand>
+        </Link>
       </Container>
       <Nav.Item>
         <Nav.Link
