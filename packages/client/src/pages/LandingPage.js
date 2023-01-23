@@ -22,7 +22,7 @@ const LandingPage = () => {
         }}
       >
         <div className="landing-text">Jerry's remembrance page.</div>
-        <Link to="/post">
+        <Link to="/guest-book">
           <Button
             variant="none"
             type="submit"
