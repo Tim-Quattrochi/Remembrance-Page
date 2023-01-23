@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec node server.js"
+    "start": "nodemon --exec node server.js",
+    "build": "nodemon server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

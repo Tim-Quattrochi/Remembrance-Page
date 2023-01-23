@@ -87,7 +87,10 @@ const SignUpPage = () => {
       <Form
         noValidate
         className="row"
-        style={{ width: "50%", maxWidth: "400px" }}
+        style={{
+          width: "50%",
+          maxWidth: "400px",
+        }}
         onSubmit={handleSubmit}
       >
         <Form.Group className="mb-3">

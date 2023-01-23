@@ -23,7 +23,8 @@
   "scripts": {
     "client": "npm run start --workspace=client",
     "server": "npm run start --workspace=server",
-    "start": "concurrently --kill-others-on-fail \"npm run server\"  \"npm run client\""
+    "start": "concurrently --kill-others-on-fail \"npm run server\"  \"npm run client\"",
+    "build": "concurrently --kill-others-on-fail \"npm run build --workspace=client\" \"npm run build --workspace=server\""
   },
   "dependencies": {
     "prop-types": "^15.8.1",

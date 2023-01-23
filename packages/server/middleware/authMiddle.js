@@ -3,8 +3,6 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const { JWT_SECRET } = require("../config/constants");
 
-console.log(JWT_SECRET);
-
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "../utils.js/constants";
 
 const getUserToken = () => {
   const savedUser = JSON.parse(
@@ -9,7 +10,7 @@ const getUserToken = () => {
 };
 
 const instance = axios.create({
-  baseURL: "http://localhost:3001/api/",
+  baseURL: `${API_URL}`,
 });
 
 instance.defaults.headers.post["Content-Type"] = "application/json";

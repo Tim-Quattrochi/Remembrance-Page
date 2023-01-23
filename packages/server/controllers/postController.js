@@ -9,8 +9,6 @@ const getPosts = asyncHandler(async (req, res) => {
     .populate("user", "-password -_id -email -roles")
     .populate("likes", "name");
 
-  console.log(posts);
-
   res.json(posts.map((post) => post.toJSON()));
 });
 

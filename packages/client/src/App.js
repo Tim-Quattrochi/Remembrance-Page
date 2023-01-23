@@ -11,6 +11,7 @@ import CreatePost from "./components/CreatePost";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ImageWall from "./components/ImageWall";
+import NotFound404 from "./pages/NotFound404";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/guest-book" element={<Protected />}>
             <Route path="/guest-book" element={<CreatePost />} />
           </Route>
+          <Route path="*" element={<NotFound404 />} />
         </Routes>
         <ScrollToTop />
         <Footer />
