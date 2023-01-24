@@ -78,16 +78,28 @@ function NavBar() {
           </Nav.Link>
         </Nav.Item>
       ) : (
-        <Nav.Item>
-          <Nav.Link
-            eventKey="link-3"
-            as={Link}
-            to="/register"
-            className="navbar-text"
-          >
-            Register
-          </Nav.Link>
-        </Nav.Item>
+        <>
+          <Nav.Item>
+            <Nav.Link
+              eventKey="/register"
+              as={Link}
+              to="/register"
+              className="navbar-text"
+            >
+              Register
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              eventKey="/login"
+              as={Link}
+              to="/login"
+              className="navbar-text"
+            >
+              Login
+            </Nav.Link>
+          </Nav.Item>
+        </>
       )}
     </Nav>
   );
