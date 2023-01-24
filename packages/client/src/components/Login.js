@@ -84,7 +84,11 @@ const Login = () => {
           <span className="form-error text-info">{data.error}</span>
         )}
 
-        <Button type="submit" variant="primary">
+        <Button
+          type="submit"
+          variant="none"
+          style={{ backgroundColor: "#FDD037" }}
+        >
           {data.isSubmitting ? <Spinner /> : "Login"}
         </Button>
         <Form.Text>

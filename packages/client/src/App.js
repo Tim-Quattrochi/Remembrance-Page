@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ImageWall from "./components/ImageWall";
 import NotFound404 from "./pages/NotFound404";
+import UnderConstruction from "./components/UnderConstruction";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           theme="dark"
         />
         <NavBar />
-
+        <UnderConstruction />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<Register />} />

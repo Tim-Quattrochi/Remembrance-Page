@@ -144,8 +144,9 @@ const SignUpPage = () => {
 
         <Button
           type="submit"
-          variant="primary"
+          variant="none"
           disabled={data.isSubmitting}
+          style={{ backgroundColor: "#FDD037" }}
         >
           {data.isSubmitting ? <Spinner /> : "Register"}
         </Button>

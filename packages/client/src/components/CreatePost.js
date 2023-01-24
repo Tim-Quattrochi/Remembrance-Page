@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import instance from "../hooks/useAxios";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Spinner,
+} from "react-bootstrap";
 import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { PostFeed } from "../pages/PostFeed";
@@ -17,6 +24,7 @@ function CreatePost() {
   const [likes, setLikes] = useState({});
   const [userNow, setUserNow] = useState("");
   const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setUserNow(user);
@@ -25,10 +33,12 @@ function CreatePost() {
   // Fetch all posts from the server
   useEffect(() => {
     const getAllPosts = async () => {
+      setIsLoading(true);
       try {
         const allPosts = await instance.get("posts");
 
         setPosts(allPosts.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -44,7 +54,7 @@ function CreatePost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(content);
+    setIsLoading(true);
     if (!content || content === "  ") {
       return toast.error("Please enter a message");
     }
@@ -54,6 +64,7 @@ function CreatePost() {
 
       setPosts([res.data, ...posts]);
       setContent("");
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -91,6 +102,18 @@ function CreatePost() {
       console.log(error);
     }
   };
+
+  if (isLoading) {
+    return (
+      <Spinner
+        style={{
+          width: "3rem",
+          height: "3rem",
+          color: "#CCF1E1",
+        }}
+      />
+    );
+  }
 
   return (
     <Container
