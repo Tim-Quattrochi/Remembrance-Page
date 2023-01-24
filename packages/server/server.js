@@ -19,6 +19,13 @@ app.use(`${API}/posts`, require("./routes/postRoutes"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(
+    "/.well-known/pki-validation/",
+    express.static(
+      path.join(__dirname, "/.well-known/pki-validation/")
+    )
+  );
+
   app.all("*", (req, res, next) => {
     res.sendFile(
       path.resolve(__dirname, "../client/build/index.html")
