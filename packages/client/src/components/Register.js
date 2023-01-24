@@ -70,7 +70,7 @@ const SignUpPage = () => {
       });
       setAuthToken(res.token);
 
-      navigate("/");
+      navigate("/guest-book");
     } catch (error) {
       setData({
         ...data,

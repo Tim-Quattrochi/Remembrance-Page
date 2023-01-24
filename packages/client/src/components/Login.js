@@ -41,7 +41,7 @@ const Login = () => {
     try {
       const res = await auth.login(data.email, data.password);
       setAuthToken(res.token);
-      navigate("/");
+      navigate("/guest-book");
     } catch (error) {
       console.log(error);
       setData({
