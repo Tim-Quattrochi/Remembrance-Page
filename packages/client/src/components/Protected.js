@@ -16,8 +16,6 @@ const Protected = () => {
     }
   }, [user]);
 
-  console.log(user);
-
   return user ? <Outlet /> : <Navigate to="/login" />;
 };
 
