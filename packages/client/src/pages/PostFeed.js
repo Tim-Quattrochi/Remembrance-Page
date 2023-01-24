@@ -81,7 +81,7 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
                             post.likes.map((like, i) => (
                               <span key={i}>
                                 {" "}
-                                {like.name}
+                                Loved by {like.name}
                                 {i !== post.likes.length - 1
                                   ? ", "
                                   : ""}

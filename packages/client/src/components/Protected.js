@@ -4,17 +4,19 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 
 const Protected = () => {
-  const {
-    state: { user },
-  } = useProvideAuth();
+  const { getCurrentUser } = useProvideAuth();
   const navigate = useNavigate();
+
+  const user = getCurrentUser();
 
   useEffect(() => {
     if (!user) {
       toast.error("You must be logged in to view this page");
       return navigate("/login");
     }
-  });
+  }, [user]);
+
+  console.log(user);
 
   return user ? <Outlet /> : <Navigate to="/login" />;
 };
