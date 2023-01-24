@@ -5,8 +5,9 @@ const User = require("../models/userModel");
 const { JWT_SECRET } = require("../config/constants");
 
 const signUp = asyncHandler(async (req, res) => {
-  const { confirmPassword, email, name, password } = req.body;
-  console.log(email, name, password, confirmPassword);
+  const { confirmPassword, name, password } = req.body;
+  //convert user email to lower case for more consistent data. Sometimes when the user logs in on phone the first letter will be capitalized.
+  let email = req.body.email.toLowerCase();
 
   if (!name || !email || !password) {
     res.status(400);
@@ -43,8 +44,9 @@ const signUp = asyncHandler(async (req, res) => {
 });
 
 const logIn = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-
+  const { password } = req.body;
+  let email = req.body.email.toLowerCase();
+  console.log(email);
   const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -59,7 +61,6 @@ const logIn = asyncHandler(async (req, res) => {
     throw new Error("Invalid log in information.");
   }
 });
-
 
 //generate the JWT token.
 const createToken = (id) => {
