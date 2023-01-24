@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&display=swap");
 @font-face {
   font-family: "Kristen ITC";
-  src: url("https://github.com/Tim-Quattrochi/Remembrance-Page/blob/main/packages/client/src/fonts/ITCKRIST.TTF")
-    format("truetype");
+  src: url("../src/fonts/ITCKRIST.TTF") format("truetype");
 }
 
 :root {

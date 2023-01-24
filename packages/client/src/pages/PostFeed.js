@@ -15,7 +15,7 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
 
   const handleMoreClick = () => {
     if (displayedPosts >= posts.length) {
-      toast.info("No more posts to show right now.");
+      toast.info("No more posts to show");
     } else {
       setDisplayedPosts(displayedPosts + 4);
     }

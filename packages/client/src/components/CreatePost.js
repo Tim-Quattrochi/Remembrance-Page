@@ -60,7 +60,7 @@ function CreatePost() {
   };
   const handleLike = async (postId) => {
     if (!userNow) {
-      return toast.info("You must be logged in to like a post.");
+      return toast.info("You must be logged in to like a post");
     }
 
     try {

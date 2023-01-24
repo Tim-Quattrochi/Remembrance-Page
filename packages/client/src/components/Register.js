@@ -35,15 +35,15 @@ const SignUpPage = () => {
 
     if (data.password !== data.confirmPassword) {
       data.error = "passwords must match";
-      toast.error("Passwords must match.");
+      toast.error("Passwords must match");
       return;
     }
     if (
       data.confirmPassword.length < 8 ||
       data.password.length > 20
     ) {
-      toast.error("password must be between 8 and 20 characters.");
-      data.error = "password must be between 8 and 20 characters.";
+      toast.error("password must be between 8 and 20 characters");
+      data.error = "password must be between 8 and 20 characters";
       return;
     }
 
