@@ -23,8 +23,8 @@ app.use(`${API}/posts`, require("./routes/postRoutes"));
 const server = 
   NODE_ENV === "production"
     ? https.createServer({
-      key: fs.readFileSync('/etc/nginx/ssl/jerrykrikava.com.key'),
-      cert: fs.readFileSync('/etc/nginx/ssl/nginx_bundle_b914d6944308.crt'),
+      key: fs.readFileSync(path.join(__dirname,'/etc/nginx/ssl/jerrykrikava.com.key')),
+      cert: fs.readFileSync(path.join(__dirname,'/etc/nginx/ssl/nginx_bundle_b914d6944308.crt')),
 
     }, app)
 
@@ -42,5 +42,5 @@ app.listen(PORT, () => {
 });
 
 server.listen(443, () => {
-  console.log('listening for requests onm port 443.')
+  console.log('listening for requests on port 443.')
 })
