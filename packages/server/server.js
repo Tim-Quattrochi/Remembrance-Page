@@ -41,6 +41,6 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-server.listen(443, () => {
+server.listen(3000, () => {
   console.log('listening for requests on port 443.')
 })
