@@ -2,7 +2,10 @@ const dotenv = require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const { PORT, API } = require("./config/constants");
+const https = require('https')
+const http = require('http')
+const fs = require('fs')
+const { PORT, API, NODE_ENV } = require("./config/constants");
 const { errorHandler } = require("./middleware/errorMiddle");
 const connectMyDB = require("./config/db");
 
@@ -17,15 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(`${API}/users`, require("./routes/userRoutes"));
 app.use(`${API}/posts`, require("./routes/postRoutes"));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-  
-  app.all("*", (req, res, next) => {
-    res.sendFile(
-      path.resolve(__dirname, "../client/build/index.html")
-    );
-  });
-}
+const server = 
+  NODE_ENV === "production"
+    ? https.createServer({
+      key: fs.readFileSync('/etc/nginx/ssl/jerrykrikava.com.key'),
+      cert: fs.readFileSync('/etc/nginx/ssl/nginx_bundle_b914d6944308.crt'),
+
+    }, app)
+
+    : http.createServer(app)
 
 //404
 app.use((req, res, next) => {
@@ -37,3 +40,7 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+https.listen(443, () => {
+  console.log('listening for requests onm port 443.')
+})
