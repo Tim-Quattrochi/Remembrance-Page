@@ -133,7 +133,6 @@ function CreatePost() {
               <Form.Control
                 as="textarea"
                 rows="3"
-                maxLength={900}
                 placeholder={`Hi ${user?.name}. Feel free to make a post`}
                 value={content}
                 size="lg"
