@@ -37,10 +37,8 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
 
-server.listen(3000, () => {
-  console.log('listening for requests on port 443.')
+server.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`)
 })
+
