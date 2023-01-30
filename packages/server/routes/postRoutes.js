@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { ensureAuth } = require("../middleware/ensureAuth");
 
 const {
   getPosts,
@@ -9,9 +10,9 @@ const {
 
 const { protect } = require("../middleware/authMiddle");
 
-router.get("/", protect, getPosts);
-router.post("/", protect, createPost);
+router.get("/", ensureAuth, getPosts);
+router.post("/", ensureAuth, createPost);
 
-router.post("/like/:postId", protect, likePost);
+router.post("/like/:postId", ensureAuth, likePost);
 
 module.exports = router;

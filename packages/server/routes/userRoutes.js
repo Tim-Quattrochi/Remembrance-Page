@@ -17,7 +17,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     console.log(req.user);
-    res.redirect("/guest-book");
+    res.redirect("http://localhost:3000/guest-book");
   }
 );
 
