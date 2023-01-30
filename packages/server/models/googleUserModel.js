@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const fbUserSchema = mongoose.Schema({
+const googleUserSchema = mongoose.Schema({
   uid: {
     type: String,
   },
@@ -27,4 +27,4 @@ const fbUserSchema = mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model("User", fbUserSchema);
+module.exports = mongoose.model("googleUser", googleUserSchema);

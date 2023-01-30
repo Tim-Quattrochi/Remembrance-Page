@@ -13,8 +13,30 @@ import ScrollToTop from "./components/ScrollToTop";
 import ImageWall from "./components/ImageWall";
 import NotFound404 from "./pages/NotFound404";
 import UnderConstruction from "./components/UnderConstruction";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
+import GoogleLoginBtn from "./components/GoogleLoginBtn";
 function App() {
+  const [user, setUser] = useState(null);
+
+  // const getUser = async () => {
+  //   try {
+  //     const url = `${process.env.REACT_APP_API_URL}/users/login/success`;
+  //     const { data } = await axios.get(url, {
+  //       withCredentials: true,
+  //     });
+  //     console.log(data);
+  //     setUser(data.user._json);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+
   return (
     <div className="content-container">
       <ErrorBoundary>
@@ -33,6 +55,8 @@ function App() {
         <NavBar />
         <UnderConstruction />
         <Routes>
+          <Route path="/fb" element={<GoogleLoginBtn />} />
+
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -40,7 +64,7 @@ function App() {
           <Route path="/guest-book" element={<Protected />}>
             <Route path="/guest-book" element={<CreatePost />} />
           </Route>
-          <Route path="*" element={<NotFound404 />} />
+          {/* <Route path="*" element={<NotFound404 />} /> */}
         </Routes>
         <ScrollToTop />
         <Footer />
