@@ -19,6 +19,8 @@ function CreatePost() {
     state: { user },
   } = useProvideAuth();
 
+  console.log(user);
+
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState({});

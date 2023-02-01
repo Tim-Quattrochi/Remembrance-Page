@@ -5,6 +5,7 @@ const cors = require("cors");
 const https = require("https");
 const http = require("http");
 const fs = require("fs");
+
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
@@ -24,24 +25,40 @@ connectMyDB();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.use(
   session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: DB_URI }),
+    unset: "destroy",
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000,
+    },
   })
 );
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(`/`, require("./routes/userRoutes"));
-app.use(`${API}/posts`, require("./routes/postRoutes"));
+app.use(`/posts`, require("./routes/postRoutes"));
 
 const server =
   NODE_ENV === "production"

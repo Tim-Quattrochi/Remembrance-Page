@@ -42,6 +42,7 @@ instance.interceptors.response.use(
     return response;
   },
   function (error) {
+    console.log(error);
     if (error.response.status === 401 && error.response.data.error) {
       toast.error(error.response.data.error);
     } else if (error.response.status === 401) {

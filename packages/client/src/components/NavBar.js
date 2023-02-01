@@ -5,14 +5,15 @@ import "../fonts/ITCKRIST.TTF";
 import { useProvideAuth } from "../hooks/useAuth";
 import { Link, useLocation } from "react-router-dom";
 import logoAlt from "../assets/logoAlt.svg";
+import LogoutButton from "./Logout";
 
 function NavBar() {
   const location = useLocation();
 
-  const {
-    state: { user },
-    signout,
-  } = useProvideAuth();
+  const { signout, getCurrentUser } = useProvideAuth();
+
+  let user = getCurrentUser();
+  console.log(user);
 
   return (
     <Nav
@@ -71,10 +72,9 @@ function NavBar() {
           <Nav.Link
             eventKey="link-4"
             as={Link}
-            onClick={(e) => signout(e)}
             className="navbar-text"
           >
-            Logout
+            <LogoutButton />
           </Nav.Link>
         </Nav.Item>
       ) : (

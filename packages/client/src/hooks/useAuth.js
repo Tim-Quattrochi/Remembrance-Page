@@ -14,7 +14,7 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "GOOGLE_USER":
       return {
         ...state,
         isAuthenticated: true,
@@ -68,7 +68,7 @@ export function useProvideAuth() {
         JSON.stringify(res.data)
       );
       dispatch({
-        type: "LOGIN",
+        type: "GOOGLE_USER",
         payload: res.data,
       });
       return res;
@@ -106,6 +106,27 @@ export function useProvideAuth() {
     dispatch({ type: "LOGOUT" });
     navigate("/");
   };
+
+  const getUser = async () => {
+    try {
+      const res = await axios.get("/user");
+      localStorage.setItem(
+        "Remembrance-User",
+        JSON.stringify(res.data)
+      );
+      dispatch({
+        type: "GOOGLE_USER",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: "LOGOUT" });
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("Remembrance-User"));
   };
@@ -115,11 +136,11 @@ export function useProvideAuth() {
       JSON.parse(localStorage.getItem("Remembrance-User")) || false;
 
     if (savedUser) {
-      dispatch({ type: "LOGIN", payload: savedUser });
+      dispatch({ type: "GOOGLE_USER", payload: savedUser });
     } else {
       dispatch({ type: "LOGOUT" });
     }
   }, [dispatch]);
 
-  return { state, getCurrentUser, signout, login, signup };
+  return { getUser, state, getCurrentUser, signout, login, signup };
 }

@@ -8,13 +8,13 @@ const Protected = () => {
   const navigate = useNavigate();
 
   const user = getCurrentUser();
-
+  console.log(user);
   useEffect(() => {
     if (!user) {
       toast.error("You must be logged in to view this page");
       return navigate("/login");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return user ? <Outlet /> : <Navigate to="/login" />;
 };

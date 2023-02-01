@@ -15,7 +15,6 @@ module.exports = function (passport) {
         callbackURL: GOOGLE_CALLBACK_URL,
       },
       async (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
         const newUser = {
           uid: profile.id,
           name: `${profile.name.givenName} ${profile.name.familyName}`,

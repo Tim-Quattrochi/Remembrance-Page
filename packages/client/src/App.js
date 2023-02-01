@@ -15,10 +15,29 @@ import NotFound404 from "./pages/NotFound404";
 import UnderConstruction from "./components/UnderConstruction";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useProvideAuth } from "./hooks/useAuth";
 
 import GoogleLoginBtn from "./components/GoogleLoginBtn";
 function App() {
-  const [user, setUser] = useState(null);
+  const {
+    state: { user },
+    getUser,
+  } = useProvideAuth();
+
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/user")
+  //     .then((res) => {
+  //       setUser(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
 
   // const getUser = async () => {
   //   try {
@@ -58,8 +77,8 @@ function App() {
           <Route path="/fb" element={<GoogleLoginBtn />} />
 
           <Route path="/" element={<LandingPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<GoogleLoginBtn />} />
+          <Route path="/login" element={<GoogleLoginBtn />} />
           <Route path="/pictures" element={<ImageWall />} />
           <Route path="/guest-book" element={<Protected />}>
             <Route path="/guest-book" element={<CreatePost />} />
