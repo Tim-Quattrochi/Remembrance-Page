@@ -14,6 +14,7 @@ const {
   PORT,
   NODE_ENV,
   DB_URI,
+  API,
   SESSION_SECRET,
 } = require("./config/constants");
 
@@ -55,8 +56,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(`/`, require("./routes/userRoutes"));
-app.use(`/posts`, require("./routes/postRoutes"));
+app.use(`${API}/`, require("./routes/userRoutes"));
+app.use(`${API}/posts`, require("./routes/postRoutes"));
 
 const server =
   NODE_ENV === "production"
