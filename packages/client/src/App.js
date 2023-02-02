@@ -18,7 +18,6 @@ function App() {
     state: { user },
   } = useProvideAuth();
 
-  console.log(user);
   return (
     <div className="content-container">
       <ErrorBoundary>

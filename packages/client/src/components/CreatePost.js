@@ -31,7 +31,11 @@ function CreatePost() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUserNow(user);
+    if (!user || user.length === 0 || user === "") {
+      setUserNow("Guest");
+    } else {
+      setUserNow(user);
+    }
   }, [user]);
 
   // Fetch all posts from the server
@@ -60,6 +64,9 @@ function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    if (!user || user === "") {
+      return toast.error("You must log in to post.");
+    }
     if (!content || content === "  ") {
       return toast.error("Please enter a message");
     }
