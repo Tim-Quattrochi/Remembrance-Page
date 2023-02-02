@@ -35,7 +35,7 @@ function CreatePost() {
       !user ||
       user.length === 0 ||
       user === "" ||
-      user === undefined
+      user.name === undefined
     ) {
       setUserNow("Guest");
     } else {
@@ -83,7 +83,6 @@ function CreatePost() {
     }
     try {
       const res = await instance.post("posts", { content });
-      console.log(res.data);
 
       setPosts([res.data, ...posts]);
       setContent("");
