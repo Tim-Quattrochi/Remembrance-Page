@@ -75,7 +75,7 @@ function CreatePost() {
       user === "" ||
       user === undefined
     ) {
-      toast.error("You must log in to post.");
+      toast.error("Please log in to make a post");
       navigate("/login");
     }
     if (!content || content === "  ") {
@@ -92,7 +92,7 @@ function CreatePost() {
     }
   };
   const handleLike = async (postId) => {
-    if (!userNow) {
+    if (userNow === "Guest") {
       return toast.info("You must be logged in to like a post");
     }
 
@@ -159,7 +159,7 @@ function CreatePost() {
               <Form.Control
                 as="textarea"
                 rows="3"
-                placeholder={`Hi ${user?.name}. Feel free to make a post`}
+                placeholder={`Hi ${userNow}. Feel free to make a post`}
                 value={content}
                 size="lg"
                 required
