@@ -87,7 +87,7 @@ export function useProvideAuth() {
     try {
       e.preventDefault();
       window.open(
-        `https://jerrykrikava.com/${API_URL}/google`,
+        `https://jerrykrikava.com${API_URL}/google`,
         "_self"
       );
     } catch (error) {
