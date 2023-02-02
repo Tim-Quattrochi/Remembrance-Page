@@ -14,6 +14,13 @@ A tribute site built in memory of my brother who passed away in March 2022. This
 
 - [React Bootstrap](https://react-bootstrap.github.io/)
 
+- [PassportJS](https://www.passportjs.org/)
+
+## Sign in revision
+
+After deploying this website and getting user feedback, I considered the user experience. Most user's don't want to sign
+up for another account on another website. I also don't want anonymous posts, So I implemented Google OAuth 2.0 so the user can use their Google account to make a guest-book entry. 2/1/2023
+
 ## Features
 
 - Guestbook where visitors can sign up and make posts that are saved in MongoDB.
