@@ -5,7 +5,8 @@ import {
   createContext,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../hooks/useAxios";
+import { API_URL } from "../utils.js/constants";
+import axios from "../utils.js/axios";
 
 const initialState = {
   isAuthenticated: null,
@@ -85,7 +86,10 @@ export function useProvideAuth() {
   const signup = async (e) => {
     try {
       e.preventDefault();
-      window.open(`https://jerrykrikava.com/google`, "_self");
+      window.open(
+        `https://jerrykrikava.com/${API_URL}google`,
+        "_self"
+      );
     } catch (error) {
       console.log(error);
       if (error.response) {
