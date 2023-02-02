@@ -10,10 +10,9 @@ import LogoutButton from "./Logout";
 function NavBar() {
   const location = useLocation();
 
-  const { signout, getCurrentUser } = useProvideAuth();
+  const { getCurrentUser } = useProvideAuth();
 
   let user = getCurrentUser();
-  console.log(user);
 
   return (
     <Nav
@@ -72,6 +71,7 @@ function NavBar() {
           <Nav.Link
             eventKey="link-4"
             as={Link}
+            to="/"
             className="navbar-text"
           >
             <LogoutButton />

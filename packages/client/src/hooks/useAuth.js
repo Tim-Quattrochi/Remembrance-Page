@@ -21,7 +21,7 @@ const reducer = (state, action) => {
         user: action.payload,
       };
     case "LOGOUT":
-      localStorage.clear();
+      window.localStorage.removeItem("Remembrance-User");
       return {
         ...state,
         isAuthenticated: false,
@@ -82,29 +82,31 @@ export function useProvideAuth() {
     }
   };
 
-  const signup = async (name, email, password, confirmPassword) => {
+  const signup = async (e) => {
     try {
-      await axios.post("/users", {
-        name: name,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-      });
-      return await login(email, password);
+      e.preventDefault();
+      window.open(`https://jerrykrikava.com/google`, "_self");
     } catch (error) {
       console.log(error);
       if (error.response) {
-        throw new Error(error.response.data.message);
+        throw new Error(error.response);
       } else {
         throw error;
       }
     }
   };
 
-  const signout = (e) => {
+  const signout = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGOUT" });
-    navigate("/");
+    window.localStorage.clear("Remembrance-User");
+    try {
+      await axios.post("/logout");
+
+      dispatch({ type: "LOGOUT" });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getUser = async () => {
@@ -125,8 +127,14 @@ export function useProvideAuth() {
   };
 
   useEffect(() => {
+    let mounted = true;
     getUser();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
+
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("Remembrance-User"));
   };
@@ -140,7 +148,7 @@ export function useProvideAuth() {
     } else {
       dispatch({ type: "LOGOUT" });
     }
-  }, [dispatch]);
+  }, []);
 
   return { getUser, state, getCurrentUser, signout, login, signup };
 }

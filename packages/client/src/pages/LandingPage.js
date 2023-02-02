@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import gbBtn from "../assets/gbBtn.svg";

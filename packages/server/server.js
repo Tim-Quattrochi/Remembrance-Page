@@ -5,7 +5,6 @@ const cors = require("cors");
 const https = require("https");
 const http = require("http");
 const fs = require("fs");
-
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
@@ -13,7 +12,6 @@ const { errorHandler } = require("./middleware/errorMiddle");
 const connectMyDB = require("./config/db");
 const {
   PORT,
-  API,
   NODE_ENV,
   DB_URI,
   SESSION_SECRET,
@@ -46,7 +44,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://jerrykrikava.com",
   optionsSuccessStatus: 200,
 };
 

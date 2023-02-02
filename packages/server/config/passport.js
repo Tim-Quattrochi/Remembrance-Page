@@ -1,5 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const googleUser = require("../models/googleUserModel");
+const User = require("../models/userModel");
 const {
   GOOGLE_CLIENT_ID,
   GOOGLE_SECRET_ID,
@@ -17,19 +17,20 @@ module.exports = function (passport) {
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
           uid: profile.id,
-          name: `${profile.name.givenName} ${profile.name.familyName}`,
+          name: profile.displayName,
           picture: profile.photos[0].value,
+          email: profile.emails[0].value,
         };
 
         try {
-          let user = await googleUser.findOne({
+          let user = await User.findOne({
             uid: profile.id,
           });
 
           if (user) {
             done(null, user);
           } else {
-            user = await googleUser.create(newUser);
+            user = await User.create(newUser);
             done(null, user);
           }
         } catch (error) {
@@ -44,6 +45,6 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser((id, done) => {
-    googleUser.findById(id, (err, user) => done(err, user));
+    User.findById(id, (err, user) => done(err, user));
   });
 };

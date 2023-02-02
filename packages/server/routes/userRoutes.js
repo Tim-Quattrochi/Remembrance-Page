@@ -1,8 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
-
-const { signUp, logIn } = require("../controllers/userController");
+const { CLIENT_HOME_PAGE_URL } = require("../config/constants");
 const { ensureGuest } = require("../middleware/ensureAuth");
 
 router.get(
@@ -20,22 +19,17 @@ router.get(
     failureRedirect: "/",
   }),
   (req, res) => {
-    console.log("HUH", req.user);
     req.session.user = req.user;
-    res.redirect("http://localhost:3000/guest-book");
+
+    res.redirect("/guest-book");
   }
 );
 
 router.get("/user", (req, res) => {
-  console.log(req.isAuthenticated());
-  console.log(req.session.user);
   res.json(req.session.user);
 });
 
-const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
-
-router.post("/logout", function (req, res, next) {
-  console.log(req.isAuthenticated());
+router.post("/logout", ensureGuest, function (req, res, next) {
   req.logout((err) => {
     if (err) {
       return next(err);
@@ -46,7 +40,5 @@ router.post("/logout", function (req, res, next) {
     res.redirect(CLIENT_HOME_PAGE_URL);
   });
 });
-// router.post("/", signUp);
-// router.post("/login", logIn);
 
 module.exports = router;

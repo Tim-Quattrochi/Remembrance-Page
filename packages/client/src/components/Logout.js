@@ -1,28 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useProvideAuth } from "../hooks/useAuth";
 
 function LogoutButton() {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    setLoading(true);
-    localStorage.clear("Remembrance-User");
-    try {
-      await axios.post("http://localhost:3001/logout");
-
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { signout } = useProvideAuth();
 
   return (
-    <Button variant="info" disabled={loading} onClick={handleLogout}>
+    <Button variant="info" onClick={signout}>
       Logout
     </Button>
   );

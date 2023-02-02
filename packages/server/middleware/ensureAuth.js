@@ -8,8 +8,6 @@ module.exports = {
     }
   },
   ensureGuest: (req, res, next) => {
-    console.log(req.app.locals.user);
-
     if (!req.isAuthenticated()) {
       return next();
     } else {

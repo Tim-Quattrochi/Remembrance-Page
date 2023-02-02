@@ -1,31 +1,16 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
-import { API_URL } from "../utils.js/constants";
+import { useProvideAuth } from "../hooks/useAuth";
 
 function GoogleLoginBtn() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
+  const { signup } = useProvideAuth();
   const location = useLocation();
-
-  useEffect(() => {
-    const googleCallbackUser = async () => {
-      const res = await axios.get("/user");
-      setUser(res.data);
-      setAuthenticated(true);
-      console.log(res);
-    };
-    googleCallbackUser();
-  }, []);
-
-  const handleGoogleLogin = () => {
-    window.open(`http://localhost:3001/google`, "_self");
-  };
 
   return (
     <button
-      onClick={handleGoogleLogin}
+      onClick={(e) => {
+        signup(e);
+      }}
       style={{
         marginTop: "10px",
         backgroundColor: "#4285f4",

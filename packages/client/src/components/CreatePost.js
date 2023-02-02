@@ -13,13 +13,12 @@ import { toast } from "react-toastify";
 import { PostFeed } from "../pages/PostFeed";
 import signBtn from "../assets/signBtn.svg";
 import pressedBtn from "../assets/pressedBtn.svg";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
   const {
     state: { user },
   } = useProvideAuth();
-
-  console.log(user);
 
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
@@ -27,6 +26,9 @@ function CreatePost() {
   const [userNow, setUserNow] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUserNow(user);
@@ -42,6 +44,7 @@ function CreatePost() {
         setPosts(allPosts.data);
         setIsLoading(false);
       } catch (error) {
+        setError(true);
         console.log(error);
       }
     };
@@ -105,6 +108,10 @@ function CreatePost() {
     }
   };
 
+  if (error) {
+    navigate("/login");
+    return toast.info("Please log in");
+  }
   if (isLoading) {
     return (
       <Spinner
