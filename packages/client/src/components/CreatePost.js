@@ -39,7 +39,7 @@ function CreatePost() {
     ) {
       setUserNow("Guest");
     } else {
-      setUserNow(user);
+      setUserNow(user.name);
     }
   }, [user]);
 
