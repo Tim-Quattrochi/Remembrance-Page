@@ -9,10 +9,16 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ImageWall from "./components/ImageWall";
 import NotFound404 from "./pages/NotFound404";
+import { useProvideAuth } from "./hooks/useAuth";
 import UnderConstruction from "./components/UnderConstruction";
 import GoogleLoginBtn from "./components/GoogleLoginBtn";
 
 function App() {
+  const {
+    state: { user },
+  } = useProvideAuth();
+
+  console.log(user);
   return (
     <div className="content-container">
       <ErrorBoundary>
@@ -35,7 +41,10 @@ function App() {
           <Route path="/register" element={<GoogleLoginBtn />} />
           <Route path="/login" element={<GoogleLoginBtn />} />
           <Route path="/pictures" element={<ImageWall />} />
+          user ?
           <Route path="/guest-book" element={<CreatePost />} />
+          :
+          <Route path="/login" element={<GoogleLoginBtn />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
         <ScrollToTop />
