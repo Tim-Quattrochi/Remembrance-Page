@@ -10,7 +10,7 @@ const {
 
 const { protect } = require("../middleware/authMiddle");
 
-router.get("/", ensureAuth, getPosts);
+router.get("/", getPosts);
 router.post("/", ensureAuth, createPost);
 
 router.post("/like/:postId", ensureAuth, likePost);
