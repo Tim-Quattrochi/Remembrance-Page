@@ -1,3 +1,6 @@
+import ReactGA from "react-ga";
+import { TRACKING_ID } from "./utils.js/constants";
+import { useEffect } from "react";
 import LandingPage from "./pages/LandingPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import NavBar from "./components/NavBar";
@@ -13,10 +16,18 @@ import { useProvideAuth } from "./hooks/useAuth";
 import UnderConstruction from "./components/UnderConstruction";
 import GoogleLoginBtn from "./components/GoogleLoginBtn";
 
+ReactGA.initialize(TRACKING_ID);
+
 function App() {
   const {
     state: { user },
   } = useProvideAuth();
+
+  useEffect(() => {
+    ReactGA.pageview(
+      window.location.pathname + window.location.search
+    );
+  }, []);
 
   return (
     <div className="content-container">
