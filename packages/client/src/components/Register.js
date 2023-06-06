@@ -5,6 +5,7 @@ import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../hooks/useAxios";
+import GoogleLoginBtn from "./GoogleLoginBtn";
 
 const initialState = {
   name: "",
@@ -154,6 +155,7 @@ const SignUpPage = () => {
           Already have an account? <Link to="/login">Log in</Link>
         </Form.Text>
       </Form>
+      <GoogleLoginBtn />
     </Container>
   );
 };

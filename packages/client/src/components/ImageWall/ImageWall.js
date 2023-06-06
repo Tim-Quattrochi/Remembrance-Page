@@ -1,12 +1,14 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
-import hopeProm from "../assets/jerrysPhotos/hopeProm.jpeg";
-import jerryProm from "../assets/jerrysPhotos/jerryProm.jpeg";
-import jerryLittle from "../assets/jerrysPhotos/jerryLittle.jpg";
-import family from "../assets/jerrysPhotos/family.jpg";
-import meAndJErry from "../assets/jerrysPhotos/meAndJErry.JPG";
-import krystleJerryMatt from "../assets/jerrysPhotos/krystleJerryMatt.jpeg";
+
+import hopeProm from "../../assets/jerrysPhotos/hopeProm.jpeg";
+import jerryProm from "../../assets/jerrysPhotos/jerryProm.jpeg";
+import jerryLittle from "../../assets/jerrysPhotos/jerryLittle.jpg";
+import family from "../../assets/jerrysPhotos/family.jpg";
+import meAndJErry from "../../assets/jerrysPhotos/meAndJErry.JPG";
+import krystleJerryMatt from "../../assets/jerrysPhotos/krystleJerryMatt.jpeg";
+import "./imageWall.css";
 
 const ImageWall = () => {
   const [showModal, setShowModal] = useState(false);

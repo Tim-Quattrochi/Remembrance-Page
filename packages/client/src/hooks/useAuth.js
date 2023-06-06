@@ -105,8 +105,8 @@ export function useProvideAuth() {
     window.localStorage.clear("Remembrance-User");
     try {
       await axios.post("/logout");
-
       dispatch({ type: "LOGOUT" });
+      localStorage.removeItem("Remembrance-User");
       navigate("/");
     } catch (error) {
       console.log(error);

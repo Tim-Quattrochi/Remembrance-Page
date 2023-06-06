@@ -27,6 +27,7 @@
     "build": "concurrently --kill-others-on-fail \"npm run build --workspace=client\" \"npm run build --workspace=server\""
   },
   "dependencies": {
+    "concurrently": "^8.1.0",
     "connect-mongo": "^4.6.0",
     "cookie-session": "^2.0.0",
     "express-session": "^1.17.3",

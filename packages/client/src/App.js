@@ -10,11 +10,13 @@ import "react-toastify/dist/ReactToastify.min.css";
 import CreatePost from "./components/CreatePost";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import ImageWall from "./components/ImageWall";
+import ImageWall from "./components/ImageWall/ImageWall";
 import NotFound404 from "./pages/NotFound404";
 import { useProvideAuth } from "./hooks/useAuth";
 import UnderConstruction from "./components/UnderConstruction";
 import GoogleLoginBtn from "./components/GoogleLoginBtn";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 ReactGA.initialize(TRACKING_ID);
 
@@ -48,8 +50,8 @@ function App() {
         <UnderConstruction />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/register" element={<GoogleLoginBtn />} />
-          <Route path="/login" element={<GoogleLoginBtn />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/pictures" element={<ImageWall />} />
           user ?
           <Route path="/guest-book" element={<CreatePost />} />

@@ -45,7 +45,7 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
                   border="6px 6px 6px 6px"
                   style={{
                     border: "none",
-                    width: "100%",
+
                     backgroundColor:
                       index % 2 === 0 ? "#CCF1E1" : "white",
                   }}

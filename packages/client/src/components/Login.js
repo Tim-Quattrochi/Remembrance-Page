@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useProvideAuth } from "../hooks/useAuth";
 import Spinner from "react-bootstrap/Spinner";
 import { setAuthToken } from "../hooks/useAxios";
+import GoogleLoginBtn from "./GoogleLoginBtn";
 
 const initialState = {
   email: "",
@@ -95,6 +96,8 @@ const Login = () => {
           Need an account? <Link to="/register">Register</Link>
         </Form.Text>
       </Form>
+
+      <GoogleLoginBtn />
     </Container>
   );
 };
