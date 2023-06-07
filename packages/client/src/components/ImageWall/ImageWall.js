@@ -1,7 +1,8 @@
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import hopeProm from "../../assets/jerrysPhotos/hopeProm.jpeg";
 import jerryProm from "../../assets/jerrysPhotos/jerryProm.jpeg";
 import jerryLittle from "../../assets/jerrysPhotos/jerryLittle.jpg";
@@ -14,6 +15,8 @@ const ImageWall = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const photoRef = useRef(null);
 
   const handleClick = (image, index) => {
     setSelectedImage(image);
@@ -38,10 +41,13 @@ const ImageWall = () => {
     <>
       <div className="image-grid">
         {images.map((image, index) => (
-          <img
+          <LazyLoadImage
+            effect="blur"
+            ref={photoRef}
             key={index}
             src={image}
             alt={`Image ${index + 1}`}
+            className="image-item"
             onClick={() => handleClick(image, index)}
           />
         ))}
@@ -49,26 +55,45 @@ const ImageWall = () => {
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Body className="modal-body">
           <Carousel
+            interval={null}
             activeIndex={imageIndex}
             onSelect={(index) => setImageIndex(index)}
+            className="carousel-container"
           >
             <Carousel.Item>
-              <img src={hopeProm} alt="Jerry at prom" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={jerryProm} alt="Prom" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={jerryLittle} alt="Jerry when he was little" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={family} alt="family" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={meAndJErry} alt="Tim and Jerry" />
+              <img
+                className="image-item"
+                src={hopeProm}
+                alt="Jerry at prom"
+              />
             </Carousel.Item>
             <Carousel.Item>
               <img
+                className="image-item"
+                src={jerryProm}
+                alt="Prom"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="image-item"
+                src={jerryLittle}
+                alt="Jerry when he was little"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img className="image-item" src={family} alt="family" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="image-item"
+                src={meAndJErry}
+                alt="Tim and Jerry"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="image-item"
                 src={krystleJerryMatt}
                 alt="Krystle, Matt, and Jerry"
               />

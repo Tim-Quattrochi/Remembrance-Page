@@ -201,35 +201,3 @@
   color: var(--gray-70-);
   text-align: center;
 }
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 16px;
-  margin: 24px;
-  background-color: var(--unnamed-color-ddfafa);
-  padding: 16px;
-  border: none;
-}
-
-.image-grid img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.modal-body {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-@media (max-width: 576px) {
-  .modal-body {
-    max-width: 90%;
-  }
-}
-
-.modal-body img {
-  max-width: 100%;
-  height: auto;
-}
