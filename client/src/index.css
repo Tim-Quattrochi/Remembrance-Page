@@ -42,6 +42,28 @@
   min-height: 100vh;
 }
 
+@media (max-width: 600px) {
+  .content-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #fff7eb;
+    width: 100%;
+    flex-wrap: wrap;
+    min-height: 100vh;
+  }
+}
+
+/* background: transparent url("../src/assets/BACKGROUND.svg") 0% 0%
+    no-repeat padding-box;
+  opacity: 1;
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: "Montserrat";
+  background-size: contain;
+  background-color: #fff7eb;
+  background-repeat: no-repeat;
+  background-position: center; */
+
 /* Large devices (laptops/desktops, 1024px and up) */
 @media only screen and (min-width: 1024px) {
   .content-container {
@@ -83,44 +105,6 @@
   justify-content: center;
 }
 
-.landing-text {
-  top: 373px;
-  left: 250px;
-  width: 474px;
-  height: auto;
-  font-size: 61px;
-  font-family: "Montserrat";
-  font-weight: bold;
-  opacity: 1;
-}
-
-.landing-text-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media only screen and (max-width: 600px) {
-  .landing-text-container {
-    width: 100%;
-  }
-  .personalPara {
-    width: 100%;
-  }
-}
-.landing-container {
-  width: 100%;
-  max-width: 1200px;
-  overflow: hidden;
-}
-
-.personalPara {
-  position: relative;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-}
-
 .bottom-rect {
   background: url("../src/assets/bottomRect.svg");
   position: fixed;
@@ -139,65 +123,4 @@
 .create-post-container {
   margin-bottom: 70px;
   padding: 29px;
-}
-
-.footer--pin {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  margin-top: 20px;
-  flex-grow: 1;
-}
-
-#Jerry {
-  font-family: "Kristen ITC";
-}
-
-@media (max-width: 600px) {
-  .landing-container .landing-text {
-    font-size: 35px;
-  }
-  .landing-container button {
-    width: 100vw;
-    max-width: 300px;
-    height: auto;
-  }
-}
-
-@media (max-width: 330px) {
-  .landing-container .landing-text .responsive-mobile {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: stretch;
-    align-items: flex-end;
-    font-size: 35px;
-  }
-  .landing-container button {
-    width: 100vw;
-    max-width: 300px;
-    height: auto;
-  }
-}
-
-.card-section-header,
-.card-header {
-  margin: 5px;
-  padding: 5px;
-  color: var(--gray);
-  text-align: center;
-  font-size: 38px;
-  font-weight: bold;
-  font-family: Montserrat;
-}
-
-.card-section-body,
-.my-card {
-  box-shadow: 0px 16px 16px #0000000d;
-  background: #fafafa 0% 0% no-repeat padding-box;
-  opacity: 1;
-  font-family: Montserrat;
-  font-size: 20px;
-  color: var(--gray-70-);
-  text-align: center;
 }

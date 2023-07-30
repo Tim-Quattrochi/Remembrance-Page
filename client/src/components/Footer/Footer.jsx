@@ -3,6 +3,7 @@ import {
   FaHandHoldingHeart,
   FaLinkedin,
 } from "react-icons/fa";
+import "./footer.css";
 
 const Footer = () => {
   return (

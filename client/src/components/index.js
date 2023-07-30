@@ -1,7 +1,6 @@
-export { default as Footer } from "./Footer";
+export { default as Footer } from "./Footer/Footer";
 export { default as ErrorBoundary } from "./ErrorBoundary";
 export { default as GoogleLoginBtn } from "./GoogleLoginBtn";
-export { default as LandingCard } from "./LadingCard";
 export { default as Logout } from "./Logout";
 export { default as NavBar } from "./NavBar";
 export { default as ScrollToTop } from "./ScrollToTop";
