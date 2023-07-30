@@ -15,7 +15,7 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "GOOGLE_USER":
+    case "LOGIN":
       return {
         ...state,
         isAuthenticated: true,
@@ -59,7 +59,7 @@ export function useProvideAuth() {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("/users/login", {
+      const res = await axios.post("/user/login", {
         email: email,
         password: password,
       });
@@ -69,7 +69,7 @@ export function useProvideAuth() {
         JSON.stringify(res.data)
       );
       dispatch({
-        type: "GOOGLE_USER",
+        type: "LOGIN",
         payload: res.data,
       });
       return res;
@@ -144,15 +144,14 @@ export function useProvideAuth() {
   };
 
   useEffect(() => {
-    const savedUser =
-      JSON.parse(localStorage.getItem("Remembrance-User")) || false;
+    const savedUser = getCurrentUser() || false;
 
     if (savedUser) {
-      dispatch({ type: "GOOGLE_USER", payload: savedUser });
+      dispatch({ type: "LOGIN", payload: savedUser });
     } else {
       dispatch({ type: "LOGOUT" });
     }
-  }, []);
+  }, [dispatch]);
 
   return { getUser, state, getCurrentUser, signout, login, signup };
 }

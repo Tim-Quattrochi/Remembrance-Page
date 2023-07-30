@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
   picture: {
     type: String,
   },
+  password: {
+    type: String,
+    required: [true, "You must enter a password."],
+  },
 
   roles: [
     {

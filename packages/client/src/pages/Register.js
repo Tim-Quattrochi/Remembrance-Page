@@ -5,7 +5,7 @@ import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../hooks/useAxios";
-import GoogleLoginBtn from "./GoogleLoginBtn";
+import GoogleLoginBtn from "../components/GoogleLoginBtn";
 
 const initialState = {
   name: "",

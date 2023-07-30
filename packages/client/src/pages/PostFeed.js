@@ -10,7 +10,7 @@ import { FaHeart } from "react-icons/fa";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { toast } from "react-toastify";
 
-export const PostFeed = ({ posts, likes, handleLike, user }) => {
+const PostFeed = ({ posts, likes, handleLike, user }) => {
   const [displayedPosts, setDisplayedPosts] = useState(6);
 
   const handleMoreClick = () => {
@@ -144,3 +144,5 @@ export const PostFeed = ({ posts, likes, handleLike, user }) => {
     </Container>
   );
 };
+
+export default PostFeed;

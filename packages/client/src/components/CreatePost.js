@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { useProvideAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
-import { PostFeed } from "../pages/PostFeed";
+import { PostFeed } from "../pages/";
 import signBtn from "../assets/signBtn.svg";
 import pressedBtn from "../assets/pressedBtn.svg";
 import { useNavigate } from "react-router-dom";

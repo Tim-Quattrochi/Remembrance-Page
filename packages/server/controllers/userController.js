@@ -44,9 +44,13 @@ const signUp = asyncHandler(async (req, res) => {
 });
 
 const logIn = asyncHandler(async (req, res) => {
-  const { password } = req.body;
-  let email = req.body.email.toLowerCase();
-  console.log(email);
+  const { email, password } = req.body;
+  if (!password || !email) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all the form fields" });
+  }
+
   const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {

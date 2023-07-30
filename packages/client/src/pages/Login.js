@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useProvideAuth } from "../hooks/useAuth";
 import Spinner from "react-bootstrap/Spinner";
 import { setAuthToken } from "../hooks/useAxios";
-import GoogleLoginBtn from "./GoogleLoginBtn";
+import GoogleLoginBtn from "../components/GoogleLoginBtn";
 
 const initialState = {
   email: "",
