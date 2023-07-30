@@ -22,4 +22,6 @@ module.exports = {
   GOOGLE_SECRET_ID,
   SESSION_SECRET,
   CLIENT_HOME_PAGE_URL,
+  CRT_PATH,
+  SSL_PATH,
 };
