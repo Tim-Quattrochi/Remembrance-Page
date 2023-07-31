@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&display=swap");
-@font-face {
-  font-family: "Kristen ITC";
-  src: url("../src/fonts/ITCKRIST.TTF") format("truetype");
-}
+@import url("https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap");
 
 :root {
   /* Colors: */
@@ -34,6 +31,7 @@
     url("../src/assets/backBottom.svg");
   height: auto;
   font-family: "Montserrat";
+
   background-size: cover;
   background-color: #fff7eb;
   display: flex;
@@ -41,28 +39,6 @@
   align-items: center;
   min-height: 100vh;
 }
-
-@media (max-width: 600px) {
-  .content-container {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #fff7eb;
-    width: 100%;
-    flex-wrap: wrap;
-    min-height: 100vh;
-  }
-}
-
-/* background: transparent url("../src/assets/BACKGROUND.svg") 0% 0%
-    no-repeat padding-box;
-  opacity: 1;
-  min-height: 100vh;
-  min-width: 100vw;
-  font-family: "Montserrat";
-  background-size: contain;
-  background-color: #fff7eb;
-  background-repeat: no-repeat;
-  background-position: center; */
 
 /* Large devices (laptops/desktops, 1024px and up) */
 @media only screen and (min-width: 1024px) {
@@ -72,37 +48,6 @@
 
     background-repeat: no-repeat;
   }
-}
-
-.logo-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  align-items: center;
-  justify-items: center;
-  font-family: "Kristen ITC";
-}
-
-.logo {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-}
-
-.navbar-text {
-  font-family: Montserrat;
-  font-size: 16px;
-  color: black;
-  font-weight: bold;
-}
-.navbar-text:hover {
-  color: #98dad9;
-}
-
-.navbar {
-  display: flex;
-  justify-content: center;
 }
 
 .bottom-rect {

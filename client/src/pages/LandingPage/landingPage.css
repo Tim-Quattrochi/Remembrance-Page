@@ -45,10 +45,6 @@
   z-index: 1;
 }
 
-#Jerry {
-  font-family: "Kristen ITC";
-}
-
 @media (max-width: 600px) {
   .landing-container .landing-text {
     font-size: 30px;

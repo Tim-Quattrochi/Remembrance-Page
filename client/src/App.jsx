@@ -20,8 +20,9 @@ function App() {
   } = useProvideAuth();
 
   return (
-    <div className="content-container">
-      <ErrorBoundary>
+    <ErrorBoundary>
+      <NavBar />
+      <div className="content-container">
         <ToastContainer
           position="top-center"
           autoClose={2000}
@@ -34,7 +35,7 @@ function App() {
           pauseOnHover
           theme="dark"
         />
-        <NavBar />
+
         <UnderConstruction />
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -49,8 +50,8 @@ function App() {
         </Routes>
         <ScrollToTop />
         <Footer />
-      </ErrorBoundary>
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }
 

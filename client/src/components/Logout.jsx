@@ -5,7 +5,14 @@ function LogoutButton() {
   const { signout } = useProvideAuth();
 
   return (
-    <Button variant="info" onClick={signout}>
+    <Button
+      style={{
+        backgroundColor: "#f4e3a5",
+        color: "black",
+        border: "none",
+      }}
+      onClick={signout}
+    >
       Logout
     </Button>
   );
