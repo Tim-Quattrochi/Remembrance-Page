@@ -9,9 +9,11 @@ const signUp = asyncHandler(async (req, res) => {
   //convert user email to lower case for more consistent data. Sometimes when the user logs in on phone the first letter will be capitalized.
   let email = req.body.email.toLowerCase();
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || confirmPassword) {
     res.status(400);
     throw new Error("Please enter all of the fields.");
+  } else if (password !== confirmPassword) {
+    throw new Error("Passwords must match.");
   }
 
   const existingUser = await User.findOne({ email });
