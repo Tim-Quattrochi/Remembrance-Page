@@ -14,7 +14,6 @@ const LandingPage = () => {
         Button={Button}
         isHovered={isHovered}
         setIsHovered={setIsHovered}
-        Link={Link}
       />
       <div className="my-card">
         <div className="card-header">Tribute to Jerry Krikava</div>
