@@ -7,14 +7,9 @@ import CreatePost from "../../components/CreatePost";
 import { ImageWall } from "../../components";
 
 const LandingPage = () => {
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="landing-container">
-      <LandingHeader
-        Button={Button}
-        isHovered={isHovered}
-        setIsHovered={setIsHovered}
-      />
+      <LandingHeader Button={Button} />
       <div className="my-card">
         <div className="card-header">Tribute to Jerry Krikava</div>
         <div className="card-body">

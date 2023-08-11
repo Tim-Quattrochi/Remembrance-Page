@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import gbBtn from "../../assets/gbBtn.svg";
 import hoverGbBtn from "../../assets/hoverGbBtn.svg";
 
-const LandingHeader = ({ setIsHovered, isHovered, Button }) => {
+const LandingHeader = ({  Button }) => {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="responsive-mobile">
       <div className="landing-text">Jerry's remembrance page.</div>
