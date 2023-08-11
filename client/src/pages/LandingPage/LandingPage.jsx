@@ -1,31 +1,21 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import gbBtn from "../../assets/gbBtn.svg";
-import hoverGbBtn from "../../assets/hoverGbBtn.svg";
+import LandingHeader from "./LandingHeader";
 import "./landingPage.css";
+import CreatePost from "../../components/CreatePost";
+import { ImageWall } from "../../components";
 
 const LandingPage = () => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="landing-container">
-      <div className="responsive-mobile">
-        <div className="landing-text">Jerry's remembrance page.</div>
-        <Link to="/guest-book">
-          <Button
-            variant="none"
-            type="submit"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <img
-              src={isHovered ? hoverGbBtn : gbBtn}
-              alt="SVG Button"
-            />
-          </Button>
-        </Link>
-      </div>
-
+      <LandingHeader
+        Button={Button}
+        isHovered={isHovered}
+        setIsHovered={setIsHovered}
+        Link={Link}
+      />
       <div className="my-card">
         <div className="card-header">Tribute to Jerry Krikava</div>
         <div className="card-body">
@@ -35,7 +25,7 @@ const LandingPage = () => {
         <div className="card-section-header">Jerry's Life</div>
         <div className="card-section-body">
           {" "}
-          <p>
+          <p className="personalPara">
             Jerry was born on March 9th, 1990 and unfortunately passed
             away in March 2021. He had non-verbal autism and was a
             huge fan of 80's music, particularly Madonna and Journey.
@@ -43,7 +33,7 @@ const LandingPage = () => {
             created this website as a way for friends and family to
             come together and share their memories of Jerry.
           </p>
-          <p>
+          <p className="personalPara">
             Visitors can post on Jerry's guest book and view photos of
             him. Keeping Jerry's Memory Alive This website is a way
             for us to keep Jerry's memory alive and to remember the
@@ -53,6 +43,8 @@ const LandingPage = () => {
           </p>
         </div>
       </div>
+      <CreatePost />
+      <ImageWall />
     </div>
   );
 };
