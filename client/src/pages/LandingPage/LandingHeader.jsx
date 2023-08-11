@@ -2,11 +2,11 @@ import React from "react";
 import gbBtn from "../../assets/gbBtn.svg";
 import hoverGbBtn from "../../assets/hoverGbBtn.svg";
 
-const LandingHeader = ({ setIsHovered, isHovered, Button, Link }) => {
+const LandingHeader = ({ setIsHovered, isHovered, Button }) => {
   return (
     <div className="responsive-mobile">
       <div className="landing-text">Jerry's remembrance page.</div>
-      <Link to="/guest-book">
+      <a href="#posts-container">
         <Button
           variant="none"
           type="submit"
@@ -18,7 +18,7 @@ const LandingHeader = ({ setIsHovered, isHovered, Button, Link }) => {
             alt="hover state"
           />
         </Button>
-      </Link>
+      </a>
     </div>
   );
 };
