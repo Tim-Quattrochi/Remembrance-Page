@@ -5,11 +5,9 @@ const User = require("../models/userModel");
 const { JWT_SECRET } = require("../config/constants");
 
 const signUp = asyncHandler(async (req, res) => {
-  const { confirmPassword, name, password } = req.body;
-  //convert user email to lower case for more consistent data. Sometimes when the user logs in on phone the first letter will be capitalized.
-  let email = req.body.email.toLowerCase();
+  const { confirmPassword, name, password, email } = req.body;
 
-  if (!name || !email || !password || confirmPassword) {
+  if (!name || !email || !password || !confirmPassword) {
     res.status(400);
     throw new Error("Please enter all of the fields.");
   } else if (password !== confirmPassword) {
@@ -31,6 +29,8 @@ const signUp = asyncHandler(async (req, res) => {
     email,
     password: passwordHash,
   });
+
+  console.log(user);
 
   if (user) {
     res.status(201).json({
@@ -60,7 +60,7 @@ const logIn = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: createToken(user._id),
+      token: await createToken(user._id),
     });
   } else {
     res.status(401);

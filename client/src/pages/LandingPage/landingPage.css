@@ -1,23 +1,11 @@
 .landing-container {
-  width: 100%;
-  max-width: 1200px;
+  margin-top: 5rem;
 }
 .landing-text {
-  top: 373px;
-  left: 250px;
-  width: 474px;
   margin: 20px;
   font-size: 35px;
   font-family: "Montserrat";
   font-weight: bold;
-  opacity: 1;
-}
-
-.landing-text-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff7eb;
 }
 
 .responsive-mobile {
@@ -26,28 +14,25 @@
   flex-wrap: wrap;
   align-items: flex-end;
   align-content: flex-start;
-  margin-top: 30px;
 }
 
 @media only screen and (max-width: 600px) {
-  .landing-text-container {
-    width: 100%;
-  }
   .personalPara {
-    width: 100%;
-  }
-}
+    width: auto;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    letter-spacing: 0px;
+    color: var(--gray-70-);
+    text-align: center;
 
-.personalPara {
-  position: relative;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
+    color: #525252;
+  }
 }
 
 @media (max-width: 600px) {
   .landing-container .landing-text {
-    font-size: 30px;
+    font-size: 25px;
   }
   .landing-container button {
     width: 100vw;
@@ -76,7 +61,7 @@
 .card-section-header {
   font-size: 24px;
   text-align: center;
-  margin: 2px;
+  margin: 7px;
   font-weight: bold;
 }
 
@@ -90,23 +75,12 @@
   font-family: Montserrat;
 }
 
-.card-section-body > p {
-  width: auto;
-  padding: 10px;
-  margin: 5px;
-  letter-spacing: 0px;
-  color: var(--gray-70-);
-  text-align: center;
-  font: normal normal normal 20px/32px Montserrat;
-  color: #525252;
-  opacity: 1;
-}
 .card-body {
   text-align: center;
 }
 
 .my-card {
-  margin: 0 auto 0 auto;
+  margin: 4.5rem auto 0 auto;
   width: 792px;
 
   display: flex;
@@ -119,7 +93,7 @@
 /* Mobile Phones (portrait and landscape) */
 @media (max-width: 768px) {
   .my-card {
-    width: 400px;
+    width: auto;
   }
   .card-section-body p {
     width: auto;
@@ -136,5 +110,8 @@
   .card-section-header {
     margin: 5px;
     padding: 5px;
+  }
+  .landing-container {
+    max-width: 100%;
   }
 }

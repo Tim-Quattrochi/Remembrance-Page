@@ -27,7 +27,16 @@ connectMyDB();
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: [
+    "https://jerrykrikava.com",
+    "http://localhost:3000",
+    "http://localhost:3000/",
+  ],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
@@ -47,15 +56,6 @@ app.use(
     },
   })
 );
-
-const corsOptions = {
-  origin: [
-    "https://jerrykrikava.com",
-    "http://localhost:3000",
-    "http://localhost:3000/",
-  ],
-  optionsSuccessStatus: 200,
-};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

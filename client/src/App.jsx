@@ -21,8 +21,8 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <NavBar />
       <div className="content-container">
+        <NavBar />
         <ToastContainer
           position="top-center"
           autoClose={2000}
@@ -30,7 +30,7 @@ function App() {
           newestOnTop={false}
           closeOnClick
           rtl={true}
-          pauseOnFocusLoss
+          pauseOnFocusLoss="false"
           draggable
           pauseOnHover
           theme="dark"
@@ -49,8 +49,8 @@ function App() {
           <Route path="*" element={<NotFound404 />} />
         </Routes>
         <ScrollToTop />
-        <Footer />
       </div>
+      <Footer />
     </ErrorBoundary>
   );
 }

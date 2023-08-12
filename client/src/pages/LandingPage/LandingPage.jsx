@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import LandingHeader from "./LandingHeader";
 import "./landingPage.css";
-import CreatePost from "../../components/CreatePost";
+import CreatePost from "../../components/Posts/CreatePost/CreatePost";
 import { ImageWall } from "../../components";
 import LandingContent from "./LandingContent";
 

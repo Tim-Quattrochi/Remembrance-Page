@@ -69,14 +69,20 @@ const SignUpPage = () => {
         error: null,
         isSubmitting: false,
       });
-      setAuthToken(res.token);
 
-      navigate("/guest-book");
+      if (res) {
+        setAuthToken(res); //res has the token from response
+        navigate("/guest-book");
+      }
     } catch (error) {
       setData({
         ...data,
         isSubmitting: false,
-        error: error ? error.message || error.statusText : null,
+        error: error
+          ? error.message ||
+            error.statusText ||
+            error.response.data.message
+          : null,
       });
       console.log(error);
     }

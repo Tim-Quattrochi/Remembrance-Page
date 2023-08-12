@@ -1,0 +1,15 @@
+.post-container > .card-body {
+  min-height: 250px;
+}
+
+.post-container {
+  border-radius: 6px;
+}
+
+.card-body .car {
+  border-radius: 6px;
+}
+
+.mb-6 {
+  padding-top: 10px;
+}

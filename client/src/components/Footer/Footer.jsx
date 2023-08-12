@@ -7,7 +7,7 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <div className="footer--pin d-flex justify-content-between">
+    <footer className="footer--pin d-flex justify-content-between">
       <div className="text-center">
         Made with <FaHandHoldingHeart fill="#e65c4f" /> by Tim
         Quattrochi
@@ -31,7 +31,7 @@ const Footer = () => {
           <FaLinkedin fill="#fdd037" size={35} />
         </a>
       </div>
-    </div>
+    </footer>
   );
 };
 

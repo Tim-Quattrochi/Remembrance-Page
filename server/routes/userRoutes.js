@@ -3,7 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const { CLIENT_HOME_PAGE_URL } = require("../config/constants");
 const { ensureGuest } = require("../middleware/ensureAuth");
-const { logIn } = require("../controllers/userController");
+const { logIn, signUp } = require("../controllers/userController");
 
 router.get(
   "/google",
@@ -30,6 +30,7 @@ router.get("/login", (req, res) => {
   res.json(req.session.user);
 });
 
+router.post("/user/register", signUp);
 router.post("/user/login", logIn);
 
 router.post("/logout", ensureGuest, function (req, res, next) {
