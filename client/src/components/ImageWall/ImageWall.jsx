@@ -3,12 +3,15 @@ import { useState, useRef, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import hopeProm from "../../assets/jerrysPhotos/hopeProm.jpeg";
-import jerryProm from "../../assets/jerrysPhotos/jerryProm.jpeg";
-import jerryLittle from "../../assets/jerrysPhotos/jerryLittle.jpg";
-import family from "../../assets/jerrysPhotos/family.jpg";
-import meAndJErry from "../../assets/jerrysPhotos/meAndJErry.JPG";
-import krystleJerryMatt from "../../assets/jerrysPhotos/krystleJerryMatt.jpeg";
+import {
+  family,
+  meAndJerry,
+  hopeProm,
+  jerryLittle,
+  jerryProm,
+  krystleJerryMatt,
+} from "../../assets";
+
 import "./imageWall.css";
 
 const ImageWall = () => {
@@ -33,7 +36,7 @@ const ImageWall = () => {
     jerryProm,
     jerryLittle,
     family,
-    meAndJErry,
+    meAndJerry,
     krystleJerryMatt,
   ];
 
@@ -87,7 +90,7 @@ const ImageWall = () => {
             <Carousel.Item>
               <img
                 className="image-item"
-                src={meAndJErry}
+                src={meAndJerry}
                 alt="Tim and Jerry"
               />
             </Carousel.Item>

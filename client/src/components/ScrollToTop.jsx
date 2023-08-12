@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import scrollTop from "../assets/scrollTop.svg";
+import { scrollTop } from "../assets";
 import { Button } from "react-bootstrap";
 
 const ScrollToTop = () => {
