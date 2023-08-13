@@ -6,7 +6,7 @@
   background-image: url("../../assets/previous.svg");
 }
 
-.image-grid {
+#image-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 16px;
@@ -18,12 +18,12 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .image-grid {
+  #image-grid {
     margin-top: 5rem;
   }
 }
 
-.image-grid img {
+#image-grid img {
   height: 200px;
   width: 100%;
   object-fit: cover;

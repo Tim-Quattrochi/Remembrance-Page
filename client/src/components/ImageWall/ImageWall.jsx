@@ -42,7 +42,7 @@ const ImageWall = () => {
 
   return (
     <>
-      <div className="image-grid">
+      <div id="image-grid">
         {images.map((image, index) => (
           <LazyLoadImage
             effect="blur"
@@ -50,6 +50,7 @@ const ImageWall = () => {
             key={index}
             src={image}
             alt={`Image ${index + 1}`}
+            visibleByDefault={image.src === image}
             className="image-item"
             onClick={() => handleClick(image, index)}
           />
