@@ -11,8 +11,8 @@ const {
 const { protect } = require("../middleware/authMiddle");
 
 router.get("/", getPosts);
-router.post("/", ensureAuth, createPost);
+router.post("/", protect, createPost);
 
-router.post("/like/:postId", ensureAuth, likePost);
+router.post("/like/:postId", protect, likePost);
 
 module.exports = router;

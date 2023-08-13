@@ -1,4 +1,9 @@
-import { useReducer, useEffect, createContext } from "react";
+import {
+  useReducer,
+  useEffect,
+  createContext,
+  useCallback,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils.js/constants";
 import axios from "../utils.js/axios";
@@ -121,31 +126,26 @@ export function useProvideAuth() {
     }
   };
 
-  const getUser = async () => {
-    try {
-      const res = await axios.get("/user");
-      localStorage.setItem(
-        "Remembrance-User",
-        JSON.stringify(res.data)
-      );
-      dispatch({
-        type: "GOOGLE_USER",
-        payload: res.data,
-      });
-    } catch (error) {
-      console.error(error);
-      dispatch({ type: "LOGOUT" });
-    }
-  };
+  // const getUser = useCallback(async () => {
+  //   try {
+  //     const res = await axios.get("/user");
+  //     localStorage.setItem(
+  //       "Remembrance-User",
+  //       JSON.stringify(res.data)
+  //     );
+  //     dispatch({
+  //       type: "LOGIN",
+  //       payload: res.data,
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //     dispatch({ type: "LOGOUT" });
+  //   }
+  // }, [dispatch]);
 
-  useEffect(() => {
-    let mounted = true;
-    getUser();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, [getUser]);
 
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("Remembrance-User"));
@@ -153,7 +153,7 @@ export function useProvideAuth() {
 
   useEffect(() => {
     const savedUser = getCurrentUser() || false;
-
+    console.log("fire");
     if (savedUser) {
       dispatch({ type: "LOGIN", payload: savedUser });
     } else {
@@ -161,5 +161,5 @@ export function useProvideAuth() {
     }
   }, [dispatch]);
 
-  return { getUser, state, getCurrentUser, signout, login, signup };
+  return { state, getCurrentUser, signout, login, signup };
 }
