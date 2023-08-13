@@ -12,8 +12,12 @@ const LandingPage = () => {
       <div className="my-card">
         <LandingContent />
       </div>
-      <CreatePost />
-      <ImageWall />
+      <div id="guest-book">
+        <CreatePost />
+      </div>
+      <div id="gallery">
+        <ImageWall />
+      </div>
     </div>
   );
 };

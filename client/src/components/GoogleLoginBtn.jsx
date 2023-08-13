@@ -3,14 +3,12 @@ import { useLocation } from "react-router-dom";
 import { useProvideAuth } from "../hooks/useAuthProvider";
 
 function GoogleLoginBtn() {
-  const { signup } = useProvideAuth();
+  const { signupWithGoogle } = useProvideAuth();
   const location = useLocation();
 
   return (
     <button
-      onClick={(e) => {
-        signup(e);
-      }}
+      onClick={signupWithGoogle}
       style={{
         marginTop: "10px",
         backgroundColor: "#4285f4",

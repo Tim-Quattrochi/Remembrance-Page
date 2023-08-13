@@ -4,7 +4,7 @@ module.exports = {
       req.app.locals.user = req.user;
       return next();
     } else {
-      res.redirect("/login");
+      res.redirect("/");
     }
   },
   ensureGuest: (req, res, next) => {
@@ -12,7 +12,7 @@ module.exports = {
     if (!req.isAuthenticated()) {
       return next();
     } else {
-      res.redirect("/guest-book");
+      res.redirect("/");
     }
   },
 };

@@ -4,6 +4,8 @@ const {
   GOOGLE_CLIENT_ID,
   GOOGLE_SECRET_ID,
   GOOGLE_CALLBACK_URL,
+  GOOGLE_TEST_CALLBACK_URL,
+  NODE_ENV,
 } = require("./constants");
 
 module.exports = function (passport) {
@@ -12,9 +14,12 @@ module.exports = function (passport) {
       {
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_SECRET_ID,
-        callbackURL: GOOGLE_CALLBACK_URL,
+        callbackURL:
+          NODE_ENV === "production"
+            ? GOOGLE_CALLBACK_URL
+            : GOOGLE_TEST_CALLBACK_URL,
       },
-      async (accessToken, refreshToken, profile, done) => {
+      async (profile, done) => {
         const newUser = {
           uid: profile.id,
           name: profile.displayName,

@@ -30,10 +30,10 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto" activeKey={location.pathname}>
-            <Nav.Link href="#posts-container" eventKey="/guest-book">
+            <Nav.Link href="#guest-book" eventKey="/guest-book">
               Guest-Book
             </Nav.Link>
-            <Nav.Link href={"#image-grid"} eventKey="/pictures">
+            <Nav.Link href={"#gallery"} eventKey="/pictures">
               Gallery
             </Nav.Link>
           </Nav>

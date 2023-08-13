@@ -5,20 +5,16 @@ import {
   useCallback,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../utils.js/constants";
+import { API_URL, ENV } from "../utils.js/constants";
 import axios from "../utils.js/axios";
 import useAuthContext from "./useAuthContext";
+
+console.log(ENV);
 
 const initialState = {
   isAuthenticated: null,
   user: null,
 };
-
-//For google pop up
-// window.open(
-//   `https://jerrykrikava.com${API_URL}/google`,
-//   "_self"
-// );
 
 export const AuthContext = createContext({});
 const reducer = (state, action) => {
@@ -113,6 +109,27 @@ export function useProvideAuth() {
     }
   };
 
+  const signupWithGoogle = async () => {
+    const devUrl = "http://localhost:5173";
+    const prodUrl = "https://jerrykrikava.com";
+
+    try {
+      window.open(
+        `${ENV === "production" ? prodUrl : devUrl}${API_URL}/google`,
+        "_self"
+      );
+
+      await axios.get("/user");
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        throw new Error(error.response.data.message);
+      } else {
+        throw error;
+      }
+    }
+  };
+
   const signout = async (e) => {
     e.preventDefault();
     localStorage.removeItem("Remembrance-User");
@@ -120,7 +137,6 @@ export function useProvideAuth() {
       await axios.post("/logout");
       dispatch({ type: "LOGOUT" });
       localStorage.removeItem("Remembrance-User");
-      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -153,7 +169,7 @@ export function useProvideAuth() {
 
   useEffect(() => {
     const savedUser = getCurrentUser() || false;
-    console.log("fire");
+
     if (savedUser) {
       dispatch({ type: "LOGIN", payload: savedUser });
     } else {
@@ -161,5 +177,12 @@ export function useProvideAuth() {
     }
   }, [dispatch]);
 
-  return { state, getCurrentUser, signout, login, signup };
+  return {
+    state,
+    getCurrentUser,
+    signout,
+    login,
+    signup,
+    signupWithGoogle,
+  };
 }
