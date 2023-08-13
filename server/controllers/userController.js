@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
-const { JWT_SECRET } = require("../config/constants");
+const { JWT_SECRET, JWT_EXPIRES_IN } = require("../config/constants");
 
 const signUp = asyncHandler(async (req, res) => {
   const { confirmPassword, name, password, email } = req.body;
@@ -58,7 +58,7 @@ const logIn = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: await createToken(user._id),
+      token: createToken(user._id),
     });
   } else {
     res.status(401);
@@ -69,7 +69,7 @@ const logIn = asyncHandler(async (req, res) => {
 //generate the JWT token.
 const createToken = (id) => {
   return jwt.sign({ id }, JWT_SECRET, {
-    expiresIn: "30d",
+    expiresIn: JWT_EXPIRES_IN,
   });
 };
 
