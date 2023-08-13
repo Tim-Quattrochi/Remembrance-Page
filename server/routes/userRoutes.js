@@ -1,7 +1,6 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
-const { CLIENT_HOME_PAGE_URL } = require("../config/constants");
 const { ensureGuest } = require("../middleware/ensureAuth");
 const { logIn, signUp } = require("../controllers/userController");
 
@@ -22,9 +21,15 @@ router.get(
   (req, res) => {
     req.session.user = req.user;
 
-    res.redirect("/guest-book");
+    res.redirect("/");
   }
 );
+
+router.get("/user", (req, res) => {
+  !req.session.user
+    ? res.status(404).json({ error: "No session found." })
+    : res.status(200).json(req.session.user);
+});
 
 router.get("/login", (req, res) => {
   res.json(req.session.user);
@@ -41,7 +46,7 @@ router.post("/logout", ensureGuest, function (req, res, next) {
     req.session = null;
     res.clearCookie("connect.sid");
 
-    res.redirect(CLIENT_HOME_PAGE_URL);
+    res.sendStatus(200);
   });
 });
 
