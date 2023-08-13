@@ -30,8 +30,6 @@ const signUp = asyncHandler(async (req, res) => {
     password: passwordHash,
   });
 
-  console.log(user);
-
   if (user) {
     res.status(201).json({
       _id: user._id,
