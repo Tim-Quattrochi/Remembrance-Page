@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 const Post = require("../models/postModel");
-const User = require("../models/userModel");
 
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({})
@@ -67,7 +66,7 @@ const likePost = asyncHandler(async (req, res) => {
       if (!updatedPost) {
         return res.status(404).json({ error: "Post not found" });
       }
-      console.log(updatedPost);
+
       return res.json(updatedPost);
     })
     .catch((err) => res.status(500).json({ error: err.message }));
