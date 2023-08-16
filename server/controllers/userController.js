@@ -1,8 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const passport = require("passport");
-const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
-const { JWT_SECRET, JWT_EXPIRES_IN } = require("../config/constants");
+const { createToken } = require("../config/genJWT");
 
 const signUp = asyncHandler(async (req, res, next) => {
   const { confirmPassword, name, password, email } = req.body;
@@ -20,7 +19,7 @@ const signUp = asyncHandler(async (req, res, next) => {
       return next(err);
     }
 
-    //if there is a message in info it is an error from my done from passport.
+    //if there is a message in info it is an error from done from config/passport.
     if (info && info.message) {
       return res.status(400).json({ error: info.message });
     }
@@ -80,13 +79,6 @@ const logIn = async (req, res, next) => {
       });
     });
   })(req, res, next);
-};
-
-//generate the JWT token.
-const createToken = (id) => {
-  return jwt.sign({ id }, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN,
-  });
 };
 
 module.exports = {
