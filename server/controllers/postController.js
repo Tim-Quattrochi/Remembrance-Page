@@ -34,7 +34,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const likePost = asyncHandler(async (req, res) => {
   const { postId } = req.params;
-  console.log(postId);
+
   const { user } = req;
   // check if post id is provided and is valid
   if (!postId) {
