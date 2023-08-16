@@ -21,14 +21,21 @@ router.get(
   (req, res) => {
     req.session.user = req.user;
 
-    res.redirect("/");
+    res.redirect("http://localhost:5173/");
   }
 );
 
 router.get("/user", (req, res) => {
-  !req.session.user
-    ? res.status(404).json({ error: "No session found." })
-    : res.status(200).json(req.session.user);
+  if (!req.session.user || !req.session.passport.user) {
+    return res.status(404).json({ error: "No session found." });
+  } else {
+    let user = req.session.user;
+
+    delete user.password;
+    delete user.__v;
+
+    return res.status(200).json(user);
+  }
 });
 
 router.get("/login", (req, res) => {
@@ -36,9 +43,10 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/user/register", signUp);
+
 router.post("/user/login", logIn);
 
-router.post("/logout", ensureGuest, function (req, res, next) {
+router.post("/logout", function (req, res, next) {
   req.logout((err) => {
     if (err) {
       return next(err);

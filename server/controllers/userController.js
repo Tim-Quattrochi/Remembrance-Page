@@ -1,70 +1,86 @@
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcryptjs");
+const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const { JWT_SECRET, JWT_EXPIRES_IN } = require("../config/constants");
 
-const signUp = asyncHandler(async (req, res) => {
+const signUp = asyncHandler(async (req, res, next) => {
   const { confirmPassword, name, password, email } = req.body;
-
-  if (!name || !email || !password || !confirmPassword) {
-    res.status(400);
-    throw new Error("Please enter all of the fields.");
-  } else if (password !== confirmPassword) {
-    throw new Error("Passwords must match.");
-  }
-
-  const existingUser = await User.findOne({ email });
-
-  if (existingUser) {
-    res.status(400);
-    throw new Error("User already exists with that information.");
-  }
-
-  const salt = await bcrypt.genSalt(10);
-  const passwordHash = await bcrypt.hash(password, salt);
-
-  const user = await User.create({
-    name,
-    email,
-    password: passwordHash,
-  });
-
-  if (user) {
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: createToken(user._id),
-    });
-  } else {
-    res.status(400);
-    throw new Error("Invalid user data");
-  }
-});
-
-const logIn = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-  if (!password || !email) {
+  if (!password || !name || !email || !confirmPassword) {
     return res
       .status(400)
-      .json({ error: "Please fill in all the form fields" });
+      .json({ error: "Please fill in all the fields." });
+  }
+  if (password !== confirmPassword) {
+    return res.status(422).json({ error: "Passwords must match." });
   }
 
-  const user = await User.findOne({ email });
+  passport.authenticate("local-register", async (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
 
-  if (user && (await bcrypt.compare(password, user.password))) {
-    res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: createToken(user._id),
-    });
-  } else {
-    res.status(401);
-    throw new Error("Invalid log in information.");
-  }
+    //if there is a message in info it is an error from my done from passport.
+    if (info && info.message) {
+      return res.status(400).json({ error: info.message });
+    }
+
+    if (!user) {
+      //if there is no user let's create one.
+      let newUser = await User.create({
+        email,
+        name,
+        hashedPass: confirmPassword,
+      });
+      await newUser.save();
+
+      newUser = newUser.toJSON();
+      delete newUser.password;
+
+      return res.status(201).json({
+        _id: newUser._id,
+        name: newUser.name,
+        token: createToken(newUser._id),
+      });
+    }
+  })(req, res, next);
 });
+
+const logIn = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all fields." });
+  }
+
+  passport.authenticate("local-login", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      //info holds the messages from server/config/passport.js
+      //from done.
+      return res.status(401).json(info);
+    }
+
+    // Manually log in the user
+    req.logIn(user, (loginErr) => {
+      if (loginErr) {
+        return next(loginErr);
+      }
+
+      // Authentication success
+      return res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        token: createToken(user._id),
+      });
+    });
+  })(req, res, next);
+};
 
 //generate the JWT token.
 const createToken = (id) => {

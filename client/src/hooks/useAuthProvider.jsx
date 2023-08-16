@@ -4,12 +4,9 @@ import {
   createContext,
   useCallback,
 } from "react";
-import { useNavigate } from "react-router-dom";
 import { API_URL, ENV } from "../utils.js/constants";
 import axios from "../utils.js/axios";
 import useAuthContext from "./useAuthContext";
-
-console.log(ENV);
 
 const initialState = {
   isAuthenticated: null,
@@ -36,6 +33,7 @@ const reducer = (state, action) => {
   }
 };
 
+// eslint-disable-next-line react/prop-types
 export function ProvideAuth({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
@@ -52,7 +50,6 @@ export function ProvideAuth({ children }) {
 
 export function useProvideAuth() {
   const { state, dispatch } = useAuthContext();
-  let navigate = useNavigate();
 
   const login = async (email, password) => {
     if (!email || !password) {
@@ -109,7 +106,8 @@ export function useProvideAuth() {
     }
   };
 
-  const signupWithGoogle = async () => {
+  const signupWithGoogle = async (e) => {
+    e.preventDefault();
     const devUrl = "http://localhost:5173";
     const prodUrl = "https://jerrykrikava.com";
 
@@ -118,8 +116,6 @@ export function useProvideAuth() {
         `${ENV === "production" ? prodUrl : devUrl}${API_URL}/google`,
         "_self"
       );
-
-      await axios.get("/user");
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -142,32 +138,31 @@ export function useProvideAuth() {
     }
   };
 
-  // const getUser = useCallback(async () => {
-  //   try {
-  //     const res = await axios.get("/user");
-  //     localStorage.setItem(
-  //       "Remembrance-User",
-  //       JSON.stringify(res.data)
-  //     );
-  //     dispatch({
-  //       type: "LOGIN",
-  //       payload: res.data,
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //     dispatch({ type: "LOGOUT" });
-  //   }
-  // }, [dispatch]);
+  const getUser = useCallback(async () => {
+    try {
+      const res = await axios.get("/user");
 
-  // useEffect(() => {
-  //   getUser();
-  // }, [getUser]);
+      localStorage.setItem(
+        "Remembrance-User",
+        JSON.stringify(res.data)
+      );
+      dispatch({
+        type: "LOGIN",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error(error);
+      // dispatch({ type: "LOGOUT" });
+    }
+  }, [dispatch]);
 
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("Remembrance-User"));
   };
 
   useEffect(() => {
+    getUser();
+
     const savedUser = getCurrentUser() || false;
 
     if (savedUser) {
@@ -175,7 +170,7 @@ export function useProvideAuth() {
     } else {
       dispatch({ type: "LOGOUT" });
     }
-  }, [dispatch]);
+  }, [dispatch, getUser]);
 
   return {
     state,

@@ -8,7 +8,7 @@ function GoogleLoginBtn() {
 
   return (
     <button
-      onClick={signupWithGoogle}
+      onClick={(e) => signupWithGoogle(e)}
       style={{
         marginTop: "10px",
         backgroundColor: "#4285f4",

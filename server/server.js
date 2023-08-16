@@ -32,13 +32,16 @@ const corsOptions = {
     "https://jerrykrikava.com",
     "http://localhost:3000",
     "http://localhost:3000/",
+    "http://localhost:5173/",
+    "http://localhost:5173",
   ],
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
+
   next();
 });
 
@@ -46,11 +49,11 @@ app.use(
   session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: DB_URI }),
     unset: "destroy",
     cookie: {
-      secure: false,
+      secure: NODE_ENV === "production" ? true : false,
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
     },
