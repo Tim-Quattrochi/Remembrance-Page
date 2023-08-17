@@ -2,7 +2,7 @@ import React from 'react'
 
 const LandingContent = () => {
   return (
-      <><div className="card-header">Tribute to Jerry Krikava</div><div className="card-body">
+      <div className='landing-card-container'><div className="card-header">Tribute to Jerry Krikava</div><div className="card-body">
           I am honored to present my tribute page for my beloved
           brother, Jerry Krikava.
       </div><div className="card-section-header">Jerry's Life</div><div className="card-section-body">
@@ -23,7 +23,7 @@ const LandingContent = () => {
                   website will be a source of comfort and support for those
                   who knew and loved Jerry.
               </p>
-          </div></>
+          </div></div>
   )
 }
 

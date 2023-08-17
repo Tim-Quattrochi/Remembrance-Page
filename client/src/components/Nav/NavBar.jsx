@@ -38,19 +38,6 @@ function NavBar() {
             </Nav.Link>
           </Nav>
           <Nav>
-            {!user && (
-              <NavDropdown
-                title="Register/Login"
-                id="collapsible-nav-dropdown"
-              >
-                <NavDropdown.Item as={Link} to={"/login"}>
-                  Login
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/register"}>
-                  Register
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
             {user && (
               <Nav.Item>
                 <Nav.Link

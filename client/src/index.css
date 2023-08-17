@@ -20,7 +20,7 @@ body {
   --gray: #161616;
   --unnamed-color-ddfafa: #ddfafa;
   --unnamed-color-caf6f5: #caf6f5;
-  --unnamed-color-aee8e7: #aee8e7;
+  --turquoise-light: #aee8e7;
   --turquoise: #98dad9;
   --unnamed-color-fdd6d2: #fdd6d2;
   --unnamed-color-f8b7b1: #f8b7b1;
@@ -32,7 +32,7 @@ body {
   --green: #6bbd99;
   --unnamed-color-fef0c2: #fef0c2;
   --unnamed-color-fce7a2: #fce7a2;
-  --unnamed-color-fcdc71: #fcdc71;
+  --yellow-light: #fcdc71;
   --yellow: #fdd037;
 }
 
@@ -42,11 +42,9 @@ body {
   width: 100vw;
   min-height: calc(100vw * var(--imgH) / var(--imgW));
   /* make sure the whole height of the image is always shown */
-  background-image: url("../src/assets/BACKGROUND.svg");
+  background: transparent url("../src/assets/BACKGROUND.svg");
   background-size: cover;
-
   font-family: "Montserrat";
-  background-color: #fff7eb;
   display: flex;
   flex-direction: column;
   align-items: center;

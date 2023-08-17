@@ -1,8 +1,8 @@
-.reg-toggle {
+.login-toggle {
   cursor: pointer;
 }
 
-.reg-toggle:hover {
+.login-toggle:hover {
   text-decoration: underline;
   font-weight: bold;
 }

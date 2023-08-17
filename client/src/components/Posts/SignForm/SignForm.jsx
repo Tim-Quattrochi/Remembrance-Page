@@ -24,10 +24,11 @@ const SignForm = ({
   };
 
   //if the user is a guest, show the login button, else show the text area
-  console.log(toggleLogReg);
+
   return userNow === "Guest" ? (
     <>
-      <Button onClick={handleClick}>Sign In to post</Button>
+      <div className="sign-btn-container"><Button id="sign-in-btn" onClick={handleClick}>Sign In to post</Button></div>
+      
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Body className="modal-body">
           {toggleLogReg ? (

@@ -5,7 +5,7 @@ nav .navbar-collapse {
 }
 
 .navbar-expand-lg .navbar-collapse {
-  justify-content: space-around;
+  justify-content: end;
 }
 
 .navbar {

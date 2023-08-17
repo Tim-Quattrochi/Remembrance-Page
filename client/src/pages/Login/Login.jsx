@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useProvideAuth } from "../hooks/useAuthProvider";
+import { useProvideAuth } from "../../hooks/useAuthProvider";
 import Spinner from "react-bootstrap/Spinner";
-import { setAuthToken } from "../hooks/useAxios";
-import GoogleLoginBtn from "../components/GoogleLoginBtn";
+import { setAuthToken } from "../../hooks/useAxios";
+import GoogleLoginBtn from "../../components/GoogleLoginBtn";
+import "./login.css";
 
 const initialState = {
   email: "",
@@ -93,7 +94,9 @@ const Login = ({ toggle }) => {
         </Button>
         <Form.Text>
           Need an account?{" "}
-          <span onClick={() => toggle(true)}>Register</span>
+          <span className="login-toggle" onClick={() => toggle(true)}>
+            Register
+          </span>
         </Form.Text>
       </Form>
 
