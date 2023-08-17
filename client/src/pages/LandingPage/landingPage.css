@@ -3,9 +3,8 @@
 }
 .landing-text {
   margin: 20px;
-  font-size: 35px;
-  font-family: "Montserrat";
-  font-weight: bold;
+  font: bold 50px "Montserrat", "Arial";
+  width: 474px;
 }
 
 .responsive-mobile {
@@ -39,7 +38,10 @@
 
 @media (max-width: 600px) {
   .landing-container .landing-text {
-    font-size: 25px;
+    font-size: 40px;
+  }
+  .landing-text {
+    margin-top: 5px;
   }
   .landing-container button {
     width: 100vw;
@@ -69,20 +71,20 @@
 }
 
 .card-section-header {
-  font-size: 24px;
+  font-size: 28px;
   text-align: center;
-  margin: 7px;
+  margin: 10px;
   font-weight: bold;
 }
 
 .card-header {
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   color: var(--gray);
   text-align: center;
   font-size: 38px;
   font-weight: bold;
-  font-family: Montserrat;
+  font-family: "Montserrat";
 }
 
 .card-body {
@@ -90,7 +92,7 @@
 }
 
 .my-card {
-  margin: 4.5rem auto 0 auto;
+  margin: 6.5rem auto 0 auto;
   width: 792px;
 
   display: flex;
@@ -98,6 +100,10 @@
   background: #fafafa 0% 0% no-repeat padding-box;
   box-shadow: 0px 16px 16px #0000000d;
   opacity: 1;
+}
+
+.card-section-body {
+  padding: 20px;
 }
 
 /* Mobile Phones (portrait and landscape) */
