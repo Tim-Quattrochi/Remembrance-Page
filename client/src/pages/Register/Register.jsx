@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
-import { useProvideAuth } from "../hooks/useAuthProvider";
+import { useProvideAuth } from "../../hooks/useAuthProvider";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { setAuthToken } from "../hooks/useAxios";
-import GoogleLoginBtn from "../components/GoogleLoginBtn";
+import { setAuthToken } from "../../hooks/useAxios";
+import GoogleLoginBtn from "../../components/GoogleLoginBtn";
+import "./register.css";
 
 const initialState = {
   name: "",
@@ -16,7 +17,7 @@ const initialState = {
   isSubmitting: false,
 };
 
-const SignUpPage = () => {
+const SignUpPage = ({ toggle }) => {
   const [data, setData] = useState(initialState);
   const navigate = useNavigate();
 
@@ -158,7 +159,10 @@ const SignUpPage = () => {
           {data.isSubmitting ? <Spinner /> : "Register"}
         </Button>
         <Form.Text>
-          Already have an account? <Link to="/login">Log in</Link>
+          Already have an account?{" "}
+          <span className="reg-toggle" onClick={() => toggle(false)}>
+            Log in
+          </span>
         </Form.Text>
       </Form>
       <GoogleLoginBtn />

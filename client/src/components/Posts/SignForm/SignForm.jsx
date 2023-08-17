@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import signBtn from "../../../assets/signBtn.svg";
 import pressedBtn from "../../../assets/pressedBtn.svg";
-import { Login } from "../../../pages";
+import { Login, Register } from "../../../pages";
 import "./signForm.css";
 
 const SignForm = ({
@@ -13,6 +13,7 @@ const SignForm = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [toggleLogReg, setToggleLogReg] = useState(false);
 
   const handleClick = () => {
     setShowModal(true);
@@ -23,13 +24,17 @@ const SignForm = ({
   };
 
   //if the user is a guest, show the login button, else show the text area
-
+  console.log(toggleLogReg);
   return userNow === "Guest" ? (
     <>
       <Button onClick={handleClick}>Sign In to post</Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Body className="modal-body">
-          <Login />
+          {toggleLogReg ? (
+            <Register toggle={setToggleLogReg} />
+          ) : (
+            <Login toggle={setToggleLogReg} />
+          )}
         </Modal.Body>
         <Button variant="secondary" onClick={handleClose}>
           Close

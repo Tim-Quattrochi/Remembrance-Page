@@ -1,0 +1,7 @@
+.reg-toggle {
+  cursor: pointer;
+}
+
+.reg-toggle:hover {
+  text-decoration: underline;
+}

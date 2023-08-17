@@ -13,7 +13,7 @@ const initialState = {
   error: null,
 };
 
-const Login = () => {
+const Login = ({ toggle }) => {
   const [data, setData] = useState(initialState);
   const navigate = useNavigate();
   const auth = useProvideAuth();
@@ -92,7 +92,8 @@ const Login = () => {
           {data.isSubmitting ? <Spinner /> : "Login"}
         </Button>
         <Form.Text>
-          Need an account? <Link to="/register">Register</Link>
+          Need an account?{" "}
+          <span onClick={() => toggle(true)}>Register</span>
         </Form.Text>
       </Form>
 
