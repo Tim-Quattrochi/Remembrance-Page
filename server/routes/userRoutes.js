@@ -1,8 +1,12 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
-const { ensureGuest } = require("../middleware/ensureAuth");
+const {
+  ensureGuest,
+  ensureAuth,
+} = require("../middleware/ensureAuth");
 const { logIn, signUp } = require("../controllers/userController");
+const createToken = require("../config/genJWT");
 
 router.get(
   "/google",
@@ -25,28 +29,29 @@ router.get(
   }
 );
 
-router.get("/user", (req, res) => {
-  if (!req.session.user || !req.session.passport.user) {
-    return res.status(404).json({ error: "No session found." });
+router.get("/user", ensureAuth, (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({ message: "Not authenticated." });
   } else {
-    let user = req.session.user;
+    let user = req.user.toObject();
 
     delete user.password;
     delete user.__v;
+    delete user.picture;
+    delete user.createdAt;
+    delete user.updatedAt;
+
+    user.token = createToken(user._id);
 
     return res.status(200).json(user);
   }
 });
 
-router.get("/login", (req, res) => {
-  res.json(req.session.user);
-});
+router.post("/user/register", ensureGuest, signUp);
 
-router.post("/user/register", signUp);
+router.post("/user/login", ensureGuest, logIn);
 
-router.post("/user/login", logIn);
-
-router.post("/logout", function (req, res, next) {
+router.post("/logout", ensureAuth, function (req, res, next) {
   req.logout((err) => {
     if (err) {
       return next(err);

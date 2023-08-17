@@ -36,9 +36,10 @@ const corsOptions = {
     "http://localhost:5173",
   ],
   optionsSuccessStatus: 200,
+  credentials: true,
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
 

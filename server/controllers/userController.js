@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const passport = require("passport");
 const User = require("../models/userModel");
-const { createToken } = require("../config/genJWT");
+const createToken = require("../config/genJWT");
 
 const signUp = asyncHandler(async (req, res, next) => {
   const { confirmPassword, name, password, email } = req.body;
@@ -31,15 +31,21 @@ const signUp = asyncHandler(async (req, res, next) => {
         name,
         hashedPass: confirmPassword,
       });
-      await newUser.save();
 
       newUser = newUser.toJSON();
       delete newUser.password;
 
-      return res.status(201).json({
-        _id: newUser._id,
-        name: newUser.name,
-        token: createToken(newUser._id),
+      req.logIn(newUser, (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+
+        return res.status(201).json({
+          _id: newUser._id,
+          name: newUser.name,
+          token: createToken(newUser._id),
+        });
       });
     }
   })(req, res, next);
@@ -66,7 +72,7 @@ const logIn = async (req, res, next) => {
     }
 
     // Manually log in the user
-    req.logIn(user, (loginErr) => {
+    req.login(user, (loginErr) => {
       if (loginErr) {
         return next(loginErr);
       }
