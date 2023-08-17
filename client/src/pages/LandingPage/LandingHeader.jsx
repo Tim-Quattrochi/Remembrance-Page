@@ -1,23 +1,19 @@
-import React, { useState } from "react";
-import { gbBtn, hoverGbBtn } from "../../assets";
+import React from "react";
+import { PrimaryBtn } from "../../components";
+import { TfiPencil } from "react-icons/tfi";
 
 const LandingHeader = ({ Button }) => {
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="responsive-mobile">
       <div className="landing-text">Jerry's remembrance page.</div>
       <a href="#posts-container">
-        <Button
+        <PrimaryBtn
           variant="none"
           type="submit"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={isHovered ? hoverGbBtn : gbBtn}
-            alt="hover state"
-          />
-        </Button>
+          icon={<TfiPencil />}
+          style="sign-in-btn"
+          text="GO TO GUEST BOOK"
+        />
       </a>
     </div>
   );

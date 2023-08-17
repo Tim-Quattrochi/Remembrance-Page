@@ -1,0 +1,27 @@
+.sign-btn-container {
+  display: flex;
+}
+
+.sign-in-btn {
+  font-family: "Montserrat-Bold", "Montserrat", "Arial";
+  font-weight: 700;
+  font-size: 14px;
+  width: 224px;
+  height: 48px;
+  letter-spacing: 0.05em;
+  margin: 0 auto 0 auto;
+  color: var(--gray-70-);
+  background-color: var(--yellow);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  border: none;
+  border-radius: 3px;
+}
+
+.sign-in-btn:hover {
+  background-color: var(--turquoise-light);
+}
+
+.btn-icon {
+  color: var(--gray-70-);
+  margin-right: 2px;
+}

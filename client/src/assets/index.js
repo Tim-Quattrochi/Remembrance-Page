@@ -2,10 +2,8 @@ export { default as backGround } from "./backGround.svg";
 export { default as gbBtn } from "./gbBtn.svg";
 export { default as hoverGbBtn } from "./hoverGbBtn.svg";
 export { default as next } from "./next.svg";
-export { default as pressedBtn } from "./pressedBtn.svg";
 export { default as previous } from "./previous.svg";
 export { default as scrollTop } from "./scrollTop.svg";
-export { default as signBtn } from "./signBtn.svg";
 
 //exports from /jerrysPhotos dir
 export { default as family } from "./jerrysPhotos/family.jpg";

@@ -10,3 +10,4 @@ export { default as UnderConstruction } from "./UnderConstruction";
 export { default as ImageWall } from "./ImageWall/ImageWall";
 export { default as Logo } from "./Logo";
 export { default as PostCard } from "./Posts/PostCard/PostCard";
+export { default as PrimaryBtn } from "./PrimaryBtn/PrimaryBtn";

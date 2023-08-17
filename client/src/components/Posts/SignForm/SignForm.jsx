@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import signBtn from "../../../assets/signBtn.svg";
-import pressedBtn from "../../../assets/pressedBtn.svg";
 import { Login, Register } from "../../../pages";
+import { PrimaryBtn } from "../../../components";
+import { FaUnlockAlt } from "react-icons/fa";
+import { TfiPencil } from "react-icons/tfi";
 import "./signForm.css";
 
 const SignForm = ({
@@ -11,7 +12,6 @@ const SignForm = ({
   content,
   userNow,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [toggleLogReg, setToggleLogReg] = useState(false);
 
@@ -27,8 +27,15 @@ const SignForm = ({
 
   return userNow === "Guest" ? (
     <>
-      <div className="sign-btn-container"><Button id="sign-in-btn" onClick={handleClick}>Sign In to post</Button></div>
-      
+      <div className="sign-btn-container">
+        <PrimaryBtn
+          style="sign-in-btn"
+          onClick={handleClick}
+          text={"SIGN IN TO POST"}
+          icon={<FaUnlockAlt />}
+        />
+      </div>
+
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Body className="modal-body">
           {toggleLogReg ? (
@@ -46,14 +53,15 @@ const SignForm = ({
     <Form
       onSubmit={handleSubmit}
       style={{
-        marginBottom: "50px",
+        marginBottom: "60px",
         marginTop: "30px",
       }}
     >
       <Form.Group controlId="content">
         <Form.Control
           as="textarea"
-          rows="3"
+            rows="3"
+            className="text-area"
           placeholder={`Hi ${userNow}. Feel free to make a post`}
           value={content}
           size="lg"
@@ -61,18 +69,13 @@ const SignForm = ({
           onChange={handleChange}
         />
       </Form.Group>
-      <Button
-        variant="none"
-        type="submit"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <img
-          src={isHovered ? pressedBtn : signBtn}
-          alt="SVG Button"
-          style={{ height: "50px", width: "224px" }}
+      <span id="sign-gb-btn-container">
+        <PrimaryBtn
+          style="sign-in-btn"
+          text="SIGN GUEST BOOK"
+          icon={<TfiPencil />}
         />
-      </Button>
+      </span>
     </Form>
   );
 };

@@ -2,6 +2,7 @@
 
 .sign-btn-container {
   display: flex;
+  justify-content: center;
 }
 
 #sign-in-btn {
@@ -18,4 +19,13 @@
 
 #sign-in-btn:hover {
   background-color: var(--turquoise-light);
+}
+
+#sign-gb-btn-container {
+  margin-top: 50px;
+  width: auto;
+}
+
+.text-area {
+  margin-bottom: 8px;
 }
