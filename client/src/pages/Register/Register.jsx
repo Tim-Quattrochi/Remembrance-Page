@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useProvideAuth } from "../../hooks/useAuthProvider";
-import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { validateFields } from "../../helpers/validateInputFields";
+import { useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../hooks/useAxios";
 import GoogleLoginBtn from "../../components/GoogleLoginBtn";
 import "./register.css";
@@ -13,160 +13,223 @@ const initialState = {
   email: "",
   password: "",
   confirmPassword: "",
-  error: null,
-  isSubmitting: false,
 };
 
 const SignUpPage = ({ toggle }) => {
   const [data, setData] = useState(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [inputErrors, setInputErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const navigate = useNavigate();
 
   const auth = useProvideAuth();
 
   const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+
+    handleSetData({ [name]: value });
+
+    setInputErrors({
+      ...inputErrors,
+      [name]: validateFields(name, data, touched),
     });
   };
 
+  const handleSetData = (formData) => {
+    setData({ ...data, ...formData });
+  };
+
+  const handleInputBlur = (e) => {
+    const { name } = e.target;
+    setTouched({ ...touched, [name]: true });
+
+    setInputErrors({
+      ...inputErrors,
+      [name]: validateFields(name, data, touched),
+    });
+  };
+
+  useEffect(() => {
+    setTouched({
+      name: true,
+      email: true,
+      password: true,
+      confirmPassword: true,
+    });
+  }, []);
+
   const handleSubmit = async (e) => {
-    const form = e.currentTarget;
     e.preventDefault();
     e.stopPropagation();
 
-    if (data.password !== data.confirmPassword) {
-      data.error = "passwords must match";
-      toast.error("Passwords must match");
-      return;
-    }
-    if (
-      data.confirmPassword.length < 8 ||
-      data.password.length > 20
-    ) {
-      toast.error("password must be between 8 and 20 characters");
-      data.error = "password must be between 8 and 20 characters";
-      return;
-    }
-
-    if (form.checkValidity() === false) {
-    }
-
-    setData({
-      ...data,
-      isSubmitting: true,
-      errorMessage: null,
-    });
+    setIsSubmitting(true);
 
     try {
-      const res = await auth.signup(
-        data.name,
-        data.email,
-        data.password,
-        data.confirmPassword
-      );
-      setData({
-        ...data,
-        error: null,
-        isSubmitting: false,
+      setTouched({
+        //all fields were touched
+        name: true,
+        email: true,
+        password: true,
+        confirmPassword: true,
       });
+      // Validate all fields on form submission
+      const newErrors = {};
+      Object.keys(data).forEach((fieldName) => {
+        newErrors[fieldName] = validateFields(
+          fieldName,
+          data,
+          touched
+        );
+      });
+      setInputErrors(newErrors);
 
-      if (res) {
-        setAuthToken(res); //res has the token from response
-        navigate("/guest-book");
+      // Check if there are any errors before submitting
+      const isFormValid = Object.values(newErrors).every(
+        (error) => error === ""
+      ); //  all empty strings(no errors)
+
+      if (isFormValid) {
+        const res = await auth.signup(
+          data.name,
+          data.email,
+          data.password,
+          data.confirmPassword
+        );
+
+        setIsSubmitting(false);
+        handleSetData({ error: null });
+
+        if (res) {
+          setAuthToken(res); //res has the token from response
+          navigate("/");
+        }
       }
     } catch (error) {
-      setData({
-        ...data,
-        isSubmitting: false,
-        error: error
-          ? error.message ||
-            error.statusText ||
-            error.response.data.message
-          : null,
-      });
-      console.log(error);
+      // add server error
+      handleSetData({ ...data, serverError: error.message });
     }
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center flex-column">
-      <h1>Register</h1>
-      <Form
-        noValidate
-        className="row"
-        style={{
-          width: "50%",
-          maxWidth: "400px",
-        }}
-        onSubmit={handleSubmit}
+    <div id="form-container">
+      <Container
+        className="d-flex justify-content-center align-items-center flex-column"
       >
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            value={data.name}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={data.email}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            maxLength={20}
-            minLength={8}
-            value={data.password}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="confirmPassword"
-            value={data.confirmPassword}
-            maxLength={20}
-            minLength={8}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        {data.error && (
-          <span className="form-error text-info">{data.error}</span>
-        )}
-
-        <Button
-          type="submit"
-          variant="none"
-          disabled={data.isSubmitting}
-          style={{ backgroundColor: "#FDD037" }}
+        <h1 className="reg-title">Register</h1>
+        <Form
+          noValidate
+          className="row"
+          style={{
+            width: "50%",
+            maxWidth: "400px",
+          }}
+          onSubmit={handleSubmit}
         >
-          {data.isSubmitting ? <Spinner /> : "Register"}
-        </Button>
-        <Form.Text>
-          Already have an account?{" "}
-          <span className="reg-toggle" onClick={() => toggle(false)}>
-            Log in
-          </span>
-        </Form.Text>
-      </Form>
-      <GoogleLoginBtn />
-    </Container>
+          <Form.Group className="mb-3 name">
+            <Form.Label htmlFor="name">Name</Form.Label>
+
+            <Form.Control
+              type="text"
+              name="name"
+              id="name"
+              autoComplete="name"
+              value={data.name}
+              onChange={handleChange}
+              onBlur={handleInputBlur}
+              isValid={touched.name && data.name.length >= 3}
+              isInvalid={!!inputErrors.name}
+            />
+            <Form.Control.Feedback type="invalid">
+              {inputErrors.name}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="email">Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              id="email"
+              autoComplete="email"
+              value={data.email}
+              onChange={handleChange}
+              onBlur={handleInputBlur}
+              isInvalid={!!inputErrors.email}
+            />
+            <Form.Control.Feedback type="invalid">
+              {inputErrors.email}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              id="password"
+              autoComplete="new-password"
+              maxLength={20}
+              minLength={8}
+              value={data.password}
+              onChange={handleChange}
+              onBlur={handleInputBlur}
+              isValid={touched.password && data.password.length >= 7}
+              isInvalid={!!inputErrors.password}
+            />
+            <Form.Control.Feedback type="invalid">
+              {inputErrors.password}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="confirmPassword">
+              Confirm Password
+            </Form.Label>
+            <Form.Control
+              custom
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              autoComplete="new-password"
+              value={data.confirmPassword}
+              maxLength={20}
+              minLength={8}
+              onChange={handleChange}
+              onBlur={handleInputBlur}
+              isValid={
+                touched.confirmPassword &&
+                data.password === data.confirmPassword &&
+                data.confirmPassword.length >= 7
+              }
+              isInvalid={!!inputErrors.confirmPassword}
+            />
+            <Form.Control.Feedback type="invalid">
+              {inputErrors.confirmPassword}
+            </Form.Control.Feedback>
+          </Form.Group>
+          {data.serverError && (
+            <span className="form-error">{data.serverError}</span>
+          )}
+
+          <Button
+            type="submit"
+            variant="none"
+            disabled={data.isSubmitting}
+            style={{ backgroundColor: "#FDD037" }}
+          >
+            {isSubmitting ? <Spinner /> : "Register"}
+          </Button>
+          <Form.Text id="have-account">
+            Already have an account?{" "}
+            <span
+              className="reg-toggle"
+              onClick={() => toggle(false)}
+            >
+              Log in
+            </span>
+          </Form.Text>
+        </Form>
+        <GoogleLoginBtn />
+      </Container>
+    </div>
   );
 };
 

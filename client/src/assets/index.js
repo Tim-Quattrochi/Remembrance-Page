@@ -4,6 +4,7 @@ export { default as hoverGbBtn } from "./hoverGbBtn.svg";
 export { default as next } from "./next.svg";
 export { default as previous } from "./previous.svg";
 export { default as scrollTop } from "./scrollTop.svg";
+export { default as regLogBg } from "./regLogBg.svg";
 
 //exports from /jerrysPhotos dir
 export { default as family } from "./jerrysPhotos/family.jpg";

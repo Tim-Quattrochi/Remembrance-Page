@@ -1,8 +1,30 @@
 .reg-toggle {
   cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .reg-toggle:hover {
   text-decoration: underline;
   font-weight: bold;
+}
+
+.reg-title {
+  font: bold 24px "Montserrat";
+}
+
+.form-error {
+  color: red;
+  padding: 5px;
+  margin: 2px;
+}
+
+#have-account {
+  margin-right: 5px;
+}
+
+#form-container {
+  background: no-repeat center transparent
+    url("../../assets/regLogBg.svg");
 }

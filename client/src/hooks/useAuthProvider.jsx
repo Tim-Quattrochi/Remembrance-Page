@@ -99,7 +99,9 @@ export function useProvideAuth() {
     } catch (error) {
       console.log(error);
       if (error.response) {
-        throw new Error(error.response.data.message);
+        throw new Error(
+          error.response.data.message || error.response.data.error
+        );
       } else {
         throw error;
       }
