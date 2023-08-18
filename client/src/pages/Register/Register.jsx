@@ -15,11 +15,19 @@ const initialState = {
   confirmPassword: "",
 };
 
+const initialTouched = {
+  name: true,
+  email: true,
+  password: true,
+  confirmPassword: true,
+};
+
+// eslint-disable-next-line react/prop-types
 const SignUpPage = ({ toggle }) => {
   const [data, setData] = useState(initialState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [inputErrors, setInputErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [touched, setTouched] = useState(initialTouched);
   const navigate = useNavigate();
 
   const auth = useProvideAuth();
@@ -48,15 +56,6 @@ const SignUpPage = ({ toggle }) => {
       [name]: validateFields(name, data, touched),
     });
   };
-
-  useEffect(() => {
-    setTouched({
-      name: true,
-      email: true,
-      password: true,
-      confirmPassword: true,
-    });
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,15 +95,14 @@ const SignUpPage = ({ toggle }) => {
           data.confirmPassword
         );
 
-        setIsSubmitting(false);
-        handleSetData({ error: null });
-
         if (res) {
           setAuthToken(res); //res has the token from response
           navigate("/");
         }
       }
+      setIsSubmitting(false);
     } catch (error) {
+      setIsSubmitting(false);
       // add server error
       handleSetData({ ...data, serverError: error.message });
     }
@@ -112,9 +110,7 @@ const SignUpPage = ({ toggle }) => {
 
   return (
     <div id="form-container">
-      <Container
-        className="d-flex justify-content-center align-items-center flex-column"
-      >
+      <Container className="d-flex justify-content-center align-items-center flex-column">
         <h1 className="reg-title">Register</h1>
         <Form
           noValidate
