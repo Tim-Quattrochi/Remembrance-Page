@@ -57,11 +57,11 @@ const SignForm = ({
         marginTop: "30px",
       }}
     >
-      <Form.Group controlId="content">
+      <Form.Group>
         <Form.Control
           as="textarea"
-            rows="3"
-            className="text-area"
+          rows={3}
+          id="text-area"
           placeholder={`Hi ${userNow}. Feel free to make a post`}
           value={content}
           size="lg"

@@ -8,16 +8,16 @@ body {
 
 :root {
   /* Colors: */
-  --unnamed-color-cacaca: #cacaca;
+  --lightest-gray: #cacaca;
   --gray-40-: #a8a8a8;
   --gray-60-: #6f6f6f;
   --gray-70-: #525252;
   --gray: #161616;
-  --unnamed-color-ddfafa: #ddfafa;
+  --lightest-blue: #ddfafa;
   --unnamed-color-caf6f5: #caf6f5;
   --turquoise-light: #aee8e7;
   --turquoise: #98dad9;
-  --unnamed-color-fdd6d2: #fdd6d2;
+  --light-pink: #fdd6d2;
   --unnamed-color-f8b7b1: #f8b7b1;
   --unnamed-color-e98178: #e98178;
   --red: #e65c4f;
@@ -29,6 +29,15 @@ body {
   --unnamed-color-fce7a2: #fce7a2;
   --yellow-light: #fcdc71;
   --yellow: #fdd037;
+
+  /* box shadow */
+
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  /* positioning */
+  --mx-auto: 0 auto 0 auto;
 }
 
 .content-container {

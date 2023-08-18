@@ -17,7 +17,6 @@ function CreatePost() {
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState({});
   const [userNow, setUserNow] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -81,7 +80,8 @@ function CreatePost() {
       setContent("");
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      setIsLoading(false)
+      toast.error("Something went wrong.")
     }
   };
 
