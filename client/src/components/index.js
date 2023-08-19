@@ -11,4 +11,4 @@ export { default as ImageWall } from "./ImageWall/ImageWall";
 export { default as Logo } from "./Logo";
 export { default as PostCard } from "./Posts/PostCard/PostCard";
 export { default as PrimaryBtn } from "./PrimaryBtn/PrimaryBtn";
-export { default as RegLogModal } from "./RegLogModal/RegLogModal";
+export { default as MyModal } from "./MyModal/MyModal";

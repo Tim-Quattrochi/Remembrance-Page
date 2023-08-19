@@ -12,7 +12,7 @@
   grid-gap: 16px;
   margin-top: 10rem;
 
-  background-color: var(--unnamed-color-ddfafa);
+  background-color: var(blue);
   padding: 16px;
   border: none;
 }
@@ -24,7 +24,7 @@
 }
 
 #image-grid img {
-  height: 200px;
+  height: 250px;
   width: 100%;
   object-fit: cover;
   border-radius: 4px;
@@ -39,11 +39,6 @@
   .modal-body {
     max-width: 90%;
   }
-}
-
-.image-item {
-  height: 300px; /* Adjust the height as needed */
-  object-fit: cover;
 }
 
 .carousel-container {

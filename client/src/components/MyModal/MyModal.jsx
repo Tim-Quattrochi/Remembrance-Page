@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import "./regLogModal.css";
+import "./modal.css";
 
 /**
  * @param {boolean} showModal -  Determines whether to show or hide the modal.
@@ -9,14 +9,14 @@ import "./regLogModal.css";
  * @param {ReactNode} children - The content displayed within the modal.
  * @returns {JSX.Element} The rendered modal component.
  */
-const RegLogModal = ({
+const MyModal = ({
   showModal,
   handleClose,
   toggleLogReg,
   children,
 }) => {
   return (
-    <Modal show={showModal} onHide={handleClose}>
+    <Modal centered size="md" show={showModal} onHide={handleClose}>
       <Modal.Body id="reg-log-modal-body" className="modal-body">
         {children}
       </Modal.Body>
@@ -27,4 +27,4 @@ const RegLogModal = ({
   );
 };
 
-export default RegLogModal;
+export default MyModal;
