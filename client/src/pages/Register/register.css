@@ -15,6 +15,26 @@
   margin-left: 5px;
 }
 
+.reg-btn {
+  font-family: "Montserrat-Bold", "Montserrat", "Arial";
+  font-weight: 700;
+  font-size: 14px;
+  width: 175px;
+  height: 38px;
+  letter-spacing: 0.05em;
+  color: black;
+  margin-left: 6em;
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 767px) {
+  .reg-btn {
+    margin-left: 3.5em;
+  }
+}
+
 .reg-toggle:hover {
   text-decoration: underline;
   font-weight: bold;
@@ -32,7 +52,8 @@
 }
 
 #have-account {
-  margin-right: 5px;
+  margin: 5px;
+  text-align: center;
 }
 
 #form-container {

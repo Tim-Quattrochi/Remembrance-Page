@@ -72,6 +72,7 @@ export function useProvideAuth() {
       });
       return res;
     } catch (error) {
+      console.log(error);
       if (error.response) {
         //I did notice that the error is coming as error here but as message in register.
         throw new Error(error.response.data.error);

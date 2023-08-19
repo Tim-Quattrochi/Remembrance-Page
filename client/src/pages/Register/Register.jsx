@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useProvideAuth } from "../../hooks/useAuthProvider";
 import { validateFields } from "../../helpers/validateInputFields";
 import { useNavigate } from "react-router-dom";
+import { PrimaryBtn } from "../../components/index";
 import { setAuthToken } from "../../hooks/useAxios";
 import GoogleLoginBtn from "../../components/GoogleLoginBtn";
 import "./register.css";
@@ -63,14 +64,15 @@ const SignUpPage = ({ toggle }) => {
 
     setIsSubmitting(true);
 
+    setTouched({
+      //all fields were touched
+      name: true,
+      email: true,
+      password: true,
+      confirmPassword: true,
+    });
+
     try {
-      setTouched({
-        //all fields were touched
-        name: true,
-        email: true,
-        password: true,
-        confirmPassword: true,
-      });
       // Validate all fields on form submission
       const newErrors = {};
       Object.keys(data).forEach((fieldName) => {
@@ -206,15 +208,12 @@ const SignUpPage = ({ toggle }) => {
           {data.serverError && (
             <span className="form-error">{data.serverError}</span>
           )}
+          <PrimaryBtn
+            text="Register"
+            style="reg-btn"
+            icon={isSubmitting && <Spinner />}
+          />
 
-          <Button
-            type="submit"
-            variant="none"
-            disabled={data.isSubmitting}
-            style={{ backgroundColor: "#FDD037" }}
-          >
-            {isSubmitting ? <Spinner /> : "Register"}
-          </Button>
           <Form.Text id="have-account">
             Already have an account?{" "}
             <span
