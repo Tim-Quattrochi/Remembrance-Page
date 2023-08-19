@@ -78,14 +78,14 @@ module.exports = function (passport) {
 
           if (!user) {
             return done(null, false, {
-              message: "Incorrect email or password.",
+              error: "Incorrect email or password.",
             });
           }
           const doesPassMatch = await user.comparePassword(password);
 
           if (!doesPassMatch) {
             return done(null, false, {
-              message: "Incorrect email or password.",
+              error: "Incorrect email or password.",
             });
           }
 
