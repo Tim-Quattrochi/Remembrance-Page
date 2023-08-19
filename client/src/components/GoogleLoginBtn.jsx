@@ -14,7 +14,7 @@ function GoogleLoginBtn() {
         backgroundColor: "#4285f4",
         color: "white",
         padding: "12px 24px",
-        borderRadius: "50px",
+        borderRadius: "2px",
         border: "none",
         cursor: "pointer",
         display: "flex",

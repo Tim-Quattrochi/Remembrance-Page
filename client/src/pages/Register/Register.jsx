@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useProvideAuth } from "../../hooks/useAuthProvider";
 import { validateFields } from "../../helpers/validateInputFields";
@@ -112,65 +112,66 @@ const SignUpPage = ({ toggle }) => {
     <div id="form-container">
       <Container className="d-flex justify-content-center align-items-center flex-column">
         <h1 className="reg-title">Register</h1>
-        <Form
-          noValidate
-          className="row"
-          style={{
-            width: "50%",
-            maxWidth: "400px",
-          }}
-          onSubmit={handleSubmit}
-        >
-          <Form.Group className="mb-3 name">
-            <Form.Label htmlFor="name">Name</Form.Label>
+        <Form noValidate id="reg-form" onSubmit={handleSubmit}>
+          <Row className="mb-3">
+            <Form.Group className="mb-3 name">
+              <Form.Label htmlFor="name">Name</Form.Label>
 
-            <Form.Control
-              type="text"
-              name="name"
-              id="name"
-              autoComplete="name"
-              value={data.name}
-              onChange={handleChange}
-              onBlur={handleInputBlur}
-              isValid={touched.name && data.name.length >= 3}
-              isInvalid={!!inputErrors.name}
-            />
-            <Form.Control.Feedback type="invalid">
-              {inputErrors.name}
-            </Form.Control.Feedback>
-          </Form.Group>
+              <Form.Control
+                type="text"
+                name="name"
+                id="name"
+                autoComplete="name"
+                value={data.name}
+                onChange={handleChange}
+                onBlur={handleInputBlur}
+                isValid={touched.name && data.name.length >= 3}
+                isInvalid={!!inputErrors.name}
+              />
+              <Form.Control.Feedback type="invalid">
+                {inputErrors.name}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="email">Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              id="email"
-              autoComplete="email"
-              value={data.email}
-              onChange={handleChange}
-              onBlur={handleInputBlur}
-              isInvalid={!!inputErrors.email}
-            />
-            <Form.Control.Feedback type="invalid">
-              {inputErrors.email}
-            </Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="email">Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                id="email"
+                autoComplete="email"
+                value={data.email}
+                onChange={handleChange}
+                onBlur={handleInputBlur}
+                isInvalid={!!inputErrors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {inputErrors.email}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Row>
+
           <Form.Group className="mb-3">
             <Form.Label htmlFor="password">Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              id="password"
-              autoComplete="new-password"
-              maxLength={20}
-              minLength={8}
-              value={data.password}
-              onChange={handleChange}
-              onBlur={handleInputBlur}
-              isValid={touched.password && data.password.length >= 7}
-              isInvalid={!!inputErrors.password}
-            />
+            <Row className="mb-3">
+              <Col>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  id="password"
+                  autoComplete="new-password"
+                  maxLength={20}
+                  minLength={8}
+                  value={data.password}
+                  onChange={handleChange}
+                  onBlur={handleInputBlur}
+                  isValid={
+                    touched.password && data.password.length >= 7
+                  }
+                  isInvalid={!!inputErrors.password}
+                />
+              </Col>
+            </Row>
             <Form.Control.Feedback type="invalid">
               {inputErrors.password}
             </Form.Control.Feedback>
@@ -201,6 +202,7 @@ const SignUpPage = ({ toggle }) => {
               {inputErrors.confirmPassword}
             </Form.Control.Feedback>
           </Form.Group>
+
           {data.serverError && (
             <span className="form-error">{data.serverError}</span>
           )}

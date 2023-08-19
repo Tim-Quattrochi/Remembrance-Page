@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Login, Register } from "../../../pages";
-import { PrimaryBtn } from "../../../components";
+import { PrimaryBtn, RegLogModal } from "../../../components";
 import { FaUnlockAlt } from "react-icons/fa";
 import { TfiPencil } from "react-icons/tfi";
 import "./signForm.css";
@@ -36,18 +36,18 @@ const SignForm = ({
         />
       </div>
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Body className="modal-body">
-          {toggleLogReg ? (
-            <Register toggle={setToggleLogReg} />
-          ) : (
-            <Login toggle={setToggleLogReg} />
-          )}
-        </Modal.Body>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-      </Modal>
+      <RegLogModal
+        showModal={showModal}
+        handleClose={handleClose}
+        toggleLogReg={toggleLogReg}
+      >
+        {" "}
+        {toggleLogReg ? (
+          <Register toggle={setToggleLogReg} />
+        ) : (
+          <Login toggle={setToggleLogReg} />
+        )}
+      </RegLogModal>
     </>
   ) : (
     <Form

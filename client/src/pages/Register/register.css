@@ -1,3 +1,13 @@
+#reg-form {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .reg-toggle {
   cursor: pointer;
   text-align: center;
@@ -12,6 +22,7 @@
 
 .reg-title {
   font: bold 24px "Montserrat";
+  padding: 7px;
 }
 
 .form-error {
