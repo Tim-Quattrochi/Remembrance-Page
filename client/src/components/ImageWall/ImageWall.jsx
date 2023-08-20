@@ -1,8 +1,6 @@
-import { useState, useRef } from "react";
-import { Carousel, Image } from "react-bootstrap";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { MyModal } from "../../components/index";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import { useState } from "react";
+import { Carousel } from "react-bootstrap";
+
 import {
   family,
   meAndJerry,
@@ -15,20 +13,7 @@ import {
 import "./imageWall.css";
 
 const ImageWall = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
-  const photoRef = useRef(null);
-
-  const handleClick = (image, index) => {
-    setSelectedImage(image);
-    setImageIndex(index);
-    setShowModal(true);
-  };
-
-  const handleClose = () => {
-    setShowModal(false);
-  };
 
   const images = [
     hopeProm,
@@ -40,81 +25,23 @@ const ImageWall = () => {
   ];
 
   return (
-    <>
-      <div id="image-grid">
-        {images.map((image, index) => (
-          <LazyLoadImage
-            effect="blur"
-            ref={photoRef}
-            key={index}
-            src={image}
-            alt={`Image ${index + 1}`}
-            visibleByDefault={image.src === image}
-            className="image-item"
-            onClick={() => handleClick(image, index)}
-          />
-        ))}
-      </div>
-      <MyModal showModal={showModal} handleClose={handleClose}>
-        <Carousel
-          interval={null}
-          activeIndex={imageIndex}
-          onSelect={(index) => setImageIndex(index)}
-          className="carousel-container"
-        >
-          <Carousel.Item>
-            <Image
-              fluid
-              className="image-item"
-              src={hopeProm}
-              alt="Jerry at prom"
+    <Carousel
+      activeIndex={imageIndex}
+      onSelect={(index) => setImageIndex(index)}
+      className="carousel-container"
+    >
+      {images.map((image, index) => (
+        <Carousel.Item key={index}>
+          <div id="aspect-ratio-16-9">
+            <img
+              src={image}
+              alt={`family ${index + 1}`}
+              className="d-block w-100"
             />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <Image
-              fluid
-              thumbnail
-              className="image-item"
-              src={jerryProm}
-              alt="Prom"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <Image
-              fluid
-              className="image-item"
-              src={jerryLittle}
-              alt="Jerry when he was little"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <Image
-              fluid
-              className="image-item"
-              src={family}
-              alt="family"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <Image
-              fluid
-              className="image-item"
-              src={meAndJerry}
-              alt="Tim and Jerry"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <Image
-              fluid
-              className="image-item"
-              src={krystleJerryMatt}
-              alt="Krystle, Matt, and Jerry"
-            />
-          </Carousel.Item>
-        </Carousel>
-      </MyModal>
-    </>
+          </div>
+        </Carousel.Item>
+      ))}
+    </Carousel>
   );
 };
 

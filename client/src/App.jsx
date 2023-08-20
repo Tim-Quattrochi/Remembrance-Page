@@ -36,16 +36,8 @@ function App() {
           theme="dark"
         />
 
-        <UnderConstruction />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/pictures" element={<ImageWall />} />
-
-          <Route path="/guest-book" element={<CreatePost />} />
-
-          <Route path="/login" element={<GoogleLoginBtn />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
         <ScrollToTop />
