@@ -7,9 +7,9 @@ export { default as scrollTop } from "./scrollTop.svg";
 export { default as regLogBg } from "./regLogBg.svg";
 
 //exports from /jerrysPhotos dir
-export { default as family } from "./jerrysPhotos/family.jpg";
-export { default as hopeProm } from "./jerrysPhotos/hopeProm.jpeg";
-export { default as jerryLittle } from "./jerrysPhotos/jerryLittle.jpg";
-export { default as jerryProm } from "./jerrysPhotos/jerryProm.jpeg";
-export { default as krystleJerryMatt } from "./jerrysPhotos/krystleJerryMatt.jpeg";
-export { default as meAndJerry } from "./jerrysPhotos/meAndJErry.JPG";
+export { default as family } from "./jerrysPhotos/webP/family.webp";
+export { default as hopeProm } from "./jerrysPhotos/webP/hopeProm.webp";
+export { default as jerryLittle } from "./jerrysPhotos/webP/jerryLittle.webp";
+export { default as jerryProm } from "./jerrysPhotos/webP/jerryProm.webp";
+export { default as krystleJerryMatt } from "./jerrysPhotos/webP/krystleJerryMatt.webp";
+export { default as meAndJerry } from "./jerrysPhotos/webP/meAndJerry.webp";
