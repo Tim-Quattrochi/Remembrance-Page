@@ -24,7 +24,12 @@ function NavBar() {
       data-bs-theme="light"
     >
       <Container>
-        <Navbar.Brand as={Link} to={"/"} href="#home">
+        <Navbar.Brand
+          as={Link}
+          to={"/"}
+          href="#home"
+          aria-label="home page logo link"
+        >
           <Logo />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
