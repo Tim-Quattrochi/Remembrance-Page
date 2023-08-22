@@ -16,6 +16,7 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "express-session": "^1.17.3",
+    "inherits": "^2.0.4",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "mongoose-findorcreate": "^3.0.0",

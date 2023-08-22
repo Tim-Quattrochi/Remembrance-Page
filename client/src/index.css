@@ -1,13 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap");
 
-html,
-body {
-  height: 100%;
-}
-
 :root {
   /* Colors: */
+  --bg-color: #fff7eb;
   --lightest-gray: #cacaca;
   --gray-40-: #a8a8a8;
   --gray-60-: #6f6f6f;
@@ -40,39 +36,20 @@ body {
   --mx-auto: 0 auto 0 auto;
 }
 
-.content-container {
-  --imgW: 1444;
-  --imgH: 3205;
-  width: 100vw;
-  min-height: calc(100vw * var(--imgH) / var(--imgW));
-  /* make sure the whole height of the image is always shown */
-  background: transparent url("../src/assets/BACKGROUND.svg");
+body {
+  background: transparent url("../src/assets/BACKGROUND.svg")
+    no-repeat center center;
   background-size: cover;
   font-family: "Montserrat";
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
-  .content-container {
-    background-size: contain;
-    background-repeat: no-repeat;
+  body {
+    background: transparent url("../src/assets/BACKGROUND.svg")
+      no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 }
-
-/* .background-container {
-  margin-top: calc(100vw * var(--imgH) / var(--imgW))
-} */
-
-/* Large devices (laptops/desktops, 1024px and up) */
-/* @media only screen and (min-width: 1024px) {
-  .content-container {
-    background: no-repeat center top
-      url("../src/assets/BACKGROUND.svg") border-box;
-    min-height: 100vh;
-    background-size: cover;
-
-    background-repeat: no-repeat;
-  }
-} */

@@ -25,23 +25,25 @@ const ImageWall = () => {
   ];
 
   return (
-    <Carousel
-      activeIndex={imageIndex}
-      onSelect={(index) => setImageIndex(index)}
-      className="carousel-container"
-    >
-      {images.map((image, index) => (
-        <Carousel.Item key={index}>
-          <div id="aspect-ratio-16-9">
-            <img
-              src={image}
-              alt={`family ${index + 1}`}
-              className="d-block w-100"
-            />
-          </div>
-        </Carousel.Item>
-      ))}
-    </Carousel>
+    <section className="image-wall-container">
+      <Carousel
+        activeIndex={imageIndex}
+        onSelect={(index) => setImageIndex(index)}
+        className="carousel-container"
+      >
+        {images.map((image, index) => (
+          <Carousel.Item key={index}>
+            <div id="aspect-ratio-16-9">
+              <img
+                src={image}
+                alt={`family ${index + 1}`}
+                className="d-block w-100"
+              />
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </section>
   );
 };
 
