@@ -1,24 +1,15 @@
 import {
-  UnderConstruction,
   ErrorBoundary,
   NavBar,
   ScrollToTop,
   Footer,
-  GoogleLoginBtn,
-  CreatePost,
-  ImageWall,
 } from "./components";
-import { LandingPage, NotFound404, Login, Register } from "./pages";
+import { LandingPage, NotFound404 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { useProvideAuth } from "./hooks/useAuthProvider";
 
 function App() {
-  const {
-    state: { user },
-  } = useProvideAuth();
-
   return (
     <ErrorBoundary>
       <div className="content-container">
