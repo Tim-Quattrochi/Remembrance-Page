@@ -1,12 +1,39 @@
-.footer--pin {
-  flex: 1;
-
-  bottom: 0;
-
+#footer {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
   width: 100%;
-  height: 100px; /* Height of the footer */
-  background: var(--turquoise);
-  background-image: linear-gradient(#ffffff00, #ffffff9e, #c8f3df);
-  background-color: #fff7eb;
-  opacity: 1;
+  gap: 5px;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.62),
+    #c8f3df
+  );
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+}
+
+#footer > div {
+  padding: 5px;
+}
+
+#footer > div > a {
+  margin: 5px;
+}
+
+#footer > div > a:hover {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

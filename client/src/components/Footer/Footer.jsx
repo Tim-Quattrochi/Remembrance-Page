@@ -7,7 +7,7 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer--pin d-flex justify-content-between">
+    <footer id="footer">
       <div className="text-center">
         Made with <FaHandHoldingHeart fill="#e65c4f" /> by Tim
         Quattrochi
@@ -17,18 +17,20 @@ const Footer = () => {
         <a
           href="https://github.com/Tim-Quattrochi"
           target="_blank"
+          aria-label="Read the author's github profile."
           rel="noopener noreferrer"
           className="ml-auto"
         >
-          <FaGithub fill="#fdd037" size={35} />
+          <FaGithub fill="#181717" size={35} />
         </a>
         <a
           href="https://www.linkedin.com/in/timquattrochi/"
           target="_blank"
+          aria-label="Read the author's LinkedIn profile."
           rel="noopener noreferrer"
           className="ml-auto"
         >
-          <FaLinkedin fill="#fdd037" size={35} />
+          <FaLinkedin fill="#0A66C2" size={35} />
         </a>
       </div>
     </footer>
