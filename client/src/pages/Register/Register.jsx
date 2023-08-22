@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
+import { PiPuzzlePieceLight } from "react-icons/pi";
 import { useProvideAuth } from "../../hooks/useAuthProvider";
 import { validateFields } from "../../helpers/validateInputFields";
 import { useNavigate } from "react-router-dom";
@@ -113,7 +114,12 @@ const SignUpPage = ({ toggle }) => {
   return (
     <div id="form-container">
       <Container className="d-flex justify-content-center align-items-center flex-column">
-        <h1 className="reg-title">Register</h1>
+        <GoogleLoginBtn />
+        <span className="secondary-reg-text">OR</span>
+        <h1 className="reg-title">
+          <PiPuzzlePieceLight size={32} color="green" /> Create an
+          account
+        </h1>
         <Form noValidate id="reg-form" onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group className="mb-3 name">
@@ -224,7 +230,6 @@ const SignUpPage = ({ toggle }) => {
             </span>
           </Form.Text>
         </Form>
-        <GoogleLoginBtn />
       </Container>
     </div>
   );

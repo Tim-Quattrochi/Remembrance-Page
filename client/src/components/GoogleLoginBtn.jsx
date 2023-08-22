@@ -1,10 +1,14 @@
 import { FaGoogle } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
 import { useProvideAuth } from "../hooks/useAuthProvider";
 
-function GoogleLoginBtn() {
+/**
+ *
+ * @param {string} regOrLog - String to pass to determine if the button renders with the
+ * words login or register. "login" will render login, else register.
+ * @returns {React.JSX}
+ */
+function GoogleLoginBtn({ regOrLog }) {
   const { signupWithGoogle } = useProvideAuth();
-  const location = useLocation();
 
   return (
     <button
@@ -23,7 +27,7 @@ function GoogleLoginBtn() {
       }}
     >
       <FaGoogle style={{ width: "20px", marginRight: "10px" }} />
-      {location.pathname === "/login"
+      {regOrLog === "login"
         ? "Log in with Google"
         : "Sign up with Google"}
     </button>

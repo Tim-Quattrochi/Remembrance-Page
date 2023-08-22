@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useProvideAuth } from "../../hooks/useAuthProvider";
 import Spinner from "react-bootstrap/Spinner";
 import { validateFields } from "../../helpers/validateInputFields";
+import { PiPuzzlePieceLight } from "react-icons/pi";
 import { setAuthToken } from "../../hooks/useAxios";
 import { PrimaryBtn } from "../../components/index";
 import GoogleLoginBtn from "../../components/GoogleLoginBtn";
@@ -100,7 +101,13 @@ const Login = ({ toggle }) => {
   return (
     <div id="form-log-container">
       <Container className="d-flex justify-content-center align-items-center flex-column">
-        <h1 className="log-title">Login</h1>
+        <GoogleLoginBtn regOrLog="login" />
+        <span className="secondary-log-text">OR</span>
+        <h1 className="log-title">
+          {" "}
+          <PiPuzzlePieceLight size={32} color="green" />
+          Login
+        </h1>
         <Form className="row" id="log-form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
@@ -156,8 +163,6 @@ const Login = ({ toggle }) => {
             </span>
           </Form.Text>
         </Form>
-
-        <GoogleLoginBtn />
       </Container>
     </div>
   );

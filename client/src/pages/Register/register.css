@@ -41,8 +41,21 @@
 }
 
 .reg-title {
-  font: bold 24px "Montserrat";
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font: 27px "Montserrat";
   padding: 7px;
+  margin: 4px;
+  color: var(--salmon);
+}
+
+.secondary-reg-text {
+  font: 24px "Lumanos,Arial";
+  color: var(--green);
+  font-weight: 600;
+  padding: 4px;
+  margin: 4px;
 }
 
 .form-error {
@@ -52,7 +65,7 @@
 }
 
 #have-account {
-  margin: 5px;
+  margin: 1em;
   text-align: center;
 }
 
