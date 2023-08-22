@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { scrollTop } from "../assets";
+import { scrollTop } from "../../assets";
 import { Button } from "react-bootstrap";
+import "./scrollToTop.css"
 
 const ScrollToTop = () => {
   const [showButton, setShowButton] = useState(false);
@@ -28,11 +29,11 @@ const ScrollToTop = () => {
         bottom: "20px",
       }}
     >
-      {showButton ? (
-        <Button variant="none" onClick={handleClick}>
+      {showButton && (
+        <Button id="scrollTopBtn" variant="none" onClick={handleClick}>
           <img src={scrollTop} alt="scroll to top icon" />
         </Button>
-      ) : null}
+      )}
     </div>
   );
 };
