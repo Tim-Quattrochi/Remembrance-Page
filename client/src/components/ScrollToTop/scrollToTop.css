@@ -1,7 +1,13 @@
 #scrollTopBtn img {
   animation: bounce 1s infinite;
+  border: none;
   width: 50px;
   margin: 5px;
+}
+
+#scrollTopBtn.btn.btn-none {
+  /* to disable the outline  */
+  border: none;
 }
 
 @keyframes bounce {
