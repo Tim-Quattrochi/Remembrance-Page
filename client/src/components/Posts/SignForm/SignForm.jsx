@@ -23,6 +23,10 @@ const SignForm = ({
     setShowModal(false);
   };
 
+  const handleToggle = () => {
+    setToggleLogReg((prev) => !prev);
+  };
+
   //if the user is a guest, show the login button, else show the text area
 
   return userNow === "Guest" ? (
@@ -36,16 +40,12 @@ const SignForm = ({
         />
       </div>
 
-      <MyModal
-        showModal={showModal}
-        handleClose={handleClose}
-        toggleLogReg={toggleLogReg}
-      >
+      <MyModal showModal={showModal} handleClose={handleClose}>
         {" "}
         {toggleLogReg ? (
-          <Register toggle={setToggleLogReg} />
+          <Register toggle={handleToggle} />
         ) : (
-          <Login toggle={setToggleLogReg} />
+          <Login toggle={handleToggle} />
         )}
       </MyModal>
     </>
