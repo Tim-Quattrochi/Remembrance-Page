@@ -2,11 +2,11 @@ import React from "react";
 import { PrimaryBtn } from "../../components";
 import { TfiPencil } from "react-icons/tfi";
 
-const LandingHeader = ({ Button }) => {
+const LandingHeader = ({}) => {
   return (
     <div className="responsive-mobile">
       <div className="landing-text">Jerry's remembrance page.</div>
-      <a href="#posts-container">
+      <a href="#gallery">
         <PrimaryBtn
           variant="none"
           type="submit"

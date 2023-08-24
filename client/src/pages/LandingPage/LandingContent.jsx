@@ -1,11 +1,12 @@
 import React from "react";
+import "./landingPage.css";
 
 const LandingContent = () => {
   return (
     <div className="landing-card-container">
       <div className="card-header">Tribute to Jerry Krikava</div>
-      <div className="card-body">
-        I am honored to present my tribute page for my beloved
+      <div className="personalPara">
+        I am honored to present this tribute page for my beloved
         brother, Jerry Krikava.
       </div>
       <div className="card-section-header">Jerry's Life</div>
