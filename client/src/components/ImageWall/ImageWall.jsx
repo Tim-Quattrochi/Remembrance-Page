@@ -8,6 +8,7 @@ import {
   jerryLittle,
   jerryProm,
   krystleJerryMatt,
+  jerryCowboy,
 } from "../../assets";
 
 import "./imageWall.css";
@@ -22,6 +23,7 @@ const ImageWall = () => {
     family,
     meAndJerry,
     krystleJerryMatt,
+    jerryCowboy,
   ];
 
   return (

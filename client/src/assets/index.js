@@ -13,3 +13,4 @@ export { default as jerryLittle } from "./jerrysPhotos/webP/jerryLittle.webp";
 export { default as jerryProm } from "./jerrysPhotos/webP/jerryProm.webp";
 export { default as krystleJerryMatt } from "./jerrysPhotos/webP/krystleJerryMatt.webp";
 export { default as meAndJerry } from "./jerrysPhotos/webP/meAndJerry.webp";
+export { default as jerryCowboy } from "./jerrysPhotos/webP/jerryCowBoy.webp";
