@@ -9,12 +9,7 @@ import "./modal.css";
  * @param {ReactNode} children - The content displayed within the modal.
  * @returns {JSX.Element} The rendered modal component.
  */
-const MyModal = ({
-  showModal,
-  handleClose,
-  toggleLogReg,
-  children,
-}) => {
+const MyModal = ({ showModal, handleClose, children }) => {
   return (
     <Modal centered size="md" show={showModal} onHide={handleClose}>
       <Modal.Body id="reg-log-modal-body" className="modal-body">
