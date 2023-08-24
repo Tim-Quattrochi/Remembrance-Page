@@ -73,7 +73,7 @@ export function useProvideAuth() {
       });
       return res;
     } catch (error) {
-      console.log(error);
+      logError(error);
       if (error.response) {
         //I did notice that the error is coming as error here but as message in register.
         throw new Error(error.response.data.error);
@@ -99,7 +99,7 @@ export function useProvideAuth() {
       const { token } = register.data;
       return token;
     } catch (error) {
-      console.log(error);
+      logError(error);
       if (error.response) {
         throw new Error(
           error.response.data.message || error.response.data.error
@@ -121,7 +121,7 @@ export function useProvideAuth() {
         "_self"
       );
     } catch (error) {
-      console.log(error);
+      logError(error);
       if (error.response) {
         throw new Error(error.response.data.message);
       } else {
@@ -138,7 +138,7 @@ export function useProvideAuth() {
       dispatch({ type: "LOGOUT" });
       localStorage.removeItem("Remembrance-User");
     } catch (error) {
-      console.log(error);
+      logError(error);
     }
   };
 
