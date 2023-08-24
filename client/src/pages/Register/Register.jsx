@@ -189,7 +189,6 @@ const SignUpPage = ({ toggle }) => {
               Confirm Password
             </Form.Label>
             <Form.Control
-              custom
               type="password"
               name="confirmPassword"
               id="confirmPassword"
@@ -222,10 +221,7 @@ const SignUpPage = ({ toggle }) => {
 
           <Form.Text id="have-account">
             Already have an account?{" "}
-            <span
-              className="reg-toggle"
-              onClick={() => toggle(false)}
-            >
+            <span className="reg-toggle" onClick={toggle}>
               Log in
             </span>
           </Form.Text>
