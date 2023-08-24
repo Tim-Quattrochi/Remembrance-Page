@@ -6,6 +6,7 @@ import {
 } from "react";
 import { API_URL, ENV } from "../utils.js/constants";
 import axios from "../utils.js/axios";
+import { logError } from "../helpers/logErrors";
 import useAuthContext from "./useAuthContext";
 
 const initialState = {
@@ -154,8 +155,7 @@ export function useProvideAuth() {
         payload: res.data,
       });
     } catch (error) {
-      console.error(error);
-      // dispatch({ type: "LOGOUT" });
+      logError(error);
     }
   }, [dispatch]);
 
