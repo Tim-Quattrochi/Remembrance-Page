@@ -25,6 +25,7 @@
     "client": "npm run dev --workspace=client",
     "server": "npm run start --workspace=server",
     "start": "concurrently --kill-others-on-fail \"npm run server\"  \"npm run client\"",
+    "build": "concurrently --kill-others-on-fail \"npm run build --workspace=client\" \"npm run build --workspace=server\"",
     "test:client": "cd client && npm test",
     "test:server": "cd server && jest",
     "test": "npm run test:client && npm run test:server"
