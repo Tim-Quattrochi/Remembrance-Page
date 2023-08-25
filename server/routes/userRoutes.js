@@ -7,6 +7,9 @@ const {
 } = require("../middleware/ensureAuth");
 const { logIn, signUp } = require("../controllers/userController");
 const createToken = require("../config/genJWT");
+const { CLIENT_HOME_PAGE_URL } = require("../config/constants");
+
+
 
 router.get(
   "/google",
@@ -20,12 +23,12 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     passReqToCallback: true,
-    failureRedirect: "/",
+    failureRedirect: CLIENT_HOME_PAGE_URL,
   }),
   (req, res) => {
     req.session.user = req.user;
 
-    res.redirect("http://localhost:5173/");
+    res.redirect(CLIENT_HOME_PAGE_URL);
   }
 );
 
