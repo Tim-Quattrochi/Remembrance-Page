@@ -15,16 +15,30 @@
   align-content: flex-start;
 }
 
-.personalPara {
+.firstPara {
+  text-indent: 2em;
+  margin-left: 0;
   color: var(--gray-70-);
-  text-align: center;
+  text-align: justify;
   font: normal normal normal 20px/32px Montserrat;
   letter-spacing: 0px;
+
+  padding: 5px;
+  margin: 5px;
+}
+
+.personalPara {
+  color: var(--gray-70-);
+  text-align: justify;
+  font: normal normal normal 20px/32px Montserrat;
+  letter-spacing: 0px;
+
   padding: 5px;
   margin: 5px;
 }
 
 @media only screen and (max-width: 600px) {
+  .firstPara,
   .personalPara {
     width: auto;
     padding: 10px;
@@ -32,7 +46,6 @@
     font-size: 16px;
     letter-spacing: 0px;
     color: var(--gray-70-);
-    text-align: center;
   }
 }
 

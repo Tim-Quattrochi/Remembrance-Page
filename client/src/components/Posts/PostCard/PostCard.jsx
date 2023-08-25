@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { useProvideAuth } from "../../../hooks/useAuthProvider";
 import { formatDate } from "../../../utils.js/date";
 import "./postCard.css";
 
-const PostCard = ({ post, likes, handleLike, user, index }) => {
+const PostCard = ({ post, handleLike, likes, index }) => {
+  const {
+    state: { user },
+  } = useProvideAuth();
+
+  const [likedState, setLikedState] = useState(
+    post.likes.some((like) => like?.name === user?.name)
+  );
+
   return (
     <div key={post._id}>
       <div className="user-name">{post.user.name}</div>
@@ -17,7 +26,10 @@ const PostCard = ({ post, likes, handleLike, user, index }) => {
           backgroundColor: index % 2 === 0 ? "#CCF1E1" : "white",
         }}
       >
-        <Card.Body className="card-body">
+        <Card.Body
+          className="card-body"
+          
+        >
           <Card.Text>{post.content}</Card.Text>
         </Card.Body>
 
@@ -42,7 +54,7 @@ const PostCard = ({ post, likes, handleLike, user, index }) => {
             }
           >
             <div>
-              {likes[post._id] ? (
+              {likedState || likes[post._id] ? (
                 <FaHeart
                   className="mr-2 text-danger"
                   onClick={() => handleLike(post._id)}

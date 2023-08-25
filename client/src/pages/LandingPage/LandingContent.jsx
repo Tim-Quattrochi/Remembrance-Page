@@ -12,7 +12,7 @@ const LandingContent = () => {
       <div className="card-section-header">Jerry's Life</div>
       <div className="card-section-body">
         {" "}
-        <p className="personalPara">
+        <p className="firstPara">
           Jerry was born on March 9th, 1990 and unfortunately passed
           away in March 2021. He had non-verbal autism and was a huge
           fan of 80's music, particularly Madonna and Journey. Purpose
