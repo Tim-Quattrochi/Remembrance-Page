@@ -6,7 +6,7 @@ const LandingHeader = ({}) => {
   return (
     <div className="responsive-mobile">
       <div className="landing-text">Jerry's remembrance page.</div>
-      <a href="#gallery">
+      <a href="#guest-book">
         <PrimaryBtn
           variant="none"
           type="submit"
