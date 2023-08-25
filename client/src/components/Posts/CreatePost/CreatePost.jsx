@@ -7,6 +7,7 @@ import { PostFeed } from "../../../pages";
 
 import { useNavigate } from "react-router-dom";
 import SignForm from "../SignForm/SignForm";
+import { logError } from "../../../helpers/logErrors";
 
 function CreatePost() {
   const {
@@ -18,7 +19,6 @@ function CreatePost() {
   const [likes, setLikes] = useState({});
   const [userNow, setUserNow] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,18 +35,16 @@ function CreatePost() {
     }
   }, [user]);
 
-  // Fetch all posts from the server
+  // Fetch all posts from the server, they are already being mapped out in the response.
   useEffect(() => {
     const getAllPosts = async () => {
       setIsLoading(true);
       try {
         const allPosts = await instance.get("posts");
-
         setPosts(allPosts.data);
         setIsLoading(false);
       } catch (error) {
-        setError(true);
-        console.log(error);
+        logError(error);
       }
     };
     getAllPosts();
@@ -68,7 +66,7 @@ function CreatePost() {
       user === undefined
     ) {
       toast.error("Please log in to make a post");
-      navigate("/login");
+      navigate("/");
     }
     if (!content || content === "  ") {
       return toast.error("Please enter a message");
@@ -80,8 +78,8 @@ function CreatePost() {
       setContent("");
       setIsLoading(false);
     } catch (error) {
-      setIsLoading(false)
-      toast.error("Something went wrong.")
+      setIsLoading(false);
+      toast.error("Something went wrong.");
     }
   };
 
@@ -116,23 +114,21 @@ function CreatePost() {
       });
       setPosts(updatedPosts);
     } catch (error) {
-      console.log(error);
+      logError(error);
     }
   };
 
-  if (error) {
-    navigate("/login");
-    return toast.info("Please log in");
-  }
   if (isLoading) {
     return (
-      <Spinner
-        style={{
-          width: "3rem",
-          height: "3rem",
-          color: "#CCF1E1",
-        }}
-      />
+      <div id="spinner">
+        <Spinner
+          style={{
+            width: "3rem",
+            height: "3rem",
+            color: "#CCF1E1",
+          }}
+        />
+      </div>
     );
   }
 
