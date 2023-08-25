@@ -12,10 +12,11 @@ import "./navBar.css";
 function NavBar() {
   const location = useLocation();
 
-  const { getCurrentUser } = useProvideAuth();
+  const {
+    state: { user },
+  } = useProvideAuth();
 
-  let user = getCurrentUser();
-
+  const homePage = location.pathname === "/";
   return (
     <Navbar
       collapseOnSelect
@@ -35,12 +36,16 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto" activeKey={location.pathname}>
-            <Nav.Link href="#guest-book" eventKey="/guest-book">
-              Guest-Book
-            </Nav.Link>
-            <Nav.Link href={"#gallery"} eventKey="/pictures">
-              Gallery
-            </Nav.Link>
+            {homePage && (
+              <>
+                <Nav.Link href="#guest-book" eventKey="/guest-book">
+                  Guest-Book
+                </Nav.Link>
+                <Nav.Link href={"#gallery"} eventKey="/pictures">
+                  Gallery
+                </Nav.Link>
+              </>
+            )}
           </Nav>
           <Nav>
             {user && (
