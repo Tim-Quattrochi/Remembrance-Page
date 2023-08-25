@@ -26,10 +26,7 @@ const PostCard = ({ post, handleLike, likes, index }) => {
           backgroundColor: index % 2 === 0 ? "#CCF1E1" : "white",
         }}
       >
-        <Card.Body
-          className="card-body"
-          
-        >
+        <Card.Body className="card-body">
           <Card.Text>{post.content}</Card.Text>
         </Card.Body>
 
@@ -53,7 +50,7 @@ const PostCard = ({ post, handleLike, likes, index }) => {
               </Tooltip>
             }
           >
-            <div>
+            <div className="heart">
               {likedState || likes[post._id] ? (
                 <FaHeart
                   className="mr-2 text-danger"
