@@ -1,7 +1,6 @@
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useProvideAuth } from "../../hooks/useAuthProvider";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../Logo";
@@ -26,6 +25,7 @@ function NavBar() {
     >
       <Container>
         <Navbar.Brand
+          id="logo"
           as={Link}
           to={"/"}
           href="#home"
