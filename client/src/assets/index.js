@@ -1,4 +1,3 @@
-export { default as backGround } from "./backGround.svg";
 export { default as gbBtn } from "./gbBtn.svg";
 export { default as hoverGbBtn } from "./hoverGbBtn.svg";
 export { default as next } from "./next.svg";
