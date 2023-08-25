@@ -165,8 +165,6 @@ export function useProvideAuth() {
   };
 
   useEffect(() => {
-    getUser();
-
     const savedUser = getCurrentUser() || false;
 
     if (savedUser) {
@@ -183,5 +181,6 @@ export function useProvideAuth() {
     login,
     signup,
     signupWithGoogle,
+    getUser,
   };
 }

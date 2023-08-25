@@ -4,8 +4,15 @@ import "./landingPage.css";
 import CreatePost from "../../components/Posts/CreatePost/CreatePost";
 import { ImageWall } from "../../components";
 import LandingContent from "./LandingContent";
+import { useProvideAuth } from "../../hooks/useAuthProvider";
+import { useEffect } from "react";
 
 const LandingPage = () => {
+  const { getUser } = useProvideAuth();
+
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <div className="landing-container">
       <LandingHeader Button={Button} />
