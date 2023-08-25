@@ -1,0 +1,52 @@
+.post-container > .card-body {
+  min-height: 250px;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+.post-container {
+  border-radius: 6px;
+}
+
+.card-body .card {
+  border-radius: 6px;
+}
+
+.mb-6 {
+  padding-top: 10px;
+}
+
+.user-name {
+  font: 16px "Montserrat";
+  color: var(--gray-40-);
+  margin: 10px auto 10px auto;
+}
+
+.date {
+  font-size: 10px;
+  color: var(--gray-40-);
+  margin: 10px 0 0 0;
+}
+
+.card-body {
+  outline: none;
+  padding: 20px;
+  max-width: 100%;
+  color: var(--gray-70-);
+}
+
+.card-text {
+  white-space: pre-line;
+  text-align: justify;
+}
+
+.card {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: none;
+}
+
+.heart {
+  padding: 2px;
+  margin: 2px;
+}

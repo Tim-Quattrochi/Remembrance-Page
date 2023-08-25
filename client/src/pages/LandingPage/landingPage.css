@@ -1,0 +1,143 @@
+.landing-container {
+  margin-top: 5rem;
+}
+.landing-text {
+  margin: 20px;
+  font: bold 50px "Montserrat", "Arial";
+  width: 474px;
+}
+
+.responsive-mobile {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.firstPara {
+  text-indent: 2em;
+  margin-left: 0;
+  color: var(--gray-70-);
+  text-align: justify;
+  font: normal normal normal 20px/32px Montserrat;
+  letter-spacing: 0px;
+
+  padding: 5px;
+  margin: 5px;
+}
+
+.personalPara {
+  color: var(--gray-70-);
+  text-align: justify;
+  font: normal normal normal 20px/32px Montserrat;
+  letter-spacing: 0px;
+
+  padding: 5px;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .firstPara,
+  .personalPara {
+    width: auto;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    letter-spacing: 0px;
+    color: var(--gray-70-);
+  }
+}
+
+@media (max-width: 600px) {
+  .landing-container .landing-text {
+    font-size: 40px;
+  }
+  .landing-text {
+    margin-top: 5px;
+  }
+  .landing-container button {
+    width: 100vw;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .landing-container .landing-text .responsive-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: flex-end;
+    font-size: 30px;
+  }
+  .landing-container button {
+    width: 100vw;
+    max-width: 300px;
+  }
+}
+
+.landing-card-container {
+  background: #fafafa 0% 0% no-repeat padding-box;
+  box-shadow: 0px 16px 16px #0000000d;
+}
+
+.card-section-header {
+  font-size: 28px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.card-header {
+  margin: 5px;
+  padding: 5px;
+  color: var(--gray);
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  font-family: "Montserrat";
+}
+
+.card-body {
+  text-align: center;
+}
+
+.my-card {
+  margin: 6.5rem auto 0 auto;
+  width: 792px;
+
+  display: flex;
+  flex-direction: column;
+  background: #fafafa 0% 0% no-repeat padding-box;
+  box-shadow: 0px 16px 16px #0000000d;
+  opacity: 1;
+}
+
+.card-section-body {
+  padding: 10px;
+}
+
+/* Mobile Phones (portrait and landscape) */
+@media (max-width: 768px) {
+  .my-card {
+    width: auto;
+  }
+  .card-section-body p {
+    width: auto;
+    white-space: break-spaces;
+    word-break: break-word;
+    line-height: 1.6;
+  }
+  .card-header {
+    margin: 5px;
+    padding: 5px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .landing-container {
+    max-width: 100%;
+  }
+}

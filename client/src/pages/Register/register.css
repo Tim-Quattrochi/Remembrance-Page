@@ -1,0 +1,75 @@
+#reg-form {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.reg-toggle {
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.reg-btn {
+  font-family: "Montserrat-Bold", "Montserrat", "Arial";
+  font-weight: 700;
+  font-size: 14px;
+  width: 175px;
+  height: 38px;
+  letter-spacing: 0.05em;
+  color: black;
+  margin-left: 6em;
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 767px) {
+  .reg-btn {
+    margin-left: 3.5em;
+  }
+}
+
+.reg-toggle:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.reg-title {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font: 27px "Montserrat";
+  padding: 7px;
+  margin: 4px;
+  color: var(--salmon);
+}
+
+.secondary-reg-text {
+  font: 24px "Lumanos,Arial";
+  color: var(--green);
+  font-weight: 600;
+  padding: 4px;
+  margin: 4px;
+}
+
+.form-error {
+  color: red;
+  padding: 5px;
+  margin: 2px;
+}
+
+#have-account {
+  margin: 1em;
+  text-align: center;
+}
+
+#form-container {
+  background: no-repeat center transparent
+    url("../../assets/regLogBg.svg");
+}

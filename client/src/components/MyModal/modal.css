@@ -1,0 +1,28 @@
+#reg-log-modal-body.modal-body {
+  width: 100%;
+  margin: 5px;
+  padding: 2px;
+}
+
+.modal-content {
+  margin: 0;
+}
+
+#close-btn {
+  background-color: var(--green);
+  border: none;
+  margin: 5px;
+  border-radius: 2px;
+}
+
+#close-btn:hover {
+  background-color: var(--light-green);
+}
+
+@media only screen and (max-width: 767px) {
+  #reg-log-modal-body.modal-body {
+    margin: 1px;
+    padding: 5px;
+    max-width: 100%;
+  }
+}

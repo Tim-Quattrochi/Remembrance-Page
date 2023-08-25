@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&display=swap");
+
+.sign-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-in-btn {
+  font-family: "Montserrat", "Arial";
+  font-weight: 600;
+  width: 224px;
+  height: 48px;
+  margin: var(--mx-auto);
+  color: var(--gray-70-);
+  background-color: var(--yellow);
+  box-shadow: var(--shadow-2xl);
+  border: none;
+}
+
+.sign-in-btn:hover {
+  background-color: var(--turquoise-light);
+}
+
+.sign-gb-btn-container {
+  margin-top: 50px;
+  width: auto;
+}
+
+#text-area {
+  margin-bottom: 8px;
+  width: 384px;
+  height: 183px;
+  border: none;
+  margin: var(--mx-auto);
+  background-color: var(--lightest-blue);
+  border-radius: 4px 4px 0px 0px;
+  box-shadow: var(--shadow-md);
+}
+
+#text-area:focus {
+  outline: 1px solid var(--light-pink);
+}
+
+#sign-gb-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}

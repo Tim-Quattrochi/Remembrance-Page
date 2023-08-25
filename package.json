@@ -8,7 +8,8 @@
     "url": "git+https://github.com/Tim-Quattrochi/Remembrance-Page.git"
   },
   "workspaces": [
-    "packages/*"
+    "client",
+    "server"
   ],
   "keywords": [
     "guestbook",
@@ -21,24 +22,15 @@
   },
   "homepage": "https://github.com/Tim-Quattrochi/Remembrance-Page#readme",
   "scripts": {
-    "client": "npm run start --workspace=client",
+    "client": "npm run dev --workspace=client",
     "server": "npm run start --workspace=server",
     "start": "concurrently --kill-others-on-fail \"npm run server\"  \"npm run client\"",
-    "build": "concurrently --kill-others-on-fail \"npm run build --workspace=client\" \"npm run build --workspace=server\""
+    "build": "concurrently --kill-others-on-fail \"npm run build --workspace=client\" \"npm run build --workspace=server\"",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && jest",
+    "test": "npm run test:client && npm run test:server"
   },
   "dependencies": {
-    "concurrently": "^8.1.0",
-    "connect-mongo": "^4.6.0",
-    "cookie-session": "^2.0.0",
-    "express-session": "^1.17.3",
-    "mongoose-findorcreate": "^3.0.0",
-    "passport": "^0.6.0",
-    "passport-facebook": "^3.0.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^7.1.2",
-    "prop-types": "^15.8.1",
-    "react-ga": "^3.3.1",
-    "react-sticky-footer": "^0.1.0-rc3"
+    "concurrently": "^8.1.0"
   }
 }
