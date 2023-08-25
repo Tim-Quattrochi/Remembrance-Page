@@ -62,7 +62,7 @@ const SignForm = ({
           as="textarea"
           rows={3}
           id="text-area"
-          placeholder={`Hi ${userNow}. Feel free to make a post`}
+          placeholder={`Hi ${userNow}. Feel free to make a post or share a memory.`}
           value={content}
           size="lg"
           required
