@@ -8,6 +8,10 @@ nav .navbar-collapse {
   justify-content: end;
 }
 
+#logo {
+  font-weight: lighter;
+}
+
 .navbar {
   font-size: 18px;
   font-weight: bold;
